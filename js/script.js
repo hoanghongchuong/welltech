@@ -4,7 +4,7 @@ $(document).ready(function($){
 	  		margin:0, 							
 	  		loop:true, 							
 	  		nav:true, 							
-	  		navText:['<i class="fa fa-caret-left"></i>','<i class="fa fa-caret-right"></i>'], 
+	  		navText:['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'], 
 	  		autoplay:false, 						
 	  		autoplayTimeout:1500,
 			autoplayHoverPause:true,
@@ -12,21 +12,18 @@ $(document).ready(function($){
 			responsiveClass:true, 				
 		    responsive:{
 		        0:{
-		            items:1,									            									            
+		            items:2,									            									            
 		        },
 		        600:{
 		            items:2,          
 		        },
 		        1000:{
-		            items:2,  
+		            items:4,  
 		        }
 		    }
 		});
 
-		
-
-		var owl = $(".owl-carousel-slider");
-	  	owl.owlCarousel({
+	  	$(".owl-carousel-feedback").owlCarousel({
 	  		margin:0, 							
 	  		loop:true, 							
 	  		nav:true, 							
@@ -41,52 +38,15 @@ $(document).ready(function($){
 		            items:1,									            									            
 		        },
 		        600:{
-		            items:4,          
+		            items:1,          
 		        },
 		        1000:{
-		            items:4,  
+		            items:1,  
 		        }
 		    }
 		});
 
-	$('.slider-for').slick({
-	  slidesToShow: 1,
-	  slidesToScroll: 1,
-	  arrows: false,
-	  fade: true,
-	  asNavFor: '.slider-nav',
-		 autoplay: true
-	});
-	$('.slider-nav').slick({
-	  slidesToShow: 3,
-	  slidesToScroll: 1,
-	  asNavFor: '.slider-for',
-	  dots: false,
-	  centerMode: true,
-	  focusOnSelect: true,
-	  responsive: [{
- 			breakpoint: 1024,
- 			settings: {
- 				slidesToShow:4,
- 				slidesToScroll: 4
- 			}
- 		}, {
- 			breakpoint: 640,
- 			settings: {
- 				slidesToShow: 3,
- 				slidesToScroll: 3,
-			}
- 		}, {
- 			breakpoint: 420,
- 			settings: {
- 				slidesToShow: 3,
- 				slidesToScroll: 3,
-		}
- 		}]
-
-	});
-
-
+	
 	// box input search
 	$('.box-search i').on('click', function(){
 		$('.box-search input').addClass('show-input-search');
@@ -94,30 +54,3 @@ $(document).ready(function($){
 
 });
 
-var MobileMenu = function () {
-        var mobileMenu = $("#menu");
-
-        if (mobileMenu.length) {
-            mobileMenu.mmenu({
-                "extensions": [
-                    // "fx-panels-zoom",
-                    "pagedim-black",
-                    // "theme-dark"
-                ],
-                "offCanvas": {
-                    // "position": "right"
-                },
-                "navbars": [
-                    {
-                        "position": "top",
-                        "content": [
-                            "<a class='fa fa-envelope' href='#/'></a>",
-                            "<a class='fa fa-twitter' href='#/'></a>",
-                            "<a class='fa fa-facebook' href='#/'></a>"
-                        ]
-                    }
-                ]
-            });
-        }
-
-};

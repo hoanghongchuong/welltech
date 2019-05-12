@@ -2,6 +2,25 @@
 	.box-right{
 		margin-top: 0px;
 	}
+	.list-hot-item{
+		display: block;
+	}
+	.list-hot-item .left img, .list-hot-item .right img{
+		height: auto;
+	}
+	.list-product-item .item img{
+		height: auto;
+	}
+	.slider img{
+	    height: auto !important;
+	    width: 100%;
+	}
+	.vk-footer__heading{
+		margin-bottom: 0px;
+	}
+	.vk-footer__item{
+		padding: 0;
+	}
 }
 @media (min-width: 768px) {
 	
@@ -9,6 +28,15 @@
 @media (min-width: 768px) and (max-width: 999px){
 	.menu{
 		margin-top: 20px;
+	}
+	.list-hot-item{
+		display: block;
+	}
+	.list-hot-item .left img, .list-hot-item .right img{
+		height: auto;
+	}
+	.list-product-item .item img{
+		height: auto;
 	}
 }
 @media (min-width: 1000px) {
