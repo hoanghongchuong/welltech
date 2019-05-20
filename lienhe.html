@@ -161,31 +161,48 @@
         </div> -->
     </div>
     
+    <div class="crumb">
+        <div class="container">
+            <div class="row">
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="#">Trang chủ</a>
+                    </li>
+                    
+                    <li class="active">Liên hệ</li>
+                </ol>
+            </div>
+        </div>
+    </div>
     <div class="content-home-cate box-contact-home">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-xs-12">
-                    <p class="title-about-home">Liên hệ</p>
-                    <!-- <p class="p1">Bạn đang muốn thiết kế không gian sống</p> -->
                     <p class="p2">Hãy liên hệ với chúng tôi</p>
+                    <div class="info-contact">
+                        <p>Add: Tầng 5, Tòa nhà Bưu điện Đại Kim, Lô 14 Nguyễn Cảnh Dị, quận Hoàng Mai, Hà Nội</p>
+                        <p>Tel: (024) 35 400 800</p>
+                        <p>Hotline: 0911 872 884</p>
+                        <p>Email: info@hccorp.vn</p>
+                    </div>
                     <form action="{{route('postContact')}}" method="post" id="form-contact" accept-charset="utf-8">
                         
-                        <div class="col-md-6">
+                        <div class="col-md-6 pdl-0">
                             <input type="text" name="name" required="" class="form-control" value="" placeholder="Họ tên">
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 pdl-0">
                             <input type="text" name="phone" required="" class="form-control" value="" placeholder="Số điện thoại">
                         </div>
-                         <div class="col-md-6">
+                         <div class="col-md-6 pdl-0">
                             <input type="email" name="email" required="" class="form-control" value="" placeholder="Email">
                         </div>
-                         <div class="col-md-6">
+                         <div class="col-md-6 pdl-0">
                             <input type="text" name="address" required="" class="form-control" value="" placeholder="Địa chỉ">
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-md-12 pdl-0">
                             <textarea name="content" class="form-control" rows="5" placeholder="Nội dung"></textarea>
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-md-12 pdl-0">
                             <button type="submit" class="btn btn-send">Gửi</button>
                         </div>
                     </form>

@@ -21,6 +21,9 @@
 	.vk-footer__item{
 		padding: 0;
 	}
+	.name_news{
+		margin-top: 7px;
+	}
 }
 @media (min-width: 768px) {
 	

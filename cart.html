@@ -16,10 +16,10 @@
     <link rel="stylesheet" type="text/css" href="css/cus.css" />
     <link rel="stylesheet" type="text/css" href="css/responsive.css" />
     <link rel="stylesheet" type="text/css" href="css/phone.css" />
-    <!-- <link rel="stylesheet" type="text/css" href="css/flatsome-3.4.0.css" /> -->
     <script src="js/jquery-2.1.4.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>    
+    <script src="js/owl.carousel.min.js"></script> 
+    
     <script src="js/slick.min.js"></script>
     <script src="js/jquery.fancybox.min.js"></script>
     <script src="js/script.js"></script>
@@ -49,7 +49,6 @@
         <div class="top-menu">  
             <div class="container">
                 <div class="row">
-                   
                     <ul class="navi">
                         <li><a href="">Trang chủ</a></li>
                         <li>
@@ -182,179 +181,66 @@
         </nav>        
     </div>
     <!-- end menu mobile -->
-
     <div class="crumb">
         <div class="container">
             <div class="row">
-                <ol class="breadcrumb breadcrumbx">
+                <ol class="breadcrumb">
                     <li>
-                        <a href="http://duhocachi.com">Trang chủ</a>
+                        <a href="#">Trang chủ</a>
                     </li>
-                    <li class="active"><a href="http://duhocachi.com/san-pham">Sản phẩm</a></li>
+                    
+                    <li class="active">Giỏ hàng</li>
                 </ol>
             </div>
         </div>
     </div>
-    <div class="content-box">
+    <div class="content-home-cate" style="margin-bottom: 30px;">
         <div class="container">
             <div class="row">
-                <div class="box-des-category">
-                    <h1>Backup Power Kits</h1>
-                    <div class="des">We are in the process of designing and updating a new group of backup power kits. These will be available very soon, so keep checking back for updates. Please email us or give us a call if you need a kit custom designed to your needs.</div>
-                </div>
-                <div class="col-md-3">
-                    <div class="sidebar">
-                        <nav class="sidebar-menu">
-                            <ul id="menuMobile2" class="">
-                                <li>
-                                    <a href="#" class="filter-options-title">Category</a>
-                                    <a href="#cate1" data-toggle="collapse" class="_arrow-mobile flr"><i class="_icon fa fa-angle-down"></i></a>
-                                    <ul class="collapse text-capitalize" id="cate1">
-                                        <li class=""><a href="#">Công trình 1</a></li>
-                                        <li><a href="#">Công trình 1</a></li>
-                                        <li><a href="#">Công trình 1</a></li>
-                                        <li><a href="#">Công trình 1</a></li>
-                                        <li><a href="#">Công trình 1</a></li>
-                                        
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#" class="filter-options-title">Danh mục 2</a>
-                                    <a href="#cate2" data-toggle="collapse" class="_arrow-mobile flr"><i class="_icon fa fa-angle-down"></i></a>
-                                    <ul class="collapse text-capitalize" id="cate2">
-                                        <li><a href="#">Công trình 1</a></li>
-                                        <li><a href="#">Công trình 1</a></li>
-                                        <li><a href="#">Công trình 1</a></li>
-                                        <li><a href="#">Công trình 1</a></li>
-                                        <li><a href="#">Công trình 1</a></li>
-                                        
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#" class="filter-options-title">Danh mục 3</a>
-                                    <a href="#cate3" data-toggle="collapse" class="_arrow-mobile flr"><i class="_icon fa fa-angle-down"></i></a>
-                                    <ul class="collapse text-capitalize" id="cate3">
-                                        <li><a href="#">Công trình 1</a></li>
-                                        <li><a href="#">Công trình 1</a></li>
-                                        <li><a href="#">Công trình 1</a></li>
-                                        <li><a href="#">Công trình 1</a></li>
-                                        <li><a href="#">Công trình 1</a></li>
-                                        
-                                    </ul>
-                                </li>
-                                <li><a href="" class="filter-options-title" title="">Danh mục 4</a></li>
-                                <li><a href="" class="filter-options-title" title="">Danh mục 5</a></li>
-                                <li><a href="" class="filter-options-title" title="">Danh mục 6</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-                <div class="col-md-9">
-                    <div class="box-filter-product">
-                        <div class="vk-filter">
-                            <div class="vk-filter__item">
-                                <span class="mr-1">Hiển thị</span>
-                                <select name="view" id="" class="form-control form-change">
-                                    <option value="9">9</option>
-                                    <option value="12">12</option>
-                                    <option value="15">15</option>
-                                </select>
-                                <!-- <span class="ml-1">Sản phẩm</span> -->
-                            </div>
+                <div class="vk-page vk-page--shopcart">
+                    <div class="vk-shopcart">
+                        <h1 class="vk-shopcart__heading">Giỏ hàng</h1>
+                        <form action="{{route('updateCart')}}" method="post" id="cartformpage">   
+                            <div class="table-responsive">
+                                
+                                <table class="table">
+                                    
+                                    <thead>
+                                        <tr>
+                                            <th>Sản phẩm</th>
+                                            <th>Giá bán</th>
+                                            <th>Số lượng</th>
+                                            <th>Thành tiền</th>
+                                            <th>Thao tác</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>San pham 1</td>
+                                            <td>13500 vnđ</td>
+                                            <td>
+                                                <input type="number" id="" name="numb[]" value="1" class="form-control order-2" min="1">
+                                            </td>
+                                            <td>1230000 vnđ</td>
+                                            <td><a href="" title=""><i class="fa fa-trash"></i> Xóa</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
 
-                            <div class="vk-filter__item">
-                                <span class="mr-1">Sort By</span>                        
-                                <select name="sort" id="product_filter" class="form-control form-change">
-                                    <option value="asc">Product name</option>
-                                    <option value="desc">Price</option>
-                                   
-                                </select>
                             </div>
-                        </div>                        
-                    </div>
-                    <div class="list-product-item mt-0">
-                            <div class="box-item-product col-md-3 col-xs-6">
-                                <a href="" title=""><img src="images/p1.jpg" alt="">
-                                </a>
-                                <div class="footer-cate">
-                                    <p class="name_product"><a href="" title="">Simpliphi PHI-3.5-48-60 3.5kWh 48 Volt Lithium Ferro Phosphate Battery</a></p>
-                                    <div class="price">
-                                        $ 200000
-                                    </div>
+                            <div class="vk-shopcart__button">
+                                <div class="pull-left">
+                                    <a href="" title="" class="vk-btn btn-update-cart">Thanh toán</a>
+                                    <button class="vk-btn btn-update-cart">Cập nhật</button>
+                                    
+                                </div>
+                                <div class="vk-shopcart__total pull-right">
+                                    Tổng tiền: <span>300 000 vnđ</span>
                                 </div>
                             </div>
-                            <div class="box-item-product col-md-3 col-xs-6">
-                                <a href="" title=""><img src="images/p1.jpg" alt="">
-                                </a>
-                                <div class="footer-cate">
-                                    <p class="name_product"><a href="" title="">Simpliphi PHI-3.5-48-60 3.5kWh 48 Volt Lithium Ferro Phosphate Battery Lithium Ferro Phosphate Battery</a></p>
-                                    <div class="price">
-                                        $ 200000
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="box-item-product col-md-3 col-xs-6">
-                                <a href="" title=""><img src="images/p1.jpg" alt="">
-                                </a>
-                                <div class="footer-cate">
-                                    <p class="name_product"><a href="" title="">Simpliphi PHI-3.5-48-60 3.5kWh 48 Volt Lithium Ferro Phosphate Battery Lithium Ferro Phosphate Battery Lithium Ferro Phosphate Battery</a></p>
-                                    <div class="price">
-                                        $ 200000
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="box-item-product col-md-3 col-xs-6">
-                                <a href="" title=""><img src="images/p1.jpg" alt="">
-                                </a>
-                                <div class="footer-cate">
-                                    <p class="name_product"><a href="" title="">Simpliphi PHI-3.5-48-60 3.5kWh </a></p>
-                                    <div class="price">
-                                        $ 200000
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="box-item-product col-md-3 col-xs-6">
-                                <a href="" title=""><img src="images/p1.jpg" alt="">
-                                </a>
-                                <div class="footer-cate">
-                                    <p class="name_product"><a href="" title="">Simpliphi PHI-3.5-48-60 3.5kWh 48 Volt Lithium Ferro Phosphate Battery</a></p>
-                                    <div class="price">
-                                        $ 200000
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="box-item-product col-md-3 col-xs-6">
-                                <a href="" title=""><img src="images/p1.jpg" alt="">
-                                </a>
-                                <div class="footer-cate">
-                                    <p class="name_product"><a href="" title="">Simpliphi PHI-3.5-48-60 3.5kWh</a></p>
-                                    <div class="price">
-                                        $ 200000
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="box-item-product col-md-3 col-xs-6">
-                                <a href="" title=""><img src="images/p1.jpg" alt="">
-                                </a>
-                                <div class="footer-cate">
-                                    <p class="name_product"><a href="" title="">Simpliphi PHI-3.5-48-60 3.5kWh 48 Volt Lithium Ferro Phosphate Battery</a></p>
-                                    <div class="price">
-                                        $ 200000
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="box-item-product col-md-3 col-xs-6">
-                                <a href="" title=""><img src="images/p1.jpg" alt="">
-                                </a>
-                                <div class="footer-cate">
-                                    <p class="name_product"><a href="" title="">Simpliphi PHI-3.5-48-60 3.5kWh 48 Volt Lithium Ferro Phosphate Battery Lithium Ferro Phosphate Battery</a></p>
-                                    <div class="price">
-                                        $ 200000
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                </div>
+                        </form>                        
+                    </div> 
+                </div> 
             </div>
         </div>
     </div>
@@ -421,10 +307,6 @@
                 </div> <!--./top-content-->
             </div> <!--./container-->
         </div> <!--./top-->
-
-
-        
-        
     </footer>
     <div class="vk-footer__bot">
         <div class="container">
@@ -435,7 +317,9 @@
                 
             </div>
         </div>
-    </div> <!--./vk-footer__bot-->
+    </div>  
+</div>
+    
 </body>
 
 </html>
