@@ -33,7 +33,7 @@ $lang = Session::get('locale');
             <div class="box-item">
                 <div class="col-md-4">
                     <div class="box">
-                        <img src="images/icon1.png">
+                        <img src="{{asset('public/images/icon1.png')}}">
                         <p class="name">Bảo vệ môi trường</p>
                         <div class="des">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -43,7 +43,7 @@ $lang = Session::get('locale');
                 </div>
                 <div class="col-md-4">
                     <div class="box">
-                        <img src="images/icon2.png">
+                        <img src="{{asset('public/images/icon2.png')}}">
                         <p class="name">Tiết kiệm điện năng</p>
                         <div class="des">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -53,7 +53,7 @@ $lang = Session::get('locale');
                 </div>
                 <div class="col-md-4">
                     <div class="box">
-                        <img src="images/icon3.png">
+                        <img src="{{asset('public/images/icon3.png')}}">
                         <p class="name">Chất lượng cao</p>
                         <div class="des">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -86,56 +86,22 @@ $lang = Session::get('locale');
             <div class="dongke"><span></span></div>
             <div class="list-product-item">
                 <div class="owl-carousel owl-theme owl-carousel-product owl-carousel-product1">
+                    @foreach($hotProducts as $hot)
                     <div class="item">
-                        <a href="" title=""><img src="images/p1.jpg" alt="">
+                        <a href="{{url('san-pham/'.$hot['alias_'.$lang].'.html')}}" title="{{$hot['name_'.$lang]}}"><img src="{{asset('upload/product/'.$hot['photo'])}}" alt="{{$hot['name_'.$lang]}}">
                         </a>
                         <div class="footer-cate">
-                            <p class="name_product"><a href="" title="">Simpliphi PHI-3.5-48-60 3.5kWh 48 Volt Lithium Ferro Phosphate Battery</a></p>
+                            <p class="name_product"><a href="{{url('san-pham/'.$hot['alias_'.$lang].'.html')}}" title="{{$hot['name_'.$lang]}}">{{$hot['name_'.$lang]}}</a></p>
                             <div class="price">
-                                $ 200000
+                            @if($lang =='vi') 
+                                {{number_format($hot['price_vi'])}} vnđ
+                            @elseif($lang =='en') 
+                                $ {{number_format($hot['price_en'])}}
+                            @endif
                             </div>
                         </div>
                     </div>
-                    <div class="item">
-                        <a href="" title=""><img src="images/p3.jpg" alt="">
-                        </a>
-                        <div class="footer-cate">
-                            <p class="name_product"><a href="" title="">Simpliphi PHI-3.5-48-60 3.5kWh 48 Volt Lithium Ferro Phosphate Battery</a></p>
-                            <div class="price">
-                                $ 200000
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <a href="" title=""><img src="images/p2.png" alt="">
-                        </a>
-                        <div class="footer-cate">
-                            <p class="name_product"><a href="" title="">Simpliphi PHI-3.5-48-60 3.5kWh 48 Volt Lithium Ferro Phosphate Battery</a></p>
-                            <div class="price">
-                                $ 200000
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <a href="" title=""><img src="images/p1.jpg" alt="">
-                        </a>
-                        <div class="footer-cate">
-                            <p class="name_product"><a href="" title="">Simpliphi PHI-3.5-48-60 3.5kWh 48 Volt Lithium Ferro Phosphate Battery</a></p>
-                            <div class="price tac">
-                                <span class="price">$ 200000</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <a href="" title=""><img src="images/p3.jpg" alt="">
-                        </a>
-                        <div class="footer-cate">
-                            <p class="name_product"><a href="" title="">Simpliphi PHI-3.5-48-60 3.5kWh 48 Volt Lithium Ferro Phosphate Battery</a></p>
-                            <div class="price">
-                                $ 200000
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

@@ -26,4 +26,8 @@ class ProductCate extends Model {
     	return $this->getChildCategories($categoryArray);
     }
 
+    public function cateChild()
+    {
+        return $this->hasMany('App\ProductCate','parent_id');
+    }
 }

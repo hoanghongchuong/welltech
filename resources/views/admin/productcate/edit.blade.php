@@ -21,8 +21,9 @@
     <div class="box">
     	@include('admin.messages_error')
         <div class="box-body">
-        	<form method="post" action="backend/productcate/edit?id={{$id}}" enctype="multipart/form-data">
+        	<form method="post" action="backend/productcate/edit?id={{$id}}&type={{ @$_GET['type'] }}" enctype="multipart/form-data">
         		<input type="hidden" name="_token" value="{!! csrf_token() !!}" />
+        		<input type="hidden" name="txtCom" value="{{ @$_GET['type'] }}"/>
       			<div class="nav-tabs-custom">
 	                <ul class="nav nav-tabs">
 	                  	<li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="false">Thông tin chung</a></li>
@@ -47,32 +48,32 @@
 									</div> -->
 									
 									<div class="clearfix"></div>
-						        	<!-- <div class="form-group">
+						        	<div class="form-group">
 								      	<label for="ten">Danh mục cha</label>
 								      	<select name="txtProductCate" class="form-control">
 
 								      		<option value="0">Chọn danh mục</option>
 								      		<?php cate_parent($parent,0,"--",$data["parent_id"]) ?>
 								      	</select>
-									</div> -->
-							    	<div class="form-group @if ($errors->first('txtName')!='') has-error @endif">
+									</div>
+							    	<div class="form-group @if ($errors->first('name_vi')!='') has-error @endif">
 								      	<label for="ten">Tên</label>
-								      	<input type="text" name="txtName" id="txtName" value="{!! old('txtName', isset($data) ? $data->name : null) !!}"  class="form-control" />
-								      	@if ($errors->first('txtName')!='')
-								      	<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {!! $errors->first('txtName'); !!}</label>
+								      	<input type="text" name="name_vi" id="txtName" value="{!! old('name_vi', isset($data) ? $data->name_vi : null) !!}"  class="form-control" />
+								      	@if ($errors->first('name_vi')!='')
+								      	<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {!! $errors->first('name_vi'); !!}</label>
 								      	@endif
 									</div>
 									<div class="form-group hidden @if ($errors->first('txtAlias')!='') has-error @endif">
 								      	<label for="alias">Đường dẫn tĩnh</label>
-								      	<input type="text" name="txtAlias" id="txtAlias" value="{{ $data->alias }}"  class="form-control" />
+								      	<input type="text" name="txtAlias" id="txtAlias" value="{{ $data->alias_vi }}"  class="form-control" />
 								      	@if ($errors->first('txtAlias')!='')
 								      	<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {!! $errors->first('txtAlias'); !!}</label>
 								      	@endif
 									</div>
-									<!-- <div class="form-group">
+									<div class="form-group">
 										<label for="">Mô tả</label>
-										<textarea name="description" rows="5" id="txtContent" class="form-control">{{$data->description}}</textarea>
-									</div> -->
+										<textarea name="mota_vi" rows="5" id="txtContent" class="form-control">{{$data->mota_vi}}</textarea>
+									</div>
 								</div>
 							</div>
 							<div class="clearfix"></div>
@@ -84,10 +85,10 @@
 								      	<label for="txtTitle">Name</label>
 								      	<input type="text" name="name_en" id="name_en" value="{{ isset($data->name_en) ? $data->name_en : '' }}"  class="form-control" />
 									</div>
-		                    		<!-- <div class="form-group">
+		                    		<div class="form-group">
 										<label for="">Mô tả</label>
 										<textarea name="mota_en" rows="5" id="txtContent" class="form-control">{!! isset($data->mota_en) ? $data->mota_en : '' !!}</textarea>
-									</div> -->
+									</div>
 									
 		                    	</div>
 	                    	</div>
@@ -98,15 +99,15 @@
 		                    	<div class="col-md-6 col-xs-12">
 		                    		<div class="form-group">
 								      	<label for="txtTitle">Title</label>
-								      	<input type="text" name="txtTitle" value="{!! old('txtTitle', isset($data) ? $data->title : null) !!}"  class="form-control" />
+								      	<input type="text" name="title_vi" value="{!! old('title_vi', isset($data) ? $data->title_vi : null) !!}"  class="form-control" />
 									</div>
 		                    		<div class="form-group">
 								      	<label for="keyword">Keyword</label>
-								      	<textarea name="txtKeyword" rows="5" class="form-control">{!! old('txtKeyword', isset($data) ? $data->keyword : null) !!}</textarea>
+								      	<textarea name="keyword_vi" rows="5" class="form-control">{!! old('keyword_vi', isset($data) ? $data->keyword_vi : null) !!}</textarea>
 									</div>
 									<div class="form-group">
 								      	<label for="description">Description</label>
-								      	<textarea name="txtDescription" rows="5" class="form-control">{!! old('txtDescription', isset($data) ? $data->description : null) !!}</textarea>
+								      	<textarea name="description_vi" rows="5" class="form-control">{!! old('description_vi', isset($data) ? $data->description_vi : null) !!}</textarea>
 									</div>
 		                    	</div>
 		                    	<div class="col-md-6 col-xs-12">
@@ -150,7 +151,7 @@
 			    <div class="box-footer col-md-12 row">
 					<div class="col-md-6">
 				    	<button type="submit" class="btn btn-primary">Cập nhật</button>
-				    	<button type="button" onclick="javascript:window.location='backend/productcate'" class="btn btn-danger">Thoát</button>
+				    	<button type="button" onclick="javascript:window.location='backend/productcate?type={{ @$_GET[type] }}'" class="btn btn-danger">Thoát</button>
 			    	</div>
 			  	</div>
 		    </form>

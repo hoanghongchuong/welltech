@@ -3,16 +3,16 @@
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
       <ul class="sidebar-menu">
-        <!-- <li class="treeview ">
-          <a href="#">
-            <i class="fa fa-dashboard"></i> <span>Quản lý phòng</span> <i class="fa fa-angle-left pull-right"></i>
+        <li class="treeview {{ @$_GET['type'] == 'san-pham' ? 'active' : '' }}">
+          <a href="javascript:;">
+            <i class="fa fa-dashboard"></i> <span>Quản lý sản phẩm</span> <i class="fa fa-angle-left pull-right"></i>
           </a>
           <ul class="treeview-menu">
-            <li><a href="backend/productcate"><i class="fa fa-circle-o"></i> <span>Loại phòng</span></a></li>
-            <li><a href="backend/product"><i class="fa fa-circle-o"></i> <span>Quản lý phòng</span></a></li>
-            <li><a href="backend/about/edit?type=phong"><i class="fa fa-th"></i> <span>Slogan</span></a></li>
+            <li><a href="backend/productcate?type=san-pham"><i class="fa fa-circle-o"></i> <span>Danh mục</span></a></li>
+            <li><a href="backend/product?type=san-pham"><i class="fa fa-circle-o"></i> <span>Danh sách</span></a></li>
+            
           </ul>
-        </li> -->
+        </li>
 
         @if($is_admin->can('can_menu'))
         <li><a href="backend/menu?type=menu-top"><i class="fa fa-gear"></i> <span>Quản lý menu</span></a></li>
@@ -38,7 +38,7 @@
         
         @if($is_admin->can('can_news'))
         <li class="{{ @$_GET['type'] == 'tin-tuc' ? 'active' : '' }}">
-                    <a href="backend/news?type=tin-tuc"><i class="fa fa-circle-o"></i> <span>Tin tức</span></a>
+            <a href="backend/news?type=tin-tuc"><i class="fa fa-circle-o"></i> <span>Tin tức</span></a>
         </li>
         <!-- <li class="treeview {{ @$_GET['type'] == 'tin-tuc' ? 'active' : '' }}">
             <a href="#">

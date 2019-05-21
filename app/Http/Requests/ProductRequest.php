@@ -22,17 +22,17 @@ class ProductRequest extends Request {
 	public function rules()
 	{
 		return [
-			'txtName' => 'required|unique:products,name',
-            'txtAlias' => 'required',
+			'name_vi' => 'required|unique:products,name_vi',
+            'alias_vi' => 'required',
             'fImages' => 'image|max:200000'
 		];
 	}
 	public function messages()
 	{
 		return [
-			'txtName.required' => 'Bạn chưa nhập tên sản phẩm',
-            'txtName.unique' => 'Tên sản phẩm bị trùng, mời nhập lại',
-            'txtAlias.required' => 'Bạn chưa nhập liên kết sản phẩm',
+			'name_vi.required' => 'Bạn chưa nhập tên sản phẩm',
+            'name_vi.unique' => 'Tên sản phẩm bị trùng, mời nhập lại',
+            'alias_vi.required' => 'Bạn chưa nhập liên kết sản phẩm',
             'fImages.image' => 'Bạn chọn sai định dạng file ảnh',
             'fImages.max' => 'Ảnh bạn upload đã vượt quá dung lượng cho phép',
 		];

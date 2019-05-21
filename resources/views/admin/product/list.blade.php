@@ -39,8 +39,8 @@
     <div class="box-footer col-md-12">
         <div class="row">
           <div class="col-md-6">
-            <input type="button" onclick="javascript:window.location='backend/product/add'" value="Thêm" class="btn btn-primary" />
-            <button type="button" id="xoahet" class="btn btn-success">Xóa</button>
+            <input type="button" onclick="javascript:window.location='backend/product/add?type={{ @$_GET[type] }}'" value="Thêm" class="btn btn-primary" />
+            <!-- <button type="button" id="xoahet" class="btn btn-success">Xóa</button> -->
             <input type="button" value="Thoát" onclick="javascript:window.location='backend'" class="btn btn-danger" />
 
           </div>
@@ -53,15 +53,15 @@
           <h3 class="box-title">Data Table With Full Features</h3>
         </div>-->
         <div class="box-body">
-          <table id="example2" class="table table-bordered table-hover">
+          <table id="product_data" class="table table-bordered table-hover">
             <thead>
               <tr>
                 <th style="width: 20px;"><input type="checkbox" name="chonhet" class="minimal" id="chonhet" /></th>
                 <th class="text-center with_dieuhuong">Stt</th>
-                <!-- <th>Danh mục</th> -->
-                <th>Tên phòng</th>
-                <th>Tên phòng(tiếng anh)</th>
+                <th>Danh mục cha</th>
+                <th>Tên sản phẩm</th>                
                 <th>Hình ảnh</th>
+                <th>Giá</th>
                 <th class="text-center with_dieuhuong">Hoạt động</th>
                 <th class="text-center with_dieuhuong">Sửa</th>
                 <th class="text-center with_dieuhuong">Xóa</th>
@@ -72,47 +72,39 @@
               <tr>
                 <td><input type="checkbox" name="chon" id="chon" value="{{$item->id}}" class="chon" /></td>
                 <td class="text-center with_dieuhuong">{{$k+1}}</td>
-                <!-- <td>
+                <td>
                   <?php  $parent = DB::table('product_categories')->where('id', $item->cate_id)->first();
                   ?>
                   @if(!empty($parent))
-                    {{ $parent->name }}
+                    {{ $parent->name_vi }}
                   @else
                     {{ 'None' }}
                   @endif
-                </td> -->
-                <td>
-                  {{$item->name}}
                 </td>
-                <td>{{$item->name_en}}</td>
+                <td>
+                  {{$item->name_vi}}
+                </td>                
                
                 <td><img src="{{ asset('upload/product/'.$item->photo) }}" onerror="this.src='{{ asset('public/admin_assets/images/no-image.jpg') }}';" class="img_product"  alt="NO PHOTO" /></td>
+                <td>{{ number_format($item->price_vi) }}</td>
                 <td class="text-center with_dieuhuong">
                   <div class="form-group"> 
                     @if($item->status>0)
-                      <a href="backend/product/edit?id={{$item->id}}&hienthi={{ time() }}" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> Hiển thị</a>
+                      <a href="backend/product/edit?id={{$item->id}}&hienthi={{ time() }}&type={{ @$_GET['type'] }}" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> Hiển thị</a>
                     @else
-                      <a href="backend/product/edit?id={{$item->id}}&hienthi={{ time() }}" class="btn btn-danger btn-xs"><i class="fa fa-eye"></i> Hiển thị</a>
+                      <a href="backend/product/edit?id={{$item->id}}&hienthi={{ time() }}&type={{ @$_GET['type'] }}" class="btn btn-danger btn-xs"><i class="fa fa-eye"></i> Hiển thị</a>
                     @endif
                   </div>
-                  
-                  <!-- <div class="form-group"> 
-                    @if($item->spbc>0)
-                      <a href="admin/product/edit?id={{$item->id}}&spbc={{ time() }}" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> Bán chạy</a>
-                    @else
-                      <a href="admin/product/edit?id={{$item->id}}&spbc={{ time() }}" class="btn btn-danger btn-xs"><i class="fa fa-eye"></i> Bán chạy</a>
-                    @endif
-                  </div> -->
                   <div class="form-group"> 
                     @if($item->noibat>0)
-                      <a href="backend/product/edit?id={{$item->id}}&noibat={{ time() }}" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> Nổi bật</a>
+                      <a href="backend/product/edit?id={{$item->id}}&noibat={{ time() }}&type={{ @$_GET['type'] }}" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> Nổi bật</a>
                     @else
-                      <a href="backend/product/edit?id={{$item->id}}&noibat={{ time() }}" class="btn btn-danger btn-xs"><i class="fa fa-eye"></i> Nổi bật</a>
+                      <a href="backend/product/edit?id={{$item->id}}&noibat={{ time() }}&type={{ @$_GET['type'] }}" class="btn btn-danger btn-xs"><i class="fa fa-eye"></i> Nổi bật</a>
                     @endif
                   </div>
                 </td>
                 <td class="text-center with_dieuhuong">
-                  <i class="fa fa-pencil fa-fw"></i><a href="backend/product/edit?id={{$item->id}}">Edit</a>
+                  <i class="fa fa-pencil fa-fw"></i><a href="backend/product/edit?id={{$item->id}}&type={{ @$_GET['type'] }}">Edit</a>
                 </td>
                 <td class="text-center">
                   <i class="fa fa-trash-o fa-fw"></i><a onClick="if(!confirm('Xác nhận xóa')) return false;" href="backend/product/{{$item->id}}/delete">Delete</a>
@@ -125,8 +117,8 @@
         <div class="box-footer col-md-12">
           <div class="row">
             <div class="col-md-6">
-              <input type="button" onclick="javascript:window.location='backend/product/add'" value="Thêm" class="btn btn-primary" />
-              <button type="button" id="xoahet" class="btn btn-success">Xóa</button>
+              <input type="button" onclick="javascript:window.location='backend/product/add?type={{ @$_GET[type] }}'" value="Thêm" class="btn btn-primary" />
+              <!-- <button type="button" id="xoahet" class="btn btn-success">Xóa</button> -->
               <input type="button" value="Thoát" onclick="javascript:window.location='backend'" class="btn btn-danger" />
 
             </div>

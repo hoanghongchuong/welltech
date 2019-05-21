@@ -1,7 +1,8 @@
 <?php
     $setting = Cache::get('setting');
-    $menus = \App\Menu::where('parent_id', 0)->orderBy('stt','asc')->get()->toArray();
+    // $menus = \App\Menu::where('parent_id', 0)->orderBy('stt','asc')->get()->toArray();
     // dd($menus);
+    $categories = \App\ProductCate::where('com','san-pham')->where('parent_id',0)->get()->toArray();
     $lang = Session::get('locale');
 ?>
 <header>
@@ -45,67 +46,19 @@
                     <li>
                         <a href="">Sản phẩm <i class="fa fa-angle-down"></i></a>
                         
-                        <ul class="vk-menu__child">                                
+                        <ul class="vk-menu__child">  
+                        @foreach($categories as $category)                             
                             <li>
-                                <a href="#" class="title-cate-child">Danh mục sản phẩm 1</a>
+                                <a href="{{url('san-pham/'.$category['alias_vi'])}}" class="title-cate-child">{{$category['name_'.$lang]}}</a>
+                                <?php $category_chidls = \App\ProductCate::where('parent_id',$category['id'])->get()->toArray(); ?>
                                 <ul class="sub-menu-list">
-                                    <li><a href="http://sigmabooks.vn/san-pham/sach-thcs" title="">Sách THCS</a></li>
-                                    <li><a href="http://sigmabooks.vn/san-pham/sach-toan-tieu-hoc" title="">Sách toán Tiểu Học</a></li>
-                                    <li><a href="http://sigmabooks.vn/san-pham/sach-thpt" title="">Sách THPT</a></li>
-                                    <li><a href="http://sigmabooks.vn/san-pham/sach-song-ngu" title="">Sách Song Ngữ</a></li>                                        
+                                    @foreach($category_chidls as $child)                                    
+                                    <li><a href="{{url('san-pham/'.$child['alias_'.$lang])}}" title="{{$child['name_'.$lang]}}">{{$child['name_'.$lang]}}</a></li>
+                                    @endforeach
 
                                 </ul>
                             </li>
-                            <li>
-                                <a href="#" class="title-cate-child">Danh mục sản phẩm 1</a>
-                                <ul class="text-capitalize sub-menu-list">
-                                    <li><a href="http://sigmabooks.vn/san-pham/sach-thcs" title="">Sách THCS</a></li>
-                                    <li><a href="http://sigmabooks.vn/san-pham/sach-toan-tieu-hoc" title="">Sách toán Tiểu Học</a></li>
-                                    <li><a href="http://sigmabooks.vn/san-pham/sach-thpt" title="">Sách THPT</a></li>
-                                    <li><a href="http://sigmabooks.vn/san-pham/sach-song-ngu" title="">Sách Song Ngữ</a></li>                                        
-
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#" class="title-cate-child">Danh mục sản phẩm 1</a>
-                                <ul class="sub-menu-list">
-                                    <li><a href="http://sigmabooks.vn/san-pham/sach-thcs" title="">Sách THCS</a></li>
-                                    <li><a href="http://sigmabooks.vn/san-pham/sach-toan-tieu-hoc" title="">Sách toán Tiểu Học</a></li>
-                                    <li><a href="http://sigmabooks.vn/san-pham/sach-thpt" title="">Sách THPT</a></li>
-                                    <li><a href="http://sigmabooks.vn/san-pham/sach-song-ngu" title="">Sách Song Ngữ</a></li>                                        
-
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#" class="title-cate-child">Danh mục sản phẩm 1</a>
-                                <ul class="sub-menu-list">
-                                    <li><a href="http://sigmabooks.vn/san-pham/sach-thcs" title="">Sách THCS</a></li>
-                                    <li><a href="http://sigmabooks.vn/san-pham/sach-toan-tieu-hoc" title="">Sách toán Tiểu Học</a></li>
-                                    <li><a href="http://sigmabooks.vn/san-pham/sach-thpt" title="">Sách THPT</a></li>
-                                    <li><a href="http://sigmabooks.vn/san-pham/sach-song-ngu" title="">Sách Song Ngữ</a></li>                                        
-
-                                </ul>
-                            </li>  
-                            <li>
-                                <a href="#" class="title-cate-child">Danh mục sản phẩm 1</a>
-                                <ul class="sub-menu-list">
-                                    <li><a href="http://sigmabooks.vn/san-pham/sach-thcs" title="">Sách THCS</a></li>
-                                    <li><a href="http://sigmabooks.vn/san-pham/sach-toan-tieu-hoc" title="">Sách toán Tiểu Học</a></li>
-                                    <li><a href="http://sigmabooks.vn/san-pham/sach-thpt" title="">Sách THPT</a></li>
-                                    <li><a href="http://sigmabooks.vn/san-pham/sach-song-ngu" title="">Sách Song Ngữ</a></li>                                        
-
-                                </ul>
-                            </li>  
-                            <li>
-                                <a href="#" class="title-cate-child">Danh mục sản phẩm 1</a>
-                                <ul class="text-capitalize sub-menu-list">
-                                    <li><a href="http://sigmabooks.vn/san-pham/sach-thcs" title="">Sách THCS</a></li>
-                                    <li><a href="http://sigmabooks.vn/san-pham/sach-toan-tieu-hoc" title="">Sách toán Tiểu Học</a></li>
-                                    <li><a href="http://sigmabooks.vn/san-pham/sach-thpt" title="">Sách THPT</a></li>
-                                    <li><a href="http://sigmabooks.vn/san-pham/sach-song-ngu" title="">Sách Song Ngữ</a></li>                                        
-
-                                </ul>
-                            </li>                          
+                        @endforeach                         
                         </ul>
                     </li>
                     <li><a href="{{url('tin-tuc')}}">Tin tức</a></li>                            
@@ -155,7 +108,7 @@
                     <li><a href="#">Công trình 1</a></li>                       
                 </ul>
             </li>
-            <li><a href="">Tư vấn decor</a></li>
+            
             <li><a href="">Tin tức</a></li>                            
             <li><a href="">Liên hệ</a></li>
         </ul>

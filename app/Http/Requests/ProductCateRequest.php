@@ -23,14 +23,14 @@ class ProductCateRequest extends Request {
 	public function rules()
 	{
 		return [
-			'txtName' => 'required|unique:product_categories,name',
+			'name_vi' => 'required|unique:product_categories,name_vi',
 		];
 	}
 	public function messages()
 	{
 		return [
-			'txtName.required' => 'Bạn chưa nhập tên danh mục',
-            'txtName.unique' => 'Tên danh mục bị trùng, mời nhập lại',
+			'name_vi.required' => 'Bạn chưa nhập tên danh mục',
+            'name_vi.unique' => 'Tên danh mục bị trùng, mời nhập lại',
 		];
 	}
 }

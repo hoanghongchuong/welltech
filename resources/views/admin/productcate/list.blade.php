@@ -1,6 +1,6 @@
 @extends('admin.master')
 @section('content')
-@section('controller','Dự án')
+@section('controller','Product Categories')
 @section('action','List')
 <!-- Content Header (Page header) -->
 <script type="text/javascript">
@@ -47,15 +47,14 @@
           <h3 class="box-title">Data Table With Full Features</h3>
         </div>-->
         <div class="box-body">
-          <table id="example2" class="table table-bordered table-hover">
+          <table id="productcate_data" class="table table-bordered table-hover">
             <thead>
               <tr>
-                <th style="width: 20px;"><input type="checkbox" name="chonhet" class="minimal" id="chonhet" /></th>
+                <!-- <th style="width: 20px;"><input type="checkbox" name="chonhet" class="minimal" id="chonhet" /></th> -->
                 <th class="text-center with_dieuhuong">Stt</th>
-                <!-- <th>Danh mục cha</th> -->
+                <th>Danh mục cha</th>
                 <th>Tên danh mục</th>
-                <th>Tên danh mục(tiếng anh)</th>
-                <!-- <th class="text-center with_dieuhuong">Hiển thị</th> -->
+                <th class="text-center with_dieuhuong">Hiển thị</th>
                 <th class="text-center with_dieuhuong">Sửa</th>
                 <th class="text-center with_dieuhuong">Xóa</th>
               </tr>
@@ -63,36 +62,31 @@
             <tbody>
               @foreach($data as $k=>$item)
               <tr>
-                <td><input type="checkbox" name="chon" id="chon" value="{{$item->id}}" class="chon" /></td>
-                <td class="text-center with_dieuhuong">{{$k+1}}</td>
-                
-                <!-- <td>
+                <!-- <td><input type="checkbox" name="chon" id="chon" value="{{$item->id}}" class="chon" /></td> -->
+                <td class="text-center with_dieuhuong">{{$k+1}}</td>                
+                <td>
                 <?php  $parent = DB::table('product_categories')->where('id', $item->parent_id)->first();
                 ?>
                 @if(!empty($parent))
-                  {{ $parent->name }}
+                  {{ $parent->name_vi }}
                 @else
                   {{ 'None' }}
                 @endif
-                </td> -->
-                <td>
-                    <p>{{$item->name}}</p>
-                    <!-- <p><a href="{{url('san-pham/'.$item->alias)}}" title="">{{url('san-pham/'.$item->alias)}}</a></p> -->
-
                 </td>
                 <td>
-                    <p>{{$item->name_en}}</p>
-
+                  <p>{{$item->name_vi}}</p>                   
                 </td>
-                <!-- <td class="text-center with_dieuhuong">
-                  @if($item->status>0)
-                    <a href="backend/productcate/edit?id={{$item->id}}&hienthi={{ time() }}" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> Bật</a>
-                  @else
-                    <a href="backend/productcate/edit?id={{$item->id}}&hienthi={{ time() }}" class="btn btn-danger btn-xs"><i class="fa fa-eye"></i> Tắt</a>
-                  @endif
-                </td> -->
                 <td class="text-center with_dieuhuong">
-                  <i class="fa fa-pencil fa-fw"></i><a href="backend/productcate/edit?id={{$item->id}}">Edit</a>
+                  <div class="form-group"> 
+                    @if($item->status>0)
+                      <a href="backend/productcate/edit?id={{$item->id}}&hienthi={{ time() }}&type={{ @$_GET['type'] }}" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> Hiển thị</a>
+                    @else
+                      <a href="backend/productcate/edit?id={{$item->id}}&hienthi={{ time() }}&type={{ @$_GET['type'] }}" class="btn btn-danger btn-xs"><i class="fa fa-eye"></i> Hiển thị</a>
+                    @endif
+                  </div>
+                </td>
+                <td class="text-center with_dieuhuong">
+                  <i class="fa fa-pencil fa-fw"></i><a href="backend/productcate/edit?id={{$item->id}}&type={{ @$_GET['type'] }}">Edit</a>
                 </td>
                 <td class="text-center">
                   <i class="fa fa-trash-o fa-fw"></i><a onClick="if(!confirm('Xác nhận xóa')) return false;" href="backend/productcate/{{$item->id}}/delete">Delete</a>
@@ -104,9 +98,9 @@
         </div><!-- /.box-body -->
         <div class="box-footer col-md-12">
           <div class="col-md-6">
-            <input type="button" onclick="javascript:window.location='backend/productcate/add'" value="Thêm" class="btn btn-primary" />
-            <button type="button" id="xoahet" class="btn btn-success">Xóa</button>
-            <input type="button" value="Thoát" onclick="javascript:window.location='admin'" class="btn btn-danger" />
+            <input type="button" onclick="javascript:window.location='backend/productcate/add?type={{ @$_GET[type] }}'" value="Thêm" class="btn btn-primary" />
+            <!-- <button type="button" id="xoahet" class="btn btn-success">Xóa</button> -->
+            <input type="button" value="Thoát" onclick="javascript:window.location='backend'" class="btn btn-danger" />
 
           </div>
         </div>

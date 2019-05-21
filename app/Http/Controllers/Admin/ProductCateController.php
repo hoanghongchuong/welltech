@@ -14,16 +14,31 @@ class ProductCateController extends Controller {
 
 	public function getDanhSach()
     {
-        $data = ProductCate::all();
-    	return view('admin.productcate.list', compact('data'));
+        if($_GET['type']=='san-pham') $trang='Sản phẩm';
+        
+        if(!empty($_GET['type'])){
+            $com=$_GET['type'];
+        }else{
+            $com='';
+        }
+        $data = ProductCate::where('com',$com)->orderBy('id','desc')->get();
+        return view('admin.productcate.list', compact('data'));
     }
     public function getAdd()
     {
-        $parent = ProductCate::select('id','name','parent_id')->get()->toArray();
-    	return view('admin.productcate.add', compact('parent'));
+        if($_GET['type']=='san-pham') $trang='Sản phẩm';
+        
+        if(!empty($_GET['type'])){
+            $com=$_GET['type'];
+        }else{
+            $com='';
+        }
+        $parent = ProductCate::select('id','name_vi','parent_id')->where('com',$com)->get()->toArray();
+        return view('admin.productcate.add', compact('parent'));
     }
     public function postAdd(ProductCateRequest $request)
     {
+        $com = $request->txtCom;
         $img = $request->file('fImages');
         $path_img='upload/product';
         $img_name='';
@@ -32,31 +47,36 @@ class ProductCateController extends Controller {
             $img->move($path_img,$img_name);
         }
     	$cate = new ProductCate;
+        $cate->com  = $com;
         $cate->parent_id = $request->txtProductCate;
-        $cate->name = $request->txtName;
+        $cate->name_vi = $request->name_vi;
         $cate->name_en = $request->name_en;
-        $cate->alias = changeTitle($request->txtName);
+        $cate->alias_vi = changeTitle($request->name_vi);
+        $cate->alias_en = changeTitle($request->name_en);
         $cate->photo = $img_name;
-        $cate->mota = $request->mota;
+        $cate->mota_vi = $request->mota_vi;
         $cate->mota_en = $request->mota_en;
-        $cate->title = $request->txtTitle;
+        $cate->title_vi = $request->title_vi;
         $cate->title_en = $request->title_en;
-        $cate->keyword = $request->txtKeyword;
+        $cate->keyword_vi = $request->keyword_vi;
         $cate->keyword_en = $request->keyword_en;
         $cate->description_en = $request->description_en;
+        $cate->description_vi = $request->description_vi;
         $cate->stt = $request->stt;
         // if($request->noibat=='on'){
         //     $product_cate->noibat = 1;
         // }else{
         //     $product_cate->noibat = 0;
         // }
+        // dd($cate);
         if($request->status=='on'){
             $cate->status = 1;
         }else{
             $cate->status = 0;
         }
+
         $cate->save();
-        return redirect()->route('admin.productcate.index')->with('status','Thêm mới thành công !');
+        return redirect('backend/productcate?type='.$com)->with('status','Thêm mới thành công !');
     }
     public function getEdit(Request $request)
     {
@@ -71,7 +91,7 @@ class ProductCateController extends Controller {
                     $data->status = 1; 
                 }
                 $data->update();
-                return redirect()->route('admin.productcate.index')->with('status','Cập nhật thành công !');
+                return redirect()->back()->with('status','Cập nhật thành công !');
             }
             
             $parent = ProductCate::orderBy('stt', 'asc')->get()->toArray();
@@ -86,9 +106,14 @@ class ProductCateController extends Controller {
     public function update(Request $request)
     {
         $this->validate($request,
-            ["txtName" => "required"],
-            ["txtName.required" => "Bạn chưa nhập tên danh mục"]
+            ["name_vi" => "required"],
+            ["name_vi.required" => "Bạn chưa nhập tên danh mục"]
         );
+        if(!empty($_GET['type'])){
+            $com=$_GET['type'];
+        }else{
+            $com='';
+        }
         $id=$request->get('id');
         $product_cate = ProductCate::find($id);
         if(!empty($product_cate)){
@@ -106,15 +131,16 @@ class ProductCateController extends Controller {
             }else{
                 $product_cate->parent_id = 0;
             }
-            $product_cate->name = $request->txtName;
+            $product_cate->name_vi = $request->name_vi;
             $product_cate->name_en = $request->name_en;
-            $product_cate->alias = changeTitle($request->txtName);
+            $product_cate->alias_vi = changeTitle($request->name_vi);
+            $product_cate->alias_en = changeTitle($request->name_en);
             $product_cate->mota_en = $request->mota_en;
-            $product_cate->title = $request->txtTitle;
+            $product_cate->title_vi = $request->title_vi;
             $product_cate->title_en = $request->title_en;
-            $product_cate->keyword = $request->txtKeyword;
+            $product_cate->keyword_vi = $request->keyword_vi;
             $product_cate->keyword_en = $request->keyword_en;
-            $product_cate->description = $request->description;
+            $product_cate->description_vi = $request->description_vi;
             $product_cate->description_en = $request->description_en;
             $product_cate->stt = $request->stt;
             if($request->noibat=='on'){
@@ -139,7 +165,7 @@ class ProductCateController extends Controller {
     {
         $product = ProductCate::findOrFail($id);
         $product->delete();
-        return redirect()->route('admin.productcate.index');
+        return redirect()->back()->with('status','Xóa thành công');
     }
     public function getDeleteList($id){
         $listid = explode(",",$id);
@@ -148,6 +174,6 @@ class ProductCateController extends Controller {
             $product->delete();
             //File::delete('upload/product/'.$product->photo);
         }
-        return redirect()->route('admin.productcate.index');
+        return redirect()->back()->with('status','Xóa thành công');
     }
 }

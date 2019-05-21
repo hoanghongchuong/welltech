@@ -17,19 +17,31 @@ class ProductController extends Controller
 {
     public function getList()
     {
-        //$data = Products::select('id','name','photo','price','parent_id','alias')->orderBy('id','DESC')->get()->toArray();
-        $data = Products::orderBy('id','desc')->get();
+        if($_GET['type']=='san-pham') $trang='sản phẩm';
+        if(!empty($_GET['type'])){
+            $com=$_GET['type'];
+        }else{
+            $com='';
+        }
+        $data = Products::where('com',$com)->orderBy('id','desc')->get();
         return view('admin.product.list', compact('data'));
     }
     public function getAdd()
     {
-        $data = Products::all();
-        $parent = ProductCate::all();
-        // $thuonghieus = ThuongHieu::all();
+        if($_GET['type']=='san-pham') $trang='sản phẩm';
+        if(!empty($_GET['type'])){
+            $com=$_GET['type'];
+        }else{
+            $com='';
+        }
+        $data = Products::where('com',$com)->get();
+        $parent = ProductCate::where('com',$com)->get();
+        
         return view('admin.product.add', compact('data','parent'));
     }
     public function postAdd(ProductRequest $request)
     {
+        $com= $request->txtCom;
         $img = $request->file('fImages');
         $path_img='upload/product';
         $img_name='';
@@ -38,17 +50,17 @@ class ProductController extends Controller
             $img->move($path_img,$img_name);
         }
         $product = new Products;
-        $product->name = $request->txtName;
+        $product->name_vi = $request->name_vi;
         $product->name_en = $request->name_en;
-        if($request->txtPrice!=''){
-            $product->price = str_replace(",", "", $request->txtPrice);
+        if($request->price_vi!=''){
+            $product->price_vi = str_replace(",", "", $request->price_vi);
         }else{
-            $product->price =0;
+            $product->price_vi =0;
         }
-        if($request->txtPriceOld!=''){
-            $product->price_old = str_replace(",", "", $request->txtPriceOld);
+        if($request->price_en!=''){
+            $product->price_en = str_replace(",", "", $request->price_en);
         }else{
-            $product->price_old =0;
+            $product->price_en =0;
         }
         if($request->txtProductCate>0){
             $product->cate_id = $request->txtProductCate;
@@ -56,38 +68,29 @@ class ProductController extends Controller
             $product->cate_id = 0;
         }
 
-        if($request->txtAlias){
-            $product->alias = $request->txtAlias;
+        if($request->alias_vi){
+            $product->alias_vi = $request->alias_vi;
         }else{
-            $product->alias = changeTitle($request->txtName);
+            $product->alias_vi = changeTitle($request->alias_vi);
         }
-        if($request->txtAlias_en){
-            $product->alias_en = $request->txtAlias_en;
+        if($request->alias_en){
+            $product->alias_en = $request->alias_en;
         }else{
-            $product->alias_en = changeTitle($request->txtName_en);
+            $product->alias_en = changeTitle($request->alias_en);
         }
-        $product->mota = $request->txtDesc;
+        $product->mota_vi = $request->mota_vi;
         $product->mota_en = $request->mota_en;
         $product->photo = $img_name;
-        // $product->ratepoint = $request->ratedpoint;
-        $product->baohanh = $request->txtBaohanh;
-        $product->vanchuyen = $request->txtVanchuyen;
-        $product->huongdan = $request->txtHuongdan;
-        $product->namsanxuat = $request->txtNamsanxuat;
-        $product->banggia = $request->banggia;
-        $product->banggia_en = $request->banggia_en;
-        $product->model = $request->txtModel;
+        $product->com = $com;
         $product->code = $request->txtCode;
-        $product->mota = $request->mota;
-        $product->mota_en = $request->mota_en;
-        $product->title = $request->txtTitle;
+        $product->title_vi = $request->title_vi;
         $product->title_en = $request->title_en;
-        $product->content = $request->txtContent;
+        $product->content_vi = $request->content_vi;
         $product->content_en = $request->content_en;
-        $product->keyword = $request->txtKeyword;
+        $product->keyword_vi = $request->keyword_vi;
         $product->keyword_en = $request->keyword_en;
         $product->description_en = $request->description_en;
-        $product->description = $request->txtDescription;
+        $product->description_vi = $request->description_vi;
         $product->stt = intval($request->stt);
         if($request->status=='on'){
             $product->status = 1;
@@ -99,26 +102,14 @@ class ProductController extends Controller
         }else{
             $product->noibat = 0;
         }
-        if($request->spbc=='on'){
-            $product->spbc = 1;
-        }else{
-            $product->spbc = 0;
-        }
-        if($request->tinhtrang=='on'){
-            $product->tinhtrang = 1;
-        }else{
-            $product->tinhtrang = 0;
-        }
+        
         $product->user_id = Auth::user()->id;
         if(!empty($request->properties)){
             $product->properties = implode('###',$request->properties);
         }
-        //     if(isset($_POST['number'])){
-        //     $number = $_POST['number'];
-        //     $product->number_id = implode(',', $number);
-        // }
          
         $product->save();
+        // dd($product);
         $product_id = $product->id;
         if ($request->hasFile('detailImg')) {
             foreach ($request->file('detailImg') as $file) {
@@ -131,14 +122,7 @@ class ProductController extends Controller
                 }
             }
         }
-        return redirect()->route('admin.product.index')->with('status','Thêm mới thành công !');
-
-        /*
-        echo 'Tên hinh:'.$request->file('fImages')->getClientOriginalName();
-        echo 'Kích thước:'.$request->file('fImages')->getSize();
-        echo 'Đường dẫn:'.$request->file('fImages')->getRealPath();
-        echo 'Loại hình:'.$request->file('fImages')->getMimeType();
-        */
+        return redirect('backend/product?type='.$com)->with('status','Thêm mới thành công !');
     }
     /**
      * Show the form for editing the specified resource.
@@ -148,7 +132,14 @@ class ProductController extends Controller
      */
     public function getEdit(Request $request)
     {
+        if($_GET['type']=='san-pham') $trang='sản phẩm';
+        if(!empty($_GET['type'])){
+            $com=$_GET['type'];
+        }else{
+            $com='';
+        }
         $id= $request->get('id');
+       
         //Tìm article thông qua mã id tương ứng
         //$data = Products::findOrFail($id);
         $data = Products::find($id);
@@ -161,7 +152,7 @@ class ProductController extends Controller
                     $data->status = 1; 
                 }
                 $data->update();
-                return redirect()->route('admin.product.index')->with('status','Cập nhật thành công !');
+                return redirect('backend/product?type='.$com)->with('status','Cập nhật thành công !');
             }
             if($request->get('noibat')>0){
                 if($data->noibat == 1){
@@ -170,27 +161,27 @@ class ProductController extends Controller
                     $data->noibat = 1; 
                 }
                 $data->update();
-                return redirect()->route('admin.product.index')->with('status','Cập nhật thành công !');
+                return redirect('backend/product?type='.$com)->with('status','Cập nhật thành công !');
             }
-            if($request->get('spbc')>0){
-                if($data->spbc == 1){
-                    $data->spbc = 0; 
-                }else{
-                    $data->spbc = 1; 
-                }
+            
+            $product_id = $data->id;
+            if($request->get('delete_bg')>0){
+                $background='upload/product/'.$request->get('delete_bg');
+                File::delete($background);
+                $data->photo='';
                 $data->update();
-                return redirect()->route('admin.product.index')->with('status','Cập nhật thành công !');
+                return redirect('backend/product/edit?id='.$id.'&type='.$com)->with('status','Xóa ảnh thành công !');
             }
             $parent = ProductCate::orderBy('stt', 'asc')->get()->toArray();
             $product = Products::select('stt')->orderBy('id','asc')->get()->toArray();
-            // $product_img = Products::find($id)->pimg;
-            $product_img = Images::select()->orderBy('id','asc')->where('product_id',$id)->get();
+            $product_img = Products::find($id)->pimg;
+            // $fileRead = Products::find($id)->pimgFile;
             // Gọi view edit.blade.php hiển thị bải viết
             return view('admin.product.edit',compact('data','product','id','parent','product_img'));
         }else{
             $data = Products::all();
             $parent = ProductCate::orderBy('stt', 'asc')->get()->toArray();
-            return redirect()->route('admin.product.index')->with('status','Dữ liệu không có thực');
+            return redirect('backend/product?type='.$com)->with('status','Dữ liệu không có thực');
         }
         
     }
@@ -203,8 +194,12 @@ class ProductController extends Controller
     public function update(Request $request)
     {
         $this->validate($request,
-            ["txtName" => "required"],
-            ["txtName.required" => "Bạn chưa nhập tên danh mục"]
+            [
+                "name_vi" => "required"
+            ],
+            [
+                "name_vi.required" => "Bạn chưa nhập tên danh mục"
+            ]
         );
         $id= $request->get('id');
         if($id){
@@ -229,7 +224,7 @@ class ProductController extends Controller
                     }
                 }
             }
-            $product->name = $request->txtName;
+            $product->name_vi = $request->name_vi;
             $product->name_en = $request->name_en;
             if($request->txtProductCate>0){
                 $product->cate_id = $request->txtProductCate;
@@ -238,44 +233,36 @@ class ProductController extends Controller
             }
             
            
-            if($request->txtAlias){
-                $product->alias = $request->txtAlias;
+            if($request->alias_vi){
+                $product->alias_vi = $request->alias_vi;
             }else{
-                $product->alias = changeTitle($request->txtName);
+                $product->alias_vi = changeTitle($request->alias_vi);
             }
-            if($request->txtPrice!=''){
-                $product->price = str_replace(",", "", $request->txtPrice);
+            if($request->alias_en){
+                $product->alias_en = $request->alias_en;
             }else{
-                $product->price =0;
+                $product->alias_en = changeTitle($request->alias_en);
             }
-            if($request->txtPriceOld!=''){
-                $product->price_old = str_replace(",", "", $request->txtPriceOld);
+            if($request->price_vi!=''){
+                $product->price_vi = str_replace(",", "", $request->price_vi);
             }else{
-                $product->price_old =0;
+                $product->price_vi =0;
             }
-            $product->baohanh = $request->txtBaohanh;
-            // $product->ratepoint = $request->ratedpoint;
-            $product->vanchuyen = $request->txtVanchuyen;
-            $product->huongdan = $request->txtHuongdan;
-            $product->namsanxuat = $request->txtNamsanxuat;
-            $product->quatang = $request->txtQuatang;
-            $product->model = $request->txtModel;
+            if($request->price_en!=''){
+                $product->price_en = str_replace(",", "", $request->price_en);
+            }else{
+                $product->price_en =0;
+            }            
             $product->code = $request->txtCode;
-            if(!empty($request->properties)){
-                $product->properties = implode('###',$request->properties);
-            }
-            $product->mota = $request->mota;
-            $product->mota_en = $request->mota_en;
-            $product->banggia = $request->banggia;
-            $product->banggia_en = $request->banggia_en;
-            $product->title = $request->txtTitle;
+            
+            $product->title_vi = $request->title_vi;
             $product->title_en = $request->title_en;
-            $product->content = $request->txtContent;
+            $product->content_vi = $request->content_vi;
             $product->content_en = $request->content_en;
-            $product->keyword = $request->txtKeyword;
+            $product->keyword_vi = $request->keyword_vi;
             $product->keyword_en = $request->keyword_en;
             $product->description_en = $request->description_en;
-            $product->description = $request->txtDescription;
+            $product->description_vi = $request->description_vi;
             if($request->status=='on'){
                 $product->status = 1;
             }else{
@@ -286,23 +273,13 @@ class ProductController extends Controller
             }else{
                 $product->noibat = 0;
             }
-            if($request->spbc=='on'){
-                $product->spbc = 1;
-            }else{
-                $product->spbc = 0;
-            }
-            if($request->tinhtrang=='on'){
-                $product->tinhtrang = 1;
-            }else{
-                $product->tinhtrang = 0;
-            }
+            
             $product->user_id       = Auth::user()->id;
 
             // dd($product->description);
 
             $product->save();
-            return redirect()->route('admin.product.index')->with('status','Cập nhật thành công !');
-            //return redirect('admin/product/edit?id='.$id)->with('status','Cập nhật thành công');
+            return redirect()->back()->with('status','Cập nhật thành công !');            
         }else{
             return redirect('backend/product/')->with('status','Dữ liệu không có thực');
         }
@@ -324,7 +301,7 @@ class ProductController extends Controller
         $product = Products::findOrFail($id);
         $product->delete();
         File::delete('upload/product/'.$product->photo);
-        return redirect()->route('admin.product.index');
+        return redirect()->back()->with('status','Xóa thành công');
     }
     public function getDeleteList($id){
         $listid = explode(",",$id);
@@ -338,9 +315,9 @@ class ProductController extends Controller
             $product->delete();
             File::delete('upload/product/'.$product->photo);
         }
-        return redirect()->route('admin.product.index');
+        return redirect()->back()->with('status','Xóa thành công');
     }
-    public function getDelImg(Request $request, $id){         // use Request;
+    public function getDelImg(Request $request, $id){
 
         if ($request->ajax()) {      
             $idImg = (int)$request->get('idImg');
@@ -355,42 +332,5 @@ class ProductController extends Controller
             return 'OK';
         }
     }
-    // public function dropzoneStore(Request $request)
-    // {
-    //     $image = $request->file('file');
-    //     $imageName = time().$image->getClientOriginalName();
-    //     $image->move(public_path('upload/hinhanh'),$imageName);
-    //     return response()->json(['success'=>$imageName]);
-    // }
-    // public function addAlbum($id){
-
-    //     $file_name=fns_Rand_digit(0,9,6);
-    //     $allowed = array('png', 'jpg', 'gif');
-    //     $path_img='upload/hinhanh';
-    //     $hinhanh = new Images;
-
-    //     if(isset($_FILES['upl']) && $_FILES['upl']['error'] == 0){
-
-    //         $extension = pathinfo($_FILES['upl']['name'], PATHINFO_EXTENSION);
-    //         if(!in_array(strtolower($extension), $allowed)){
-    //             echo '{"status":"error"}';
-    //             exit;
-    //         }
-    //         if(move_uploaded_file($_FILES['upl']['tmp_name'], $path_img.$file_name."_".$_FILES['upl']['name'])){
-    //             // $hinhanh->photo = $file_name."_".$_FILES['upl']['name'];
-                  
-    //             // $hinhanh->product_id = $id;
-    //             // $hinhanh->status = 1;
-
-    //             // if($hinhanh->save()) {
-    //             //     echo '{"status":"error"}';
-    //             //     exit;
-    //             // }else{
-    //             //     echo '{"status":"success"}';
-    //             //     exit;
-    //             // }
-                
-    //         }
-    //     }
-    // }
+    
 }

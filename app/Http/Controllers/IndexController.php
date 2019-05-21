@@ -44,12 +44,9 @@ class IndexController extends Controller {
 		$dichvu = DB::table('news')->select()->where('status', 1)->where('com', 'dich-vu')->orderBy('stt', 'asc')->get();
 
 		$about = DB::table('about')->where('com', 'gioi-thieu')->get();
-		$biendich = DB::table('langs')->orderBy('stt', 'asc')->get();
+		
 		Cache::forever('setting', $setting);
 
-		Cache::forever('dichvu', $dichvu);
-
-		Cache::forever('about', $about);
 		
 		session_start();
 		// App::setLocale(Session::get('locale'));
@@ -77,7 +74,7 @@ class IndexController extends Controller {
 		$projects = News::where('status',1)->where('com','du-an')->orderBy('id','desc')->take(8)->get()->toArray();
 		$news = News::where('status',1)->where('com','tin-tuc')->orderBy('id','desc')->take(5)->get()->toArray();
 		$hot_news = News::where('status',1)->where('com','tin-tuc')->where('noibat',1)->orderBy('id','desc')->take(4)->get()->toArray();
-		$tuyendung = Recruitment::orderBy('id','desc')->take(4)->get()->toArray();
+		$hotProducts = Products::where('noibat',1)->where('status',1)->take(20)->orderBy('id','desc')->get()->toArray();
 		$partners = DB::table('lienket')->where('com','doitac')->orWhere('com','khachhang')->get();
 		$about_home = About::where('status',1)->where('com','gioi-thieu')->first()->toArray();
 		$feedbacks = Feedback::get()->toArray();
@@ -89,7 +86,7 @@ class IndexController extends Controller {
 		$description = $setting->description_vi;
 		// End cấu hình SEO
 		$img_share = asset('upload/hinhanh/' . $setting->photo);
-		return view('templates.index_tpl', compact('sliders', 'com', 'about', 'news', 'keyword', 'description', 'title', 'img_share', 'tuyendung', 'slider', 'partners', 'projects', 'lang', 'about_video', 'feedbacks','about_home','hot_news'));
+		return view('templates.index_tpl', compact('sliders', 'com', 'about', 'news', 'keyword', 'description', 'title', 'img_share', 'hotProducts', 'slider', 'partners', 'projects', 'lang', 'about_video', 'feedbacks','about_home','hot_news'));
 	}
 
 	public function getAbout() {
@@ -208,22 +205,6 @@ class IndexController extends Controller {
 		return view('templates.news_list', compact('lang','data','com','title','description','keyword','cateNews','news'));
 	}
 	
-	public function gallery() {
-
-		// $data = DB::table('lienket')->where('com', 'thu-vien')->paginate(30);
-		$data = DB::table('news')->where('com', 'thu-vien')->first();
-		$album_images = DB::table('images')->where('service_id', $data->id)->paginate(20);
-		
-		$com = 'gallery';
-		// Cấu hình SEO
-		$title = "Gallery";
-		$keyword = "Gallery";
-		$description = "Gallery";
-		$img_share = '';
-		// End cấu hình SEO
-		return view('templates.thuvienanh_tpl', compact('data', 'com', 'keyword', 'description', 'title', 'img_share','album_images'));
-	}
-	
 	public function getNewsDetail($alias) {
 
 		$lang = Session::get('locale');
@@ -237,98 +218,57 @@ class IndexController extends Controller {
 		$keyword = $data["keyword_".$lang] ? $data["keyword_".$lang] : $data["name_".$lang];
 		return view('templates.news_detail_tpl', compact('lang','data','title','description','keyword','cateNews','hots'));
 	}
-	public function getProject() {	
-		$cateNews = NewsCate::where('com', 'du-an')->where('status',1)->where('parent_id',0)->get()->toArray();	
-		$news = News::where('com','du-an')->where('status',1)->get()->toArray();
-		$lang = Session::get('locale');
-		$com = 'du-an';
-		// Cấu hình SEO		
-		if ($lang == 'vi') {
-			$title = "Dự án";
-			$keyword = "Dự án";
-			$description = "Dự án";
-		}
-		if ($lang == 'en') {
-			$title = "Project";
-			$keyword = "Project";
-			$description = "Project";
-		}
-		$img_share = '';
-		// End cấu hình SEO
-		return view('templates.project', compact('news', 'banner_danhmuc', 'lang', 'keyword', 'description', 'title', 'img_share', 'com', 'news','cateNews'));
+	public function getProduct(Request $req)
+	{
+		$cate_pro = ProductCate::where('status',1)->where('parent_id',0)->orderby('stt','asc')->get();
+		$partners = DB::table('partner')->get();
+		$products = DB::table('products')->where('status',1)->where('com','san-pham')->paginate(18);
+		$com='san-pham';		
+		$title = "Sản phẩm";
+		$keyword = "Sản phẩm";
+		$description = "Sản phẩm";
+		// $img_share = asset('upload/hinhanh/'.$banner_danhmuc->photo);
+		
+		return view('templates.product_tpl', compact('title','keyword','description','products', 'com','cate_pro','partners'));
 	}
 
-	public function getListProject($alias)
-	{
-		$lang = Session::get('locale');
-		$data = NewsCate::where('status', 1)->where('com','du-an')->where('alias_vi', $alias)->first()->toArray();
-		$cateChilds = NewsCate::where('parent_id',$data["id"])->get();
-		$ids = [];
-		$ids[] = $data["id"];
-		foreach($cateChilds as $child){
-			$ids[] = $child->id;
-		}
-		$news = News::where('com','du-an')->where('status',1)->whereIn('cate_id',$ids)->get()->toArray();
-		$title = $data["title_".$lang] ? $data["title_".$lang] : $data["name_".$lang];
-		$description = $data["description_".$lang] ? $data["description_".$lang] : $data["name_".$lang];
-		$keyword = $data["keyword_".$lang] ? $data["keyword_".$lang] : $data["name_".$lang];
-		return view('templates.project_list', compact('lang','data','com','title','description','keyword','cateNews','news'));
-	}
-	public function getProjectDetail($alias)
-	{
-		$lang = Session::get('locale');
-		$data = News::where('alias_vi', $alias)->where('com','du-an')->first()->toArray();
-		$cateNews = NewsCate::where('com', 'du-an')->where('status',1)->where('parent_id',0)->get()->toArray();
-		$category = NewsCate::where('id', $data["cate_id"])->first()->toArray();
-		$news_same_cate = News::where('status',1)->where('cate_id',$data["cate_id"])->get()->toArray();
-		$title = $data["title_".$lang] ? $data["title_".$lang] : $data["name_".$lang];
-		$description = $data["description_".$lang] ? $data["description_".$lang] : $data["name_".$lang];
-		$keyword = $data["keyword_".$lang] ? $data["keyword_".$lang] : $data["name_".$lang];
-		return view('templates.project_detail', compact('lang','data','category','title','description','keyword','cateNews','news_same_cate'));		
-	}
 
-	public function getLinhVuc()
-	{
+	public function getProductList($alias, Request $req)
+	{		
 		$lang = Session::get('locale');
-		$categories = NewsCate::where('com','linh-vuc')->where('status',1)->where('parent_id', 0)->get()->toArray();
-		$data = News::where('com', 'linh-vuc')->where('status',1)->orderBy('id','desc')->paginate(15)->toArray();
-		// dd($data);
-		$data_paginate = News::select('id')->where('status',1)->where('com','linh-vuc')->orderby('created_at','desc')->paginate(15);
-		if($lang == 'vi'){
-			$title = 'Lĩnh vực kinh doanh';
-		}
-		return view('templates.linhvuc', compact('categories','lang','com','title','data','data_paginate'));
-	}
-	public function listLinhVuc($alias)
-	{
-		$lang = Session::get('locale');
-		$cate = NewsCate::where('com','linh-vuc')->where('status',1)->where('alias_vi', $alias)->first()->toArray();
-		$categories = NewsCate::where('com','linh-vuc')->where('status',1)->where('parent_id', 0)->get()->toArray();
-		$ids = [];
-		$ids[] = $cate['id'];
-		$cateChilds = NewsCate::where('parent_id',$cate['id'])->where('status',1)->get();
-		foreach($cateChilds as $child){
-			$ids[] = $child->id;
-		}
-		$data = News::where('com', 'linh-vuc')->where('status',1)->whereIn('cate_id',$ids)->orderBy('id','desc')->get()->toArray();
+		$cate_pro = ProductCate::where('status',1)->where('parent_id',0)->orderby('id','asc')->get();
+        $com = 'san-pham';
+        $product_cate = ProductCate::select('*')->where('status', 1)->where('alias_vi', $alias)->where('com','san-pham')->first()->toArray();
 
-		$com = 'linh-vuc';
-		$title = $cate['title_'.$lang] ? $cate['title_'.$lang] : $cate['name_'.$lang];
-		$description = $cate['description_'.$lang] ? $cate['description_'.$lang] : $cate['name_'.$lang];
-		$keyword = $cate['keyword_'.$lang] ? $cate['keyword_'.$lang] : $cate['name_'.$lang];
-		return view('templates.list_linhvuc', compact('data','title','description','keyword','cate','lang','categories'));
+        if (!empty($product_cate)) {            
+        	// $cate_parent = ProductCate::where('parent_id', $product_cate['parent_id'])->first()->toArray();
+        	
+        	$cateChilds = ProductCate::where('parent_id', $product_cate['id'])->get()->toArray();
+        	
+        	$array_cate[] = $product_cate['id'];
+        	if($cateChilds){
+        		foreach($cateChilds as $cate){
+        			$array_cate[] = $cate['id'];
+        		}
+        	}
+        	
+        	$products = Products::whereIn('cate_id', $array_cate)->orderBy('id','desc')->paginate(1)->toArray();
+        	$data_paginate = Products::whereIn('cate_id', $array_cate)->orderBy('id','desc')->paginate(1)->toArray();
+            
+            $title = $product_cate["title_".$lang] ? $product_cate["title_".$lang] : $product_cate["name_".$lang];
+			$description = $product_cate["description_".$lang] ? $product_cate["description_".$lang] : $product_cate["name_".$lang];
+			$keyword = $product_cate["keyword_".$lang] ? $product_cate["keyword_".$lang] : $product_cate["name_".$lang];
+            $img_share = asset('upload/product/' . $product_cate['photo']);
+            return view('templates.productlist_tpl', compact('products', 'product_cate', 'keyword', 'description', 'title', 'img_share', 'cate_pro', 'cate_parent', 'com','lang','data_paginate'));
+        } else {
+            return redirect()->route('getErrorNotFount');
+        }
 	}
-	public function detaiLinhVuc($alias)
+	public function getProductDetail($alias)
 	{
 		$lang = Session::get('locale');
-		$data = News::where('status',1)->where('com','linh-vuc')->where('alias_vi',$alias)->first()->toArray();
-		$categories = NewsCate::where('com','linh-vuc')->where('status',1)->where('parent_id', 0)->get()->toArray();
-		$cate = NewsCate::where('id',$data['cate_id'])->first()->toArray();
-		$postSam = News::where('status',1)->where('com','linh-vuc')->where('cate_id',$data['cate_id'])->get();
-		$title = $data['title_'.$lang] ? $data['title_'.$lang] : $data['name_'.$lang];
-		$description = $data['description_'.$lang] ? $data['description_'.$lang] : $data['name_'.$lang];
-		$keyword = $data['keyword_'.$lang] ? $data['keyword_'.$lang] : $data['name_'.$lang];
-		return view('templates.detail_linhvuc', compact('title','description','keyword', 'data','cate','categories','lang','postSam'));
+		$data = Products::where('alias_vi',$alias)->first()->toArray();
+		dd($data);
 	}
 	public function getContact() {
 		$lang = Session::get('locale');
@@ -378,17 +318,6 @@ class IndexController extends Controller {
 		return view('templates.404_tpl', compact('banner_danhmuc'));
 	}
 
-	public function getTuyenDung() {
-		$com = 'tuyen-dung';
-		$lang = Session::get('locale');
-		$data = Recruitment::orderBy('id','desc')->get()->toArray();
-		if ($lang == 'vi') {			
-			$title = 'Tuyển dụng';
-		}else{
-			$title = 'Recruitment';
-		}
-		return view('templates.tuyendung_tpl', compact('com', 'data', 'title','lang'));
-	}
 	
 	public function video() {
 		$videos = DB::table('video')->orderBy('id', 'desc')->paginate(10);

@@ -15,14 +15,13 @@
   </ol>
 </section>
 <!-- Main content -->
-<section class="content">
-  
+<section class="content">  
     <div class="box">
     	@include('admin.messages_error')
         <div class="box-body">
         	<form method="post" name="frmEditProduct" action="backend/product/edit?id={{$id}}" enctype="multipart/form-data">
-        		{{ csrf_field() }}
-        		
+        		<input type="hidden" name="_token" value="{!! csrf_token() !!}" />
+        		<input type="hidden" name="txtCom" value="{{ @$_GET['type'] }}"/>
       			<div class="nav-tabs-custom">
 	                <ul class="nav nav-tabs">
 	                  	<li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="false">Thông tin chung</a></li>
@@ -49,59 +48,63 @@
 									</div>
 									
 									<div class="clearfix"></div>
-									<!-- <div class="form-group">
+									<div class="form-group">
 								      	<label for="ten">Danh mục cha</label>
 								      	<select name="txtProductCate" class="form-control">
 
 								      		<option value="0">Chọn danh mục</option>
 								      		<?php cate_parent($parent,0,"--",$data->cate_id) ?>
 								      	</select>
-									</div> -->
-							    	<div class="form-group @if ($errors->first('txtName')!='') has-error @endif">
+									</div>
+							    	<div class="form-group @if ($errors->first('name_vi')!='') has-error @endif">
 								      	<label for="ten">Tên</label>
-								      	<input type="text" name="txtName" id="txtName" value="{{ $data->name }}"  class="form-control" />
-								      	@if ($errors->first('txtName')!='')
-								      	<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {!! $errors->first('txtName'); !!}</label>
+								      	<input type="text" name="name_vi" id="txtName" value="{{ $data->name_vi }}"  class="form-control" />
+								      	@if ($errors->first('name_vi')!='')
+								      	<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {!! $errors->first('name_vi'); !!}</label>
 								      	@endif
 									</div>
-									<div class="form-group @if ($errors->first('txtAlias')!='') has-error @endif">
+									<div class="form-group @if ($errors->first('alias_vi')!='') has-error @endif">
 								      	<label for="alias">Đường dẫn tĩnh</label>
-								      	<input type="text" name="txtAlias" id="txtAlias" value="{{ $data->alias }}"  class="form-control" />
-								      	@if ($errors->first('txtAlias')!='')
-								      	<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {!! $errors->first('txtAlias'); !!}</label>
+								      	<input type="text" name="alias_vi" id="txtAlias" value="{{ $data->alias_vi }}"  class="form-control" />
+								      	@if ($errors->first('alias_vi')!='')
+								      	<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {!! $errors->first('alias_vi'); !!}</label>
 								      	@endif
 									</div>
-																		
+									<div class="form-group">
+								      	<label for="ten">Giá bán(VNĐ)</label>
+								      	<input type="text" name="price_vi" onkeyup="FormatNumber(this);"  onKeyPress="return isNumberKey(event)" value="{{ number_format($data->price_vi,0,'',',') }}"  class="form-control" />
+									</div>
+									<div class="form-group">
+								      	<label for="ten">Mã SP</label>
+								      	<input type="text" name="txtCode"  value="{{$data->code}}"  class="form-control" />
+									</div>									
 								</div>
 								<div class="col-md-12 col-xs-12">
 									
 									<div class="form-group">
 								      	<label for="desc">Mô tả</label>
-								      	<textarea name="mota" rows="5" id="" class="form-control">{{ $data->mota }}</textarea>
+								      	<textarea name="mota" rows="5" id="" class="form-control">{{ $data->mota_vi }}</textarea>
 									</div>
 									<div class="form-group">
 								      	<label for="desc">Nội dung</label>
-								      	<textarea name="txtContent" rows="5" id="txtContent" class="form-control">{{ $data->content }}</textarea>
-									</div>
-									<div class="form-group">
-								      	<label for="desc">Bảng giá</label>
-								      	<textarea name="banggia" rows="5" id="txtContent" class="form-control">{{ $data->banggia }}</textarea>
+								      	<textarea name="txtContent" rows="5" id="txtContent" class="form-control">{{ $data->content_vi }}</textarea>
 									</div>
 								</div>
 							</div>
 							<div class="clearfix"></div>
 	                  	</div><!-- /.tab-pane -->
-
-	                  	<div class="tab-pane" id="tab_2">
-	                  		
+	                  	<div class="tab-pane" id="tab_2">	                  		
 	                  		<div class="row">
 		                  		<div class="col-md-6 col-xs-12">
 		                    		<div class="form-group">
 								      	<label for="txtTitle">Tên</label>
 								      	<input type="text" name="name_en" id="name_en" value="{{ isset($data->name_en) ? $data->name_en : '' }}"  class="form-control" />
 									</div>
-		                    	</div>
-								
+									<div class="form-group">
+								      	<label for="ten">Giá bán($)</label>
+								      	<input type="text" name="price_en" onkeyup="FormatNumber(this);"  onKeyPress="return isNumberKey(event)" value="{{ number_format($data->price_en,0,'',',') }}"  class="form-control" />
+									</div>
+		                    	</div>								
 							</div>
 							<div class="row">
 								<div class="col-md-12 col-xs-12">
@@ -121,10 +124,7 @@
 						        			<textarea name="content_en" id="txtContent" cols="50" rows="5">{!! isset($data) ? $data->content_en : '' !!}</textarea>
 						        		</div>
 						        	</div>
-						        	<div class="form-group">
-								      	<label for="desc">Bảng giá</label>
-								      	<textarea name="banggia_en" rows="5" id="txtContent" class="form-control">{{ $data->banggia_en }}</textarea>
-									</div>
+						        	
 								</div>
 							</div>
 	                    	<div class="clearfix"></div>
@@ -133,9 +133,9 @@
 	                  		<div class="form-group">
 		                      @foreach($product_img as $key => $item)
 		                        <div class="form-group" id="{!! $key !!}">
-		                            <img src="{!! asset('upload/hasp/'.$item['photo']) !!}" style="max-width: 150px; margin: 20px;" idImg="{!! $item['id'] !!}" id="{!! $key !!}">
+		                            <img src="{!! asset('upload/hasp/'.$item['photo']) !!}" style="max-width: 150px; margin: 20px;" id="{!! $key !!}">
 
-		                            <a href="javascript:" type="button" id="del_img" class="btn btn-danger btn-circle icon_del"><i class="fa fa-times"></i></a>
+		                            <a href="javascript:" type="button" id="del_img" img-id="{!! $item['id'] !!}" class="btn btn-danger btn-circle icon_del"><i class="fa fa-times"></i></a>
 		                        </div>
 		                      @endforeach
 
@@ -151,15 +151,15 @@
 		                    	<div class="col-md-6 col-xs-12">
 		                    		<div class="form-group">
 								      	<label for="title">Title</label>
-								      	<input type="text" name="txtTitle" value="{{ $data->title }}"  class="form-control" />
+								      	<input type="text" name="title_vi" value="{{ $data->title_vi }}"  class="form-control" />
 									</div>
 		                    		<div class="form-group">
 								      	<label for="keyword">Keyword</label>
-								      	<textarea name="txtKeyword" rows="5" class="form-control">{{ $data->keyword }}</textarea>
+								      	<textarea name="keyword_vi" rows="5" class="form-control">{{ $data->keyword_vi }}</textarea>
 									</div>
 									<div class="form-group">
 								      	<label for="description">Description</label>
-								      	<textarea name="txtDescription" rows="5" class="form-control">{{ $data->description }}</textarea>
+								      	<textarea name="description_vi" rows="5" class="form-control">{{ $data->description_vi }}</textarea>
 									</div>
 		                    	</div>
 		                    	<div class="col-md-6 col-xs-12">
@@ -183,7 +183,7 @@
 	            </div>
 	            <div class="clearfix"></div>
 			    <div class="col-md-6">
-			    	<div class="form-group">
+			    	<div class="form-group hidden">
 					      <label for="ten">Số thứ tự</label>
 					      <input type="number" min="1" name="stt" value="{!! isset($data->status) ? $data->stt : (count($product)+1) !!}" class="form-control" style="width: 100px;">
 				    </div>
@@ -214,7 +214,7 @@
 			    	<div class="row">
 						<div class="col-md-6">
 					    	<button type="submit" class="btn btn-primary">Cập nhật</button>
-					    	<button type="button" class="btn btn-danger" onclick="javascript:window.location='backend/product'">Thoát</button>
+					    	<button type="button" class="btn btn-danger" onclick="javascript:window.location='backend/product?type={{ @$_GET[type] }}'">Thoát</button>
 				    	</div>
 			    	</div>
 			  	</div>

@@ -208,10 +208,11 @@ header{
     z-index: 999999;
 }
 .vk-menu__child > li{
-    width: 25%;
+    /*width: 25%;*/
     float: left;
     /*display: inline-block;*/
     vertical-align: top;
+    line-height: 25px !important;
     /*padding-left: 20px;*/
     /*border-bottom: 1px solid #fff;*/
 }
@@ -226,7 +227,7 @@ header{
     color: #fff;
 }
 .vk-menu__child a{
-    font-size: 15px !important;
+    font-size: 14px !important;
     border-right: 0px !important;
     padding-right: 0px !important;
     padding-left: 10px !important;
@@ -252,7 +253,7 @@ ul.gt li a{
     line-height: 25px !important;
 }
 .sub-menu-list a{
-    font-size: 13px !important;
+    font-size: 12px !important;
     color: #d9d9d9 !important;
 }
 .sub-menu-list li:hover a{
@@ -421,6 +422,7 @@ ul.gt li a{
     text-overflow: ellipsis;
     display: -webkit-box;
     height: 58.5px;
+    margin-top: 5px;
 }
 .name_product a{
     color: #333;

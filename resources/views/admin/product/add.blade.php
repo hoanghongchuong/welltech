@@ -23,7 +23,7 @@
         	
         	<form name="frmAdd" method="post" action="{!! route('admin.product.postAdd') !!}" enctype="multipart/form-data">
         		<input type="hidden" name="_token" value="{!! csrf_token() !!}" />
-	      		
+	      		<input type="hidden" name="txtCom" value="{{ @$_GET['type'] }}"/>
       			<div class="nav-tabs-custom">
 	                <ul class="nav nav-tabs">
 	                  	<li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="false">Thông tin chung</a></li>
@@ -52,71 +52,59 @@
 								      	@endif
 									</div>
 									<div class="clearfix"></div>
-									<!-- <div class="form-group">
+									<div class="form-group">
 								      	<label for="ten">Danh mục cha</label>
 								      	<select name="txtProductCate" class="form-control">
 
 								      		<option value="0">Chọn danh mục</option>
 								      		<?php cate_parent($parent,0,"--",0) ?>
 								      	</select>
-									</div> -->
-							    	<div class="form-group @if ($errors->first('txtName')!='') has-error @endif">
+									</div>
+							    	<div class="form-group @if ($errors->first('name_vi')!='') has-error @endif">
 								      	<label for="ten">Tên</label>
-								      	<input type="text" id="txtName" name="txtName" value=""  class="form-control" />
-								      	@if ($errors->first('txtName')!='')
-								      	<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {!! $errors->first('txtName'); !!}</label>
+								      	<input type="text" id="txtName" name="name_vi" value=""  class="form-control" />
+								      	@if ($errors->first('name_vi')!='')
+								      	<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {!! $errors->first('name_vi'); !!}</label>
 								      	@endif
 									</div>
-									<div class="form-group @if ($errors->first('txtAlias')!='') has-error @endif">
+									<div class="form-group @if ($errors->first('alias_vi')!='') has-error @endif">
 								      	<label for="alias">Đường dẫn tĩnh</label>
-								      	<input type="text" name="txtAlias" id="txtAlias" value=""  class="form-control" />
-								      	@if ($errors->first('txtAlias')!='')
-								      	<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {!! $errors->first('txtAlias'); !!}</label>
+								      	<input type="text" name="alias_vi" id="txtAlias" value=""  class="form-control" />
+								      	@if ($errors->first('alias_vi')!='')
+								      	<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {!! $errors->first('alias_vi'); !!}</label>
 								      	@endif
 									</div>
-									<!-- <div class="form-group">
-								      	<label for="alias">Ghi chú</label>
-								      	<textarea name="txtHuongdan" rows="5" id="txtContent" class="form-control"></textarea>
-									</div> -->
-								</div>
-								<!-- <div class="col-md-6">
 									<div class="form-group">
-								      	<label for="alias">Khuyến mại</label>
-								      	<textarea name="txtQuatang" rows="5" id="txtContent" class="form-control"></textarea>
+								      	<label for="ten">Giá bán(VNĐ)</label>
+								      	<input type="text" name="price_vi"  onkeyup="FormatNumber(this);"  onKeyPress="return isNumberKey(event)" value=""  class="form-control" />
 									</div>
-								</div> -->
+									<div class="form-group">
+								      	<label for="ten">Mã SP</label>
+								      	<input type="text" name="txtCode"  value=""  class="form-control" />
+									</div>
+								</div>
+								
 							</div>
 							<div class="row">
 								<div class="col-md-12 col-xs-12">
-								<div class="form-group">
-							      	<label for="desc">Mô tả</label>
-							      	<textarea name="mota" rows="5" id="" class="form-control"></textarea>
+									<div class="form-group">
+								      	<label for="desc">Mô tả</label>
+								      	<textarea name="mota_vi" rows="5" id="" class="form-control"></textarea>
+									</div>
+									<div class="box box-info">
+						                <div class="box-header">
+						                  	<h3 class="box-title">Nội dung</h3>
+						                  	<div class="pull-right box-tools">
+							                    <button class="btn btn-info btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+							                    <button class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+							                </div>
+						                </div>
+						                <div class="box-body pad">
+						        			<textarea name="content_vi" id="txtContent" cols="50" rows="5"></textarea>
+						        		</div>
+						        	</div>
+						        	
 								</div>
-								<div class="box box-info">
-					                <div class="box-header">
-					                  	<h3 class="box-title">Nội dung</h3>
-					                  	<div class="pull-right box-tools">
-						                    <button class="btn btn-info btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
-						                    <button class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
-						                </div>
-					                </div>
-					                <div class="box-body pad">
-					        			<textarea name="txtContent" id="txtContent" cols="50" rows="5"></textarea>
-					        		</div>
-					        	</div>
-					        	<div class="box box-info">
-					                <div class="box-header">
-					                  	<h3 class="box-title">Bảng giá</h3>
-					                  	<div class="pull-right box-tools">
-						                    <button class="btn btn-info btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
-						                    <button class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
-						                </div>
-					                </div>
-					                <div class="box-body pad">
-					        			<textarea name="banggia" id="txtContent" cols="50" rows="5"></textarea>
-					        		</div>
-					        	</div>
-							</div>
 							</div>
 							
 							<div class="clearfix"></div>
@@ -128,7 +116,10 @@
 								      	<label for="txtTitle">Name</label>
 								      	<input type="text" name="name_en" id="name_en" value=""  class="form-control" />
 									</div>
-																		
+									<div class="form-group">
+								      	<label for="ten">Giá bán ($)</label>
+								      	<input type="text" name="price_en"  onkeyup="FormatNumber(this);"  onKeyPress="return isNumberKey(event)" value=""  class="form-control" />
+									</div>									
 		                    	</div>
 								
 							</div>
@@ -149,19 +140,7 @@
 						                <div class="box-body pad">
 						        			<textarea name="content_en" id="txtContent" cols="50" rows="5"></textarea>
 						        		</div>
-						        	</div>
-						        	<div class="box box-info">
-						                <div class="box-header">
-						                  	<h3 class="box-title">Bảng giá</h3>
-						                  	<div class="pull-right box-tools">
-							                    <button class="btn btn-info btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
-							                    <button class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
-							                </div>
-						                </div>
-						                <div class="box-body pad">
-						        			<textarea name="banggia_en" id="txtContent" cols="50" rows="5"></textarea>
-						        		</div>
-						        	</div>
+						        	</div>						        	
 								</div>
 							</div>
 							<div class="clearfix"></div>
@@ -177,15 +156,15 @@
 		                    	<div class="col-md-6 col-xs-12">
 		                    		<div class="form-group">
 								      	<label for="keyword">Title</label>
-								      	<textarea name="txtTitle" rows="5" class="form-control"></textarea>
+								      	<textarea name="title_vi" rows="5" class="form-control"></textarea>
 									</div>
 		                    		<div class="form-group">
 								      	<label for="keyword">Keyword</label>
-								      	<textarea name="txtKeyword" rows="5" class="form-control"></textarea>
+								      	<textarea name="keyword_vi" rows="5" class="form-control"></textarea>
 									</div>
 									<div class="form-group">
 								      	<label for="description">Description</label>
-								      	<textarea name="txtDescription" rows="5" class="form-control"></textarea>
+								      	<textarea name="description_vi" rows="5" class="form-control"></textarea>
 									</div>
 		                    	</div>
 		                    	<div class="col-md-6 col-xs-12">
@@ -209,38 +188,29 @@
 	            </div>
 	            <div class="clearfix"></div>
 			    <div class="col-md-6">
-			    	<div class="form-group">
+			    	<div class="form-group hidden">
 					      <label for="ten">Số thứ tự</label>
 					      <input type="number" min="1" name="stt" value="{!! count($data)+1 !!}" class="form-control" style="width: 100px;">
-				    </div>
-				    
+				    </div>				    
 				    <div class="form-group">
 					    <label>
 				        	<input type="checkbox" name="status" checked="checked"> Hiển thị
 				    	</label>
 				    </div>
-				    <!-- <div class="form-group">
-					    <label>
-				        	<input type="checkbox" name="tinhtrang" checked="checked"> Tình trạng
-				    	</label>
-				    </div> -->
+				    
 			    	<div class="form-group">
 					    <label>
 				        	<input type="checkbox" name="noibat"> Nổi bật
 				    	</label>
 				    </div>
-				    <!-- <div class="form-group">
-					    <label>
-				        	<input type="checkbox" name="spbc"> Sale off
-				    	</label>
-				    </div> -->
+				    
 			    </div>
 			    <div class="clearfix"></div>
 			    <div class="box-footer">
 			    	<div class="row">
 						<div class="col-md-6">
 					    	<button type="submit" class="btn btn-primary">Lưu</button>
-					    	<button type="button" onclick="javascript:window.location='backend/product'" class="btn btn-danger">Thoát</button>
+					    	<button type="button" onclick="javascript:window.location='backend/product?type={{ @$_GET[type] }}'" class="btn btn-danger">Thoát</button>
 				    	</div>
 			    	</div>
 			  	</div>

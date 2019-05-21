@@ -24,7 +24,7 @@
         	
         	<form name="frmAdd" method="post" action="{!! route('admin.productcate.postAdd') !!}" enctype="multipart/form-data">
         		<input type="hidden" name="_token" value="{!! csrf_token() !!}" />
-	      		
+	      		<input type="hidden" name="txtCom" value="{{ @$_GET['type'] }}"/>
       			<div class="nav-tabs-custom">
 	                <ul class="nav nav-tabs">
 	                  	<li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="false">Thông tin chung</a></li>
@@ -43,20 +43,20 @@
 								      	<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {!! $errors->first('fImages'); !!}</label>
 								      	@endif
 									</div> -->
-			                    	<!-- <div class="form-group">
+			                    	<div class="form-group">
 								      	<label for="ten">Danh mục cha</label>
 								      	<select name="txtProductCate" class="form-control">
 
 								      		<option value="0">Chọn danh mục</option>
 								      		<?php cate_parent($parent); ?>
 								      	</select>
-									</div> -->
+									</div>
 									<div class="clearfix"></div>
-							    	<div class="form-group @if ($errors->first('txtName')!='') has-error @endif">
+							    	<div class="form-group @if ($errors->first('name_vi')!='') has-error @endif">
 								      	<label for="ten">Tên</label>
-								      	<input type="text" name="txtName" id="txtName" value=""  class="form-control" />
-								      	@if ($errors->first('txtName')!='')
-								      	<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {!! $errors->first('txtName'); !!}</label>
+								      	<input type="text" name="name_vi" id="name_vi" value=""  class="form-control" />
+								      	@if ($errors->first('name_vi')!='')
+								      	<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {!! $errors->first('name_vi'); !!}</label>
 								      	@endif
 									</div>
 									<div class="form-group hidden @if ($errors->first('txtAlias')!='') has-error @endif">
@@ -66,10 +66,10 @@
 								      	<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {!! $errors->first('txtAlias'); !!}</label>
 								      	@endif
 									</div>
-									<!-- <div class="form-group">
+									<div class="form-group">
 										<label for="">Mô tả</label>
-										<textarea name="mota" rows="5" id="txtContent" class="form-control"></textarea>
-									</div> -->
+										<textarea name="mota_vi" rows="5" id="txtContent" class="form-control"></textarea>
+									</div>
 								</div>
 							</div>
 							<div class="clearfix"></div>
@@ -82,10 +82,10 @@
 								      	<input type="text" name="name_en" id="name_en" value=""  class="form-control" />
 									</div>
 									
-		                    		<!-- <div class="form-group">
+		                    		<div class="form-group">
 										<label for="">Mô tả</label>
 										<textarea name="mota_en" rows="5" id="txtContent" class="form-control"></textarea>
-									</div> -->
+									</div>
 									
 		                    	</div>
 	                    	</div>
@@ -96,15 +96,15 @@
 		                    	<div class="col-md-6 col-xs-12">
 		                    		<div class="form-group">
 								      	<label for="txtTitle">Title</label>
-								      	<input type="text" name="txtTitle" value=""  class="form-control" />
+								      	<input type="text" name="title_vi" value=""  class="form-control" />
 									</div>
 		                    		<div class="form-group">
 								      	<label for="keyword">Keyword</label>
-								      	<textarea name="txtKeyword" rows="5" class="form-control"></textarea>
+								      	<textarea name="keyword_vi" rows="5" class="form-control"></textarea>
 									</div>
 									<div class="form-group">
 								      	<label for="description">Description</label>
-								      	<textarea name="txtDescription" rows="5" class="form-control"></textarea>
+								      	<textarea name="description_vi" rows="5" class="form-control"></textarea>
 									</div>
 		                    	</div>
 		                    	<div class="col-md-6 col-xs-12">

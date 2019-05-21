@@ -11,6 +11,6 @@ class Products extends Model {
 	public $timestamps = true;
 
 	public function pimg(){
-		return $this->hasMany('App\Images','product_id')->select('photo');
+		return $this->hasMany('App\Images','product_id');
 	}
 }

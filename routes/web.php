@@ -326,6 +326,10 @@ Route::group(['middleware' => 'localization', 'prefix' => Session::get('locale')
 
 	Route::get('/', ['as'=>'index', 'uses'=>'IndexController@index']);
 	// Route::get('gioi-thieu',['as'=>'getAbout', 'uses'=>'IndexController@getAbout']);
+	Route::get('san-pham',['as'=>'getProduct', 'uses'=>'IndexController@getProduct']);
+	Route::get('san-pham/{alias}.html','IndexController@getProductDetail')->name('detailProduct');
+	Route::get('san-pham/{alias}',['as'=>'getProductList', 'uses'=>'IndexController@getProductList']);
+	
 	Route::get('doi-tac-khach-hang', 'IndexController@partner');
 	Route::get('gioi-thieu/{alias}','IndexController@getGioiThieu')->name('get.gioithieu');
 
@@ -333,44 +337,15 @@ Route::group(['middleware' => 'localization', 'prefix' => Session::get('locale')
 	Route::get('tin-tuc/{alias}.html',['as'=>'getNewsDetail', 'uses'=>'IndexController@getNewsDetail']);
 	Route::get('tin-tuc/{alias}',['as'=>'getListNews', 'uses'=>'IndexController@getListNews']);
 
-	Route::get('du-an',['as'=>'getProject', 'uses'=>'IndexController@getProject']);
-	Route::get('du-an/{alias}.html',['as'=>'projectDetail', 'uses'=>'IndexController@getProjectDetail']);
-	Route::get('du-an/{alias}',['as'=>'getListProject', 'uses'=>'IndexController@getListProject']);
-
-	Route::get('linh-vuc', 'IndexController@getLinhVuc')->name('linhvuc');
-	Route::get('linh-vuc/{alias}.html', 'IndexController@detaiLinhVuc');
-	Route::get('linh-vuc/{alias}', 'IndexController@listLinhVuc');
-
-	Route::get('tuyen-dung','IndexController@getTuyenDung');
-	Route::post('tuyen-dung','ContactController@postTuyenDung')->name('post.re');
-
-	Route::get('khach-hang', 'IndexController@getCustomer');
 	Route::get('lien-he',['as'=>'getContact', 'uses'=>'IndexController@getContact']);
 	Route::post('lien-he',['as'=>'postContact', 'uses'=>'ContactController@postContact']);
-
-	Route::get('video', 'IndexController@video');
-	Route::get('gallery', 'IndexController@gallery');
-
-
-	Route::get('tuyen-dung/{id}.html',['as'=>'getNewsRecuiment', 'uses'=>'IndexController@getNewsTuyenDungDetail']);
-	Route::get('tuyen-dung/{alias}',['as'=>'getRecruiment', 'uses'=>'IndexController@getTuyenDung']);
 
 	Route::get('tim-kiem',['as'=>'search', 'uses'=>'IndexController@search']);
 	Route::post('newsletter',['as'=>'postNewsletter', 'uses'=>'IndexController@postNewsletter']);
 
-	Route::get('thu-ngo', 'IndexController@thuNgo');
-	Route::get('thong-tin-cong-ty', 'IndexController@thongTin');
-	Route::get('the-manh', 'IndexController@theManh');
-
-	Route::get('xuat-khau-lao-dong', 'IndexController@xuatKhau');
-
-	Route::get('thuc-tap', 'IndexController@xuatKhau');
-	Route::get('the-manh', 'IndexController@themanh');
 
 	Route::get('ajax/province/{id}',['as'=>'loadDistrictByProvince', 'uses'=>'IndexController@loadDistrictByProvince']);
 
-	Route::get('dich-vu',['as'=>'dichvu', 'uses'=>'IndexController@getDichvu']);
-	Route::get('dich-vu/{id}.html',['as'=>'getDichVuDetail', 'uses'=>'IndexController@getDichVuDetail']);
 	Route::get('faq', 'IndexController@faq');
 	// Route::get('thu-vien-anh',['as'=>'getThuvienanh', 'uses'=>'IndexController@getThuvienanh']);
 	// Route::get('hoi-vien',['as'=>'getHoivien', 'uses'=>'IndexController@getHoivien']);

@@ -1,5 +1,7 @@
 $(document).ready(function(){
     $('#news_data').DataTable();
+    $('#productcate_data').DataTable();
+    $('#product_data').DataTable();
 
     $(function () {
 	    $(".textarea").wysihtml5();
@@ -179,11 +181,13 @@ $(document).ready(function(){
 });
 $(document).ready(function(){
     $('a#del_img').on('click', function(){
-        var url =  homeUrl()+"/backend/product/delimg/";
+        var url =  homeUrl() + "/backend/product/delimg/";
+
         var _token = $("form[name='frmEditProduct']").find("input[name='_token']").val();
-        var idImg = $(this).parent().find("img").attr("idImg");
+        var idImg = $(this).attr('img-id');
         var img = $(this).parent().find("img").attr("src");
         var rid = $(this).parent().find("img").attr("id");
+        
         $.ajax({
             url: url + idImg,
             type: 'GET',
