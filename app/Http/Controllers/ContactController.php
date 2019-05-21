@@ -35,6 +35,21 @@ class ContactController extends Controller {
      */
     public function postContact(Requests $request) {
 		$setting = DB::table('setting')->select()->where('id',1)->get()->first();
+		$this->validate($request, [
+        	"name" => "required",
+        	"phone" => "required|max:100|min:1",
+        	"email" => "required|email",
+        	"address" => "required",
+        	"content" => "required",
+        ],
+        [
+        	"name.required" =>  __('message.name'),
+        	"phone.required" =>  __('message.phone'),
+        	"email.required" =>  __('message.email'),
+        	"email.email" => __('message.email_invalid'),
+        	"address.required" =>  __('message.address'),
+        	"content.required" =>  __('message.content'),
+        ]);
 		$data = new Contact();
 		$data->name = $request->name;
 		$data->phone = $request->phone;
@@ -50,8 +65,8 @@ class ContactController extends Controller {
             ];
             Mail::send('templates.sendmail', $value, function ($msg) {
                 $setting = Cache::get('setting');
-                $msg->from(Request::input('email'),  'HCCorp');
-                $msg->to($setting->email_test, 'Admin')->subject('Hệ thống thông báo');
+                $msg->from(Request::input('email'),  'WELLTECH');
+                $msg->to($setting->email, 'Admin')->subject('Hệ thống thông báo');
                 // $msg->to(Request::input('email'), Request::input('full_name'))->subject('Đơn đặt hàng');
             });
 		$data->save();

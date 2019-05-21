@@ -24,6 +24,12 @@
 	.name_news{
 		margin-top: 7px;
 	}
+	.content-box-form{
+		height: 100%;
+	}
+	.content-box-form i{
+		top:23% !important;
+	}
 }
 @media (min-width: 768px) {
 	

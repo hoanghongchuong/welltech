@@ -4,6 +4,10 @@
 $setting = \App\Setting::where('id', 1)->first()->toArray();
 
 ?>
+<script src="{{ asset('public/js/jquery-3.2.1.min.js')}}" defer ></script>
+<div class="content-box-form">
+    <i class="fa fa-spinner fa-spin"></i>
+</div>
 <div class="crumb">
     <div class="container">
         <div class="row">
@@ -41,30 +45,44 @@ $setting = \App\Setting::where('id', 1)->first()->toArray();
                     {{ csrf_field() }}
                     <div class="row">                        
                         <div class="col-md-6">
-                            <label for="">{{trans('label.hoten')}}</label>                           
+                            <label for="">{{trans('label.hoten')}}</label>
+                                @if ($errors->first('name')!='')
+                                    <span style="color: red">( {!! $errors->first('name'); !!})</span>
+                                @endif                           
                             <input type="text" name="name" value="" required="" class="form-control">
                         </div>
                         <div class="col-md-6">
                             <label for="">{{trans('label.diachi')}}</label>
+                            @if ($errors->first('address')!='')
+                                <span style="color: red">( {!! $errors->first('address'); !!})</span>
+                            @endif
                             <input type="text" name="address" value="" required="" class="form-control" placeholder="">
                             
                         </div>
                         <div class="col-md-6">
                             <label for="">{{trans('label.phone')}}</label>
+                            @if ($errors->first('phone')!='')
+                                <span style="color: red">( {!! $errors->first('phone'); !!})</span>
+                            @endif
                             <input type="text" name="phone" required="" value="" class="form-control" placeholder="">
                             
                         </div>
                         <div class="col-md-6">
                             <label for="">{{trans('label.email')}}</label>
+                            @if ($errors->first('email')!='')
+                                <span style="color: red">( {!! $errors->first('email'); !!})</span>
+                            @endif
                             <input type="email" name="email" required="" value="" class="form-control" placeholder="">
-                            
                         </div>
                         <div class="col-md-12">
                             <label for="">{{trans('label.content')}}</label>
+                            @if ($errors->first('content')!='')
+                                <span style="color: red">( {!! $errors->first('content'); !!})</span>
+                            @endif
                             <textarea name="content" rows="5" class="form-control" placeholder="{{trans('label.content')}}"></textarea>
                         </div>
                         <div class="text-md-right btn-gui col-md-12">
-                            <button type="submit" class="btn bold more-btn btn-primary">{{trans('label.send')}}</button>
+                            <button type="submit" class="btn bold more-btn btn-primary" id="btn-submit-form">{{trans('label.send')}}</button>
                         </div>
                     </div>
                 </form>
@@ -78,4 +96,27 @@ $setting = \App\Setting::where('id', 1)->first()->toArray();
         </div>
     </div>
 </div>
+
+@if (session('message'))   
+    <div class="modal" id="myModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <!-- <h5 class="modal-title">Modal title</h5> -->
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <h4 class="flash-message">{{ session('message') }}</h4>
+          </div>
+          <div class="modal-footer">
+            <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+   
+@endif
 @endsection

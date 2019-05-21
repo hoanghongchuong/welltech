@@ -85,3 +85,28 @@
 .slick-slide {
     padding-left: 3px;
 }
+
+.content-box-form{
+    background-color: rgba(0,0,0,0.7);
+    display: none;
+    width: 100%;
+    height: 500px;
+    float: left;
+    position: absolute;
+    z-index: 999999;
+    opacity: 0.8;
+
+}
+.content-box-form i{
+    position: absolute;
+    z-index: 99999999;
+    left: 50%;
+    top:45%;
+    font-size: 30px;
+    color: #fff;
+}
+.flash-message{
+    font-size: 22px;
+    /*text-transform: uppercase;*/
+    color: #0D4E96;
+}

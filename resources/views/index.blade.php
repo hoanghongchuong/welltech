@@ -76,6 +76,7 @@
     <script src="{{asset('public/js/slick.min.js')}}"></script>
     <!-- <script src="{{asset('public/js/jquery.fancybox.min.js')}}"></script> -->
     <script src="{{asset('public/js/script.js')}}"></script>
+    <script src="{{asset('public/js/cus.js')}}"></script>
 <!-- END: SCRIPT -->
 </body>
 </html>
