@@ -90,43 +90,17 @@ class IndexController extends Controller {
 	}
 
 	public function getAbout() {
-		$about = DB::table('about')->select()->where('com', 'gioi-thieu')->first();
-		$members = DB::table('members')->orderBy('id', 'desc')->get();
+		$data = About::where('com', 'gioi-thieu')->first()->toArray();
+		// $members = DB::table('members')->orderBy('id', 'desc')->get();
 		$com = 'gioi-thieu';
 		$lang = Session::get('locale');
-		$setting = Cache::get('setting');
-
 		// Cấu hình SEO
-		if ($lang == 'vi') {
-			if (!empty($about->title)) {
-				$title = $about->title;
-			} else {
-				$title = $about->name;
-			}
-			$keyword = $about->keyword;
-			$description = $about->description;
-		}
-		if ($lang == 'en') {
-			if (!empty($about->title_en)) {
-				$title = $about->title_en;
-			} else {
-				$title = $about->name_en;
-			}
-			$keyword_en = $about->keyword_en;
-			$description_en = $about->description_en;
-		}
-		// $img_share = asset('upload/hinhanh/'.$about->photo);
-		//Cấu hình SEO
-		if (!empty($about->title)) {
-			$title = $about->title;
-		} else {
-			$title = $about->name;
-		}
-		$keyword = $about->keyword;
-		$description = $about->description;
+		$title = $data["title_".$lang] ? $data["title_".$lang] : $data["name_".$lang];
+		$description = $data["description_".$lang] ? $data["description_".$lang] : $data["name_".$lang];
+		$keyword = $data["keyword_".$lang] ? $data["keyword_".$lang] : $data["name_".$lang];
 		// End cấu hình SEO
 
-		return view('templates.about_tpl', compact('about', 'news', 'slider_about', 'members', 'keyword', 'description', 'title', 'img_share', 'com'));
+		return view('templates.about_tpl', compact('data', 'keyword', 'description', 'title', 'img_share', 'com','lang'));
 	}
 	public function getGioiThieu($alias)
 	{

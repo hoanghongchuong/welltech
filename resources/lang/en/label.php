@@ -15,7 +15,7 @@
                     'timkiem' => "Search",
                     'email' => "Email",
                     'send_message' => "Send Message",
-                    '_vechungtoi' => "About us",
+                    'about' => "About us",
                     'video' => "video",
                     'partner' => "Partner - Customer",
                     'docthem' => "Read more",

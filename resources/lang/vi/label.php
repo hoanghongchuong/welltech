@@ -16,7 +16,7 @@
                     'timkiem' => "Tìm kiếm",
                     'email' => "Email",
                     'send_message' => "Gửi tin nhắn",
-                    '_vechungtoi' => "Về chúng tôi",
+                    'about' => "Về chúng tôi",
                     'video' => "video",
                     'partner' => "Đối tác - khách hàng",
                     'docthem' => "Xem Thêm",

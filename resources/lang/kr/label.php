@@ -15,7 +15,7 @@
                     'timkiem' => "",
                     'email' => "",
                     'send_message' => "",
-                    '_vechungtoi' => "",
+                    'about' => "",
                     'video' => "",
                     'partner' => "",
                     'docthem' => "",

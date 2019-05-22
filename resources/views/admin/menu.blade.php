@@ -22,7 +22,8 @@
             <a href="{{ route('admin.admin.index') }}"><i class="fa fa-user"></i>Quản lý tài khoản</a>
         </li>
         @endif
-        <li class="treeview {{ Request::segment(2) == 'about' || Request::segment(2) == 'lienket' ? 'active' : '' }}" >
+        <li><a href="backend/about/edit?type=gioi-thieu"><i class="fa fa-circle-o"></i> <span>Giới thiệu</span></a></li>
+        <!-- <li class="treeview {{ Request::segment(2) == 'about' || Request::segment(2) == 'lienket' ? 'active' : '' }}" >
             <a href="#">
                 <i class="fa fa-edit"></i> <span>Quản lý giới thiệu</span>
                 <i class="fa fa-angle-left pull-right"></i>
@@ -34,7 +35,7 @@
                 <li><a href="backend/lienket?type=khachhang"><i class="fa fa-circle-o"></i> <span>Khách hàng</span></a></li>
                 <li><a href="backend/lienket?type=doitac"><i class="fa fa-circle-o"></i> <span>Đối tác</span></a></li>
             </ul>
-        </li>
+        </li> -->
         
         @if($is_admin->can('can_news'))
         <li class="{{ @$_GET['type'] == 'tin-tuc' ? 'active' : '' }}">
