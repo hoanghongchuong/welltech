@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 21, 2019 lúc 07:19 PM
+-- Thời gian đã tạo: Th5 22, 2019 lúc 05:54 PM
 -- Phiên bản máy phục vụ: 10.1.38-MariaDB
 -- Phiên bản PHP: 7.2.17
 
@@ -474,9 +474,11 @@ CREATE TABLE `langs` (
 INSERT INTO `langs` (`id`, `name_vi`, `name_en`, `name_jp`, `name_kr`, `name_chn`, `title_en`, `alias`, `photo`, `status`, `lever`, `title_vi`, `keyword`, `description`, `com`, `stt`, `created_at`, `updated_at`) VALUES
 (71, 'Chi tiết', 'Detail', NULL, NULL, NULL, NULL, 'detail', NULL, 1, 0, NULL, NULL, NULL, 'langs', 24, '2019-05-20 14:15:51', '2019-05-20 14:15:51'),
 (72, 'Link Map', 'Link bản đồ', NULL, NULL, NULL, NULL, 'link_map', NULL, 1, 0, NULL, NULL, NULL, 'langs', 25, '2019-05-20 14:40:54', '2019-05-20 14:40:54'),
+(73, 'Sản phẩm', 'Product', NULL, NULL, NULL, NULL, 'product', NULL, 1, 0, NULL, NULL, NULL, 'langs', 26, '2019-05-22 14:51:42', '2019-05-22 14:51:42'),
 (29, 'Đối tác', 'Partner', NULL, NULL, NULL, NULL, 'doitac', NULL, 1, 0, NULL, NULL, NULL, 'langs', 9, '2018-11-15 14:53:35', '2018-11-15 14:53:35'),
 (27, 'Giới thiệu', 'About', 'について', NULL, NULL, NULL, 'gioithieu', NULL, 1, 0, NULL, NULL, NULL, 'langs', 7, '2018-10-31 03:49:33', '2018-10-31 03:49:33'),
 (21, 'Trang chủ', 'Home', 'ホーム', '집', '家', NULL, 'home', NULL, 1, 0, NULL, NULL, NULL, 'langs', 10, '2018-11-14 14:56:10', '2018-11-14 14:56:10'),
+(74, 'Thêm vào giỏ hàng', 'Add to cart', NULL, NULL, NULL, NULL, 'add_cart', NULL, 1, 0, NULL, NULL, NULL, 'langs', 27, '2019-05-22 15:01:24', '2019-05-22 15:01:24'),
 (25, 'Liên hệ', 'Contact', NULL, NULL, NULL, NULL, 'contact', NULL, 1, 0, NULL, NULL, NULL, 'langs', 5, '2019-05-20 14:02:14', '2019-05-20 14:02:14'),
 (26, 'Tin tức', 'News', NULL, NULL, NULL, NULL, 'news', NULL, 1, 0, NULL, NULL, NULL, 'langs', 16, '2018-11-15 15:08:53', '2018-11-15 15:08:53'),
 (33, 'Họ tên', 'Name', NULL, NULL, NULL, NULL, 'hoten', NULL, 1, 0, NULL, NULL, NULL, 'langs', 13, '2018-10-03 09:57:29', '2018-10-03 02:57:29'),
@@ -496,7 +498,8 @@ INSERT INTO `langs` (`id`, `name_vi`, `name_en`, `name_jp`, `name_kr`, `name_chn
 (50, 'Mạng xã hội', 'Socialite', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, NULL, NULL, NULL, 'langs', 29, '2017-12-20 02:00:13', '2017-12-20 02:00:13'),
 (51, 'Gửi liên hệ', 'Send contact', NULL, NULL, NULL, NULL, 'send_contact', NULL, 1, 0, NULL, NULL, NULL, 'langs', 30, '2018-10-03 09:58:04', '2018-10-03 02:58:04'),
 (57, 'Ảnh', 'Image', '写真', 'anh tieng han', 'anh tieng trung', NULL, 'anh', NULL, 1, 0, NULL, NULL, NULL, 'langs', 24, '2018-10-31 07:13:50', '2018-10-31 07:13:50'),
-(63, 'Khách hàng', 'Customer', NULL, NULL, NULL, NULL, 'khachhang', NULL, 1, 0, NULL, NULL, NULL, 'langs', 28, '2018-11-15 14:54:21', '2018-11-15 14:54:21');
+(63, 'Khách hàng', 'Customer', NULL, NULL, NULL, NULL, 'khachhang', NULL, 1, 0, NULL, NULL, NULL, 'langs', 28, '2018-11-15 14:54:21', '2018-11-15 14:54:21'),
+(75, 'Sản phẩm liên quan', 'Related products', NULL, NULL, NULL, NULL, 'related_product', NULL, 1, 0, NULL, NULL, NULL, 'langs', 28, '2019-05-22 15:14:15', '2019-05-22 15:14:15');
 
 -- --------------------------------------------------------
 
@@ -1647,7 +1650,7 @@ ALTER TABLE `images`
 -- AUTO_INCREMENT cho bảng `langs`
 --
 ALTER TABLE `langs`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT cho bảng `lienket`

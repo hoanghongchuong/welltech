@@ -227,8 +227,8 @@ class IndexController extends Controller {
         		}
         	}
         	
-        	$products = Products::whereIn('cate_id', $array_cate)->orderBy('id','desc')->paginate(1)->toArray();
-        	$data_paginate = Products::whereIn('cate_id', $array_cate)->orderBy('id','desc')->paginate(1)->toArray();
+        	$products = Products::whereIn('cate_id', $array_cate)->orderBy('id','desc')->paginate(12)->toArray();
+        	$data_paginate = Products::whereIn('cate_id', $array_cate)->orderBy('id','desc')->paginate(12);
             
             $title = $product_cate["title_".$lang] ? $product_cate["title_".$lang] : $product_cate["name_".$lang];
 			$description = $product_cate["description_".$lang] ? $product_cate["description_".$lang] : $product_cate["name_".$lang];

@@ -16,9 +16,8 @@
     <div class="container">
         <div class="row">
             <div class="box-des-category">
-                <h1>Backup Power Kits</h1>
-                <div class="des">We are in the process of designing and updating a new group of backup power kits. These will be available very soon, so keep checking back for updates. Please email us or give us a call if you need a kit custom designed to your needs.</div>
-            </div>
+                <h1>{{$product_cate['name_'.$lang]}}</h1>
+                <div class="des">{!! $product_cate['mota_'.$lang] !!}
             <div class="col-md-3">
                 <div class="sidebar">
                     <nav class="sidebar-menu">
@@ -90,86 +89,23 @@
                     </div>                        
                 </div>
                 <div class="list-product-item mt-0">
+                        @foreach($products['data'] as $item)
                         <div class="box-item-product col-md-3 col-xs-6">
-                            <a href="" title=""><img src="images/p1.jpg" alt="">
+                            <a href="{{url('san-pham/'.$item['alias_vi'].'.html')}}" title="{{$item['name_'.$lang]}}">
+                                <img src="{{asset('upload/product/'.$item['photo'])}}" alt="{{$item['name_'.$lang]}}">
                             </a>
                             <div class="footer-cate">
-                                <p class="name_product"><a href="" title="">Simpliphi PHI-3.5-48-60 3.5kWh 48 Volt Lithium Ferro Phosphate Battery</a></p>
+                                <p class="name_product"><a href="{{url('san-pham/'.$item['alias_vi'].'.html')}}" title="{{$item['name_'.$lang]}}">{{$item['name_'.$lang]}}</a></p>
                                 <div class="price">
-                                    $ 200000
+                                    @if($lang =='vi') {{number_format($item['price_vi'])}} vnđ
+                                    @elseif($lang =='en') $ {{$item['price_en']}}
+                                    @endif
                                 </div>
                             </div>
                         </div>
-                        <div class="box-item-product col-md-3 col-xs-6">
-                            <a href="" title=""><img src="images/p1.jpg" alt="">
-                            </a>
-                            <div class="footer-cate">
-                                <p class="name_product"><a href="" title="">Simpliphi PHI-3.5-48-60 3.5kWh 48 Volt Lithium Ferro Phosphate Battery Lithium Ferro Phosphate Battery</a></p>
-                                <div class="price">
-                                    $ 200000
-                                </div>
-                            </div>
-                        </div>
-                        <div class="box-item-product col-md-3 col-xs-6">
-                            <a href="" title=""><img src="images/p1.jpg" alt="">
-                            </a>
-                            <div class="footer-cate">
-                                <p class="name_product"><a href="" title="">Simpliphi PHI-3.5-48-60 3.5kWh 48 Volt Lithium Ferro Phosphate Battery Lithium Ferro Phosphate Battery Lithium Ferro Phosphate Battery</a></p>
-                                <div class="price">
-                                    $ 200000
-                                </div>
-                            </div>
-                        </div>
-                        <div class="box-item-product col-md-3 col-xs-6">
-                            <a href="" title=""><img src="images/p1.jpg" alt="">
-                            </a>
-                            <div class="footer-cate">
-                                <p class="name_product"><a href="" title="">Simpliphi PHI-3.5-48-60 3.5kWh </a></p>
-                                <div class="price">
-                                    $ 200000
-                                </div>
-                            </div>
-                        </div>
-                        <div class="box-item-product col-md-3 col-xs-6">
-                            <a href="" title=""><img src="images/p1.jpg" alt="">
-                            </a>
-                            <div class="footer-cate">
-                                <p class="name_product"><a href="" title="">Simpliphi PHI-3.5-48-60 3.5kWh 48 Volt Lithium Ferro Phosphate Battery</a></p>
-                                <div class="price">
-                                    $ 200000
-                                </div>
-                            </div>
-                        </div>
-                        <div class="box-item-product col-md-3 col-xs-6">
-                            <a href="" title=""><img src="images/p1.jpg" alt="">
-                            </a>
-                            <div class="footer-cate">
-                                <p class="name_product"><a href="" title="">Simpliphi PHI-3.5-48-60 3.5kWh</a></p>
-                                <div class="price">
-                                    $ 200000
-                                </div>
-                            </div>
-                        </div>
-                        <div class="box-item-product col-md-3 col-xs-6">
-                            <a href="" title=""><img src="images/p1.jpg" alt="">
-                            </a>
-                            <div class="footer-cate">
-                                <p class="name_product"><a href="" title="">Simpliphi PHI-3.5-48-60 3.5kWh 48 Volt Lithium Ferro Phosphate Battery</a></p>
-                                <div class="price">
-                                    $ 200000
-                                </div>
-                            </div>
-                        </div>
-                        <div class="box-item-product col-md-3 col-xs-6">
-                            <a href="" title=""><img src="images/p1.jpg" alt="">
-                            </a>
-                            <div class="footer-cate">
-                                <p class="name_product"><a href="" title="">Simpliphi PHI-3.5-48-60 3.5kWh 48 Volt Lithium Ferro Phosphate Battery Lithium Ferro Phosphate Battery</a></p>
-                                <div class="price">
-                                    $ 200000
-                                </div>
-                            </div>
-                        </div>
+                        
+                        @endforeach
+                        <div class="paginations">{!! $data_paginate->links() !!}</div>
                     </div>
             </div>
         </div>

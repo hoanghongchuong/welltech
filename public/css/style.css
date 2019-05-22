@@ -861,3 +861,8 @@ a.vk-btn{
 .info-contact{
     padding-left: 10px;
 }
+.paginations{
+    width: 100%;
+    float: left;
+    text-align: center;
+}

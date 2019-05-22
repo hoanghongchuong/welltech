@@ -84,33 +84,33 @@
     </div>
     <nav class="vk-header__menu-mobile">
         <ul class="vk-menu__mobile collapse" id="menuMobile">
-            <li><a href="">Trang chủ</a></li>
+            <li><a href="{{url('')}}">Trang chủ</a></li>
             <li>
-                <a href="#">Giới thiệu</a>
-                <a href="#menu1" data-toggle="collapse" class="_arrow-mobile"><i class="_icon fa fa-angle-down"></i></a>
+                <a href="{{url('gioi-thieu')}}">Giới thiệu</a>
+                <!-- <a href="#menu1" data-toggle="collapse" class="_arrow-mobile"><i class="_icon fa fa-angle-down"></i></a>
                 <ul class="collapse" id="menu1">
                     <li><a href="#">Công trình 1</a></li>
                     <li><a href="#">Công trình 1</a></li>
                     <li><a href="#">Công trình 1</a></li>
                     <li><a href="#">Công trình 1</a></li>
                     <li><a href="#">Công trình 1</a></li>                       
-                </ul>
+                </ul> -->
             </li>
             <li>
                 <a href="#">Sản phẩm</a>
 
                 <a href="#menu2" data-toggle="collapse" class="_arrow-mobile"><i class="_icon fa fa-angle-down"></i></a>
-                <ul class="collapse" id="menu2">
+                <!-- <ul class="collapse" id="menu2">
                     <li><a href="#">Công trình 1</a></li>
                     <li><a href="#">Công trình 1</a></li>
                     <li><a href="#">Công trình 1</a></li>
                     <li><a href="#">Công trình 1</a></li>
                     <li><a href="#">Công trình 1</a></li>                       
-                </ul>
+                </ul> -->
             </li>
             
-            <li><a href="">Tin tức</a></li>                            
-            <li><a href="">Liên hệ</a></li>
+            <li><a href="{{url('tin-tuc')}}">Tin tức</a></li>                            
+            <li><a href="{{url('lien-he')}}">Liên hệ</a></li>
         </ul>
     </nav>        
 </div>

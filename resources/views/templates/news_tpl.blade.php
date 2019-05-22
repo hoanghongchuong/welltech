@@ -37,7 +37,7 @@
                     </div>
                 </div>
                 @endforeach
-                <div class="pagination">
+                <div class="paginations">
                     {!! $data_paginate->links() !!}
                 </div>
             </div>
