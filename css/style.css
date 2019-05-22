@@ -187,12 +187,14 @@ header{
 	
 	color: #fff;
 }
-.menu ul.navi > li  a {
-    color: #6a6d6d;
-    font-size: 14px;
+.navi a{
+    font-family: 'RobotoCondensed','Helvetica Neue',Helvetica,Arial,sans-serif;
     text-transform: uppercase;
-    font-family: RoboB;
-    /*border-right: 1px solid #313131;*/
+}
+.menu ul.navi > li  a {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;    
     padding-right: 20px;
     padding-left: 20px;
 }
@@ -200,36 +202,41 @@ header{
     display: none;
     position: absolute;
     top: 40px;
-    /*left: 0px;*/
+    /* left: 0px; */
     background: rgba(34,41,46,0.8);
     box-shadow: 0 5px 5px rgba(0,0,0,0.19);
     width: 100%;
-    min-width: 1000px;
+    min-width: 900px;
     z-index: 999999;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: start;
+    padding: 0px 10px 10px 10px;
+    border-top: 1px solid #020202;
+    max-height: 420px;
 }
 .vk-menu__child > li{
-    width: 25%;
-    float: left;
-    /*display: inline-block;*/
-    vertical-align: top;
-    /*padding-left: 20px;*/
-    /*border-bottom: 1px solid #fff;*/
+    line-height: 25px !important;      
 }
-.vk-menu__child > li a{
+/*.vk-menu__child > li a{
     text-transform: unset !important;
-}
+}*/
 .menu .navi li:hover > ul.vk-menu__child {
-    display: block;
+    display: flex;
     z-index: 9999;
 }
 .menu .navi li > ul.vk-menu__child > li:hover > a{
     color: #fff;
 }
 .vk-menu__child a{
-    font-size: 15px !important;
+    
     border-right: 0px !important;
     padding-right: 0px !important;
     padding-left: 10px !important;
+    font-weight: 300;
+    font-family: 'Roboto','Helvetica Neue',Helvetica,Arial,sans-serif ;
+    font-size: 13px !important;
+    
 }
 ul.gt{
     max-width: 230px;
@@ -249,11 +256,12 @@ ul.gt li a{
     padding-left: 10px;
 }
 .sub-menu-list li{
-    line-height: 25px !important;
+    line-height: 20px !important;
 }
 .sub-menu-list a{
     font-size: 13px !important;
     color: #d9d9d9 !important;
+    text-transform: unset !important;
 }
 .sub-menu-list li:hover a{
     color: #fff !important;
