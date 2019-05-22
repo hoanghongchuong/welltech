@@ -46,5 +46,7 @@
 	
 }
 @media (min-width: 1200px){
-	
+	.vk-menu__child{
+		/*min-width: 1000px;*/
+	}
 }

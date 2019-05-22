@@ -211,7 +211,7 @@ header{
     flex-direction: column;
     flex-wrap: wrap;
     align-items: start;
-    padding: 0px 10px 10px 10px;
+    padding: 5px 10px 10px 10px;
     border-top: 1px solid #020202;
     max-height: 420px;
 }
@@ -253,7 +253,7 @@ ul.gt li a{
     color: #d9d9d9 !important;
 }
 .sub-menu-list{
-    padding-left: 10px;
+    /*padding-left: 10px;*/
 }
 .sub-menu-list li{
     line-height: 20px !important;
