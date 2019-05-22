@@ -10,6 +10,7 @@ use App\ProductCate;
 use App\Feedback;
 use App\About;
 use App\Slider;
+use App\Images;
 use App\GioiThieu;
 use Cache;
 use Carbon\Carbon;
@@ -90,43 +91,17 @@ class IndexController extends Controller {
 	}
 
 	public function getAbout() {
-		$about = DB::table('about')->select()->where('com', 'gioi-thieu')->first();
-		$members = DB::table('members')->orderBy('id', 'desc')->get();
+		$data = About::select()->where('com', 'gioi-thieu')->first()->toArray();
 		$com = 'gioi-thieu';
 		$lang = Session::get('locale');
 		$setting = Cache::get('setting');
 
 		// Cấu hình SEO
-		if ($lang == 'vi') {
-			if (!empty($about->title)) {
-				$title = $about->title;
-			} else {
-				$title = $about->name;
-			}
-			$keyword = $about->keyword;
-			$description = $about->description;
-		}
-		if ($lang == 'en') {
-			if (!empty($about->title_en)) {
-				$title = $about->title_en;
-			} else {
-				$title = $about->name_en;
-			}
-			$keyword_en = $about->keyword_en;
-			$description_en = $about->description_en;
-		}
+		$title = $data["title_".$lang] ? $data["title_".$lang] : $data["name_".$lang];
+		$description = $data["description_".$lang] ? $data["description_".$lang] : $data["name_".$lang];
+		$keyword = $data["keyword_".$lang] ? $data["keyword_".$lang] : $data["name_".$lang];
 		// $img_share = asset('upload/hinhanh/'.$about->photo);
-		//Cấu hình SEO
-		if (!empty($about->title)) {
-			$title = $about->title;
-		} else {
-			$title = $about->name;
-		}
-		$keyword = $about->keyword;
-		$description = $about->description;
-		// End cấu hình SEO
-
-		return view('templates.about_tpl', compact('about', 'news', 'slider_about', 'members', 'keyword', 'description', 'title', 'img_share', 'com'));
+		return view('templates.about_tpl', compact('data', 'news', 'keyword', 'description', 'title', 'img_share', 'com','lang'));
 	}
 	public function getGioiThieu($alias)
 	{
@@ -268,7 +243,10 @@ class IndexController extends Controller {
 	{
 		$lang = Session::get('locale');
 		$data = Products::where('alias_vi',$alias)->first()->toArray();
-		dd($data);
+		$albums = Images::where('product_id', $data['id'])->get()->toArray();
+		$relatedProducts = Products::where('status',1)->where('cate_id',$data["cate_id"])->get()->toArray();
+		$com = 'san-pham';
+		return view('templates.product_detail_tpl', compact('lang','data','title','description','keyword','com','albums','relatedProducts'));
 	}
 	public function getContact() {
 		$lang = Session::get('locale');

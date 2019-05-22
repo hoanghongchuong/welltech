@@ -9,75 +9,88 @@
         <div class="row">
             <ol class="breadcrumb">
                 <li>
-                    <a href="{{url('')}}">Trang chủ</a>
+                    <a href="{{url('')}}">{{trans('label.home')}}</a>
                 </li>
-                <li><a href="{{url('san-pham')}}">Sản phẩm</a></li>
-                <li class="active">{{$product_detail->name}}</li>
+                <li><a href="{{url('san-pham')}}">{{trans('label.product')}}</a></li>
+                <li class="active">{{$data['name_'.$lang]}}</li>
             </ol>
         </div>
     </div>
 </div>
-<div class="box-product-detail">
+<div class="box-content-detail">
     <div class="container">
         <div class="row">
-            <div class="col-md-6">
-                <div class="box-img-product">
-                    <img src="{{asset('upload/product/'.$product_detail->photo)}}" alt="{{$product_detail->name}}">
-                </div>
+            <div class="col-md-5 col-xs-12">    
+                @if(count($albums) > 1)
+                    @foreach($albums as $album)            
+                    <div class="owl-slider ">                       
+                        <div class="item img-slider"><img src="{{asset('upload/hasp/'.$album['photo'])}}" alt="image"  draggable="false"/></div>
+                    </div>
+                    @endforeach
+                @else
+                    <div class="item img-slider"><img src="{{asset('upload/product/'.$data['photo'])}}" alt="image"  draggable="false"/></div>
+                @endif 
+                @if(count($albums) > 1)
+                    @foreach($albums as $album)
+                    <div class="thumbnails-wrapper">                    
+                        <div class="thumbnail"><a href="#">
+                            <img src="{{asset('upload/hasp/'.$album['photo'])}}" alt="image"  draggable="false"/></a>
+                        </div>
+                    </div>
+                    @endforeach
+                @endif
             </div>
-            <div class="col-md-6">
-                <h1 class="name_product_detail">{{$product_detail->name}}</h1>
-                <p class="price_detail">Giá: {{number_format($product_detail->price)}} VNĐ</p>
-                <div class="des-product">
-                    {!! $product_detail->mota !!}
+            <div class="col-md-7 col-xs-12">
+                <h1 class="product_name">{{$data['name_'.$lang]}}</h1>
+                <div class="product-short-description">
+                    {{$data['code']}}
                 </div>
-                <div class="box-order vk-calculator">
-                    <form action="{{route('addProductToCart')}}" method="post" accept-charset="utf-8">
-                        {{csrf_field()}}
-                        <input type="hidden" name="product_id" value="{{$product_detail->id}}" placeholder="">
-                        <input type="number" name="product_numb" value="1" min="1" class="">
-                        <button type="submit" class="vk-btn">Thêm vào giỏ hàng</button>
+                <div class="price_detail">
+                    @if($lang =='en')
+                    $ {{$data['price_en']}}
+                    @elseif($lang =='vi')
+                        {{number_format($data['price_vi'])}} vnđ
+                    @endif
+                </div>
+                <div class="box-add-cart vk-calculator">
+                    <form action="" method="post" accept-charset="utf-8">
+                        <span class="qty">QTY</span> &nbsp;<input type="number" name="product_numb" value="1" min="1" class="">
+                        <button type="submit" class="vk-btn">{{trans('label.add_cart')}}</button>
                     </form>
                 </div>
             </div>
         </div>
+        <div class="row" style="margin-bottom: 30px;">
+            <h4 class="detail_contentx col-md-12"><span>{{trans('label.detail')}}</span></h4>
+            <div class="content_detail_product col-md-12">
+                {!! $data['content_'.$lang] !!}
+            </div>
+        </div>
+        @if(count($relatedProducts) > 0)
         <div class="row">
-            <div class="des_detail_product">
-                <div class="col-md-12">
-                    <h3 class="title-detail">Chi tiết</h3>
-                    <div class="detail">
-                        {!! $product_detail->content !!}
+            <h4 class="detail_contentx">{{trans('label.related_product')}}</h4>
+            <div class="owl-carousel owl-carousel-slider owl-carousel-product detail_item_product owl-theme">
+                @foreach($relatedProducts as $item)
+                <div class="item">
+                    <div class="box-item-product">
+                        <a href="{{url('san-pham/'.$item['alias_vi'].'.html')}}" title="{{$item['name_'.$lang]}}"><img src="{{asset('upload/product/'.$item['photo'])}}" alt="{{$item['name_'.$lang]}}">
+                        </a>
+                        <div class="footer-cate">
+                            <p class="name_product"><a href="{{url('san-pham/'.$item['alias_vi'].'.html')}}" title="{{$item['name_'.$lang]}}">{{$item['name_'.$lang]}}</a></p>
+                            <div class="price">
+                                @if($lang =='vi') {{number_format($item['price_vi'])}} vnđ
+                                @elseif($lang =='en') $ {{$item['price_en']}}
+                                @endif
+                            </div>
+                        </div>
                     </div>
                 </div>
+                @endforeach               
             </div>
         </div>
-        <div class="row" style="margin-top: 30px; margin-bottom: 30px;">
-        <h3>Sản phẩm liên quan</h3>
-        <div class="owl-carousel owl-carousel-slider owl-carousel-product detail_item_product owl-theme">
-            @foreach($productSameCate as $post)
-            <div class="item">
-                <a href="{{url('san-pham/'.$post->alias.'.html')}}" title="">
-                    <img src="{{asset('upload/product/'.$post->photo)}}" alt="">
-                </a>
-                @if($post->price_old > $post->price)
-                <div class="sale-of"><span>{{ round((100 -($post->price/ $post->price_old)*100)) }}%</span></div>
-                @endif
-                <div class="footer-cate">
-                    <p class="name_product"><a href="{{url('san-pham/'.$post->alias.'.html')}}" title="">{{$post->name}}</a></p>
-                    <div class="price tac">
-                        @if($post->price_old > $post->price)
-                        <span class="price_old">{{number_format($post->price_old)}} vnđ</span>
-                        @endif
-                        <span class="price_news">{{number_format($post->price)}} vnđ</span>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-        </div>
-    </div>
+        @endif       
     </div>
 </div>
-
 
 
 @endsection

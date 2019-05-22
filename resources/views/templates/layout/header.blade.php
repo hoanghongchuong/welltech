@@ -34,14 +34,14 @@
                 <ul class="navi">
                     <li><a href="{{url('')}}">Trang chủ</a></li>
                     <li>
-                        <a href="">Giới thiệu <i class="fa fa-angle-down"></i></a>
-                        <ul class="vk-menu__child gt">                                
+                        <a href="{{url('gioi-thieu')}}">Giới thiệu </a>
+                        <!-- <ul class="vk-menu__child gt">                                
                             <li><a href="#">Giới thiệu 1</a></li>
                             <li><a href="#">Giới thiệu 2</a></li>
                             <li><a href="#">Giới thiệu 3</a></li>
                             <li><a href="#">Giới thiệu 4</a></li>
                                                     
-                        </ul>
+                        </ul> -->
                     </li>
                     <li>
                         <a href="">Sản phẩm <i class="fa fa-angle-down"></i></a>

@@ -1,33 +1,31 @@
 @extends('index')
 @section('content')
 <?php
-    $setting = Cache::get('setting');    
-    $banner = DB::table('banner_content')->where('position', 5)->first();
+    $setting = Cache::get('setting');
 ?>
-<section class="about-us">
+<div class="crumb">
     <div class="container">
-        <h1><span>@if($lang == 'vi') {{$biendich[5]->name_vi}} @elseif($lang == 'en') {{$biendich[5]->name_en}}  @endif</span></h1>
         <div class="row">
-            <div class="col-md-10">
-                <p>@if($lang == 'vi') {!! $about->mota !!} @elseif($lang =='en') {!! $about->mota_en !!} @endif</p>
-            </div>
+            <ol class="breadcrumb breadcrumbx">
+                <li>
+                    <a href="{{url('')}}">{{trans('label.home')}}</a>
+                </li>
+                <li class="active">{{trans('label.gioithieu')}}</li>
+            </ol>
         </div>
     </div>
-</section>
-<section class="team">
+</div>
+<div class="content-home-cate" style="">
     <div class="container">
-        <ul id="og-grid" class="og-grid">
-            @foreach($members as $item)
-            <li>
-                <a href="" data-largesrc="{{ asset('upload/banner/'.$item->photo)}}" data-title="{{$item->name}}" data-description="{{$item->des}}">
-                    <img src="{{ asset('upload/banner/'.$item->photo)}}" alt="img01"/>
-                    <h4 class="text-center">{{$item->name}}</h4>
-                    <p class="text-center>"{{$item->position}}</p>
-                </a>
-            </li>
-            @endforeach
-        </ul>
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <h1 class="name_detail_news">{{$data['name_'.$lang]}}</h1>
+                <div class="detail_news_box">
+                    {!! $data['content_'.$lang] !!}
+                </div>
+            </div>
+            
+        </div>
     </div>
-</section>
-
+</div>
 @endsection

@@ -325,7 +325,7 @@ Route::group(['middleware' => 'localization', 'prefix' => Session::get('locale')
 	Route::get('lang/{slug}',['as'=>'getLangs', 'uses'=>'IndexController@getLangs']);
 
 	Route::get('/', ['as'=>'index', 'uses'=>'IndexController@index']);
-	// Route::get('gioi-thieu',['as'=>'getAbout', 'uses'=>'IndexController@getAbout']);
+	Route::get('gioi-thieu',['as'=>'getAbout', 'uses'=>'IndexController@getAbout']);
 	Route::get('san-pham',['as'=>'getProduct', 'uses'=>'IndexController@getProduct']);
 	Route::get('san-pham/{alias}.html','IndexController@getProductDetail')->name('detailProduct');
 	Route::get('san-pham/{alias}',['as'=>'getProductList', 'uses'=>'IndexController@getProductList']);
