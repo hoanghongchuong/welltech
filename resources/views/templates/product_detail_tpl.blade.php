@@ -53,14 +53,16 @@
                     @endif
                 </div>
                 <div class="box-add-cart vk-calculator">
-                    <form action="" method="post" accept-charset="utf-8">
+                    <form action="{{route('addProductToCart')}}" method="post" accept-charset="utf-8">
+                        {{csrf_field()}}
+                        <input type="hidden" name="product_id" value="{{$data['id']}}" placeholder="">
                         <span class="qty">QTY</span> &nbsp;<input type="number" name="product_numb" value="1" min="1" class="">
                         <button type="submit" class="vk-btn">{{trans('label.add_cart')}}</button>
                     </form>
                 </div>
             </div>
         </div>
-        <div class="row" style="margin-bottom: 30px;">
+        <div class="row" style="margin-bottom: 30px; margin-top: 20px;">
             <h4 class="detail_contentx col-md-12"><span>{{trans('label.detail')}}</span></h4>
             <div class="content_detail_product col-md-12">
                 {!! $data['content_'.$lang] !!}

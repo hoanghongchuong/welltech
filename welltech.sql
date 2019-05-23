@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 22, 2019 lúc 05:54 PM
+-- Thời gian đã tạo: Th5 23, 2019 lúc 05:53 PM
 -- Phiên bản máy phục vụ: 10.1.38-MariaDB
 -- Phiên bản PHP: 7.2.17
 
@@ -236,6 +236,13 @@ CREATE TABLE `bills` (
   `card_code` varchar(250) DEFAULT NULL,
   `payment` int(2) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Đang đổ dữ liệu cho bảng `bills`
+--
+
+INSERT INTO `bills` (`id`, `full_name`, `email`, `phone`, `address`, `province`, `district`, `note`, `status`, `total`, `detail`, `created_at`, `updated_at`, `card_code`, `payment`) VALUES
+(1, 'Hoàng Hồng Chương', 'admin@team.vn', '0987654321', 'Hà Nội', NULL, NULL, 'sdf sdf', 0, 12000000, '[{\"product_name\":\"Off-Grid Solar Power Kit With 960 Watts of Panels and 3500 Watt 24VDC 120VAC Inverter Power Panel\",\"product_numb\":4,\"product_price\":3000000,\"product_img\":\"1558451765_ogk-rec.jpeg\",\"product_code\":null}]', '2019-05-23 15:52:49', '2019-05-23 15:52:49', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -476,6 +483,7 @@ INSERT INTO `langs` (`id`, `name_vi`, `name_en`, `name_jp`, `name_kr`, `name_chn
 (72, 'Link Map', 'Link bản đồ', NULL, NULL, NULL, NULL, 'link_map', NULL, 1, 0, NULL, NULL, NULL, 'langs', 25, '2019-05-20 14:40:54', '2019-05-20 14:40:54'),
 (73, 'Sản phẩm', 'Product', NULL, NULL, NULL, NULL, 'product', NULL, 1, 0, NULL, NULL, NULL, 'langs', 26, '2019-05-22 14:51:42', '2019-05-22 14:51:42'),
 (29, 'Đối tác', 'Partner', NULL, NULL, NULL, NULL, 'doitac', NULL, 1, 0, NULL, NULL, NULL, 'langs', 9, '2018-11-15 14:53:35', '2018-11-15 14:53:35'),
+(79, 'Thành tiền', 'Subtotal', NULL, NULL, NULL, NULL, 'subtotal', NULL, 1, 0, NULL, NULL, NULL, 'langs', 32, '2019-05-23 15:08:17', '2019-05-23 15:08:17'),
 (27, 'Giới thiệu', 'About', 'について', NULL, NULL, NULL, 'gioithieu', NULL, 1, 0, NULL, NULL, NULL, 'langs', 7, '2018-10-31 03:49:33', '2018-10-31 03:49:33'),
 (21, 'Trang chủ', 'Home', 'ホーム', '집', '家', NULL, 'home', NULL, 1, 0, NULL, NULL, NULL, 'langs', 10, '2018-11-14 14:56:10', '2018-11-14 14:56:10'),
 (74, 'Thêm vào giỏ hàng', 'Add to cart', NULL, NULL, NULL, NULL, 'add_cart', NULL, 1, 0, NULL, NULL, NULL, 'langs', 27, '2019-05-22 15:01:24', '2019-05-22 15:01:24'),
@@ -499,7 +507,18 @@ INSERT INTO `langs` (`id`, `name_vi`, `name_en`, `name_jp`, `name_kr`, `name_chn
 (51, 'Gửi liên hệ', 'Send contact', NULL, NULL, NULL, NULL, 'send_contact', NULL, 1, 0, NULL, NULL, NULL, 'langs', 30, '2018-10-03 09:58:04', '2018-10-03 02:58:04'),
 (57, 'Ảnh', 'Image', '写真', 'anh tieng han', 'anh tieng trung', NULL, 'anh', NULL, 1, 0, NULL, NULL, NULL, 'langs', 24, '2018-10-31 07:13:50', '2018-10-31 07:13:50'),
 (63, 'Khách hàng', 'Customer', NULL, NULL, NULL, NULL, 'khachhang', NULL, 1, 0, NULL, NULL, NULL, 'langs', 28, '2018-11-15 14:54:21', '2018-11-15 14:54:21'),
-(75, 'Sản phẩm liên quan', 'Related products', NULL, NULL, NULL, NULL, 'related_product', NULL, 1, 0, NULL, NULL, NULL, 'langs', 28, '2019-05-22 15:14:15', '2019-05-22 15:14:15');
+(75, 'Sản phẩm liên quan', 'Related products', NULL, NULL, NULL, NULL, 'related_product', NULL, 1, 0, NULL, NULL, NULL, 'langs', 28, '2019-05-22 15:14:15', '2019-05-22 15:14:15'),
+(76, 'Giỏ hàng', 'Shopping cart', NULL, NULL, NULL, NULL, 'cart', NULL, 1, 0, NULL, NULL, NULL, 'langs', 29, '2019-05-23 14:55:18', '2019-05-23 14:55:18'),
+(77, 'Giá', 'Price', NULL, NULL, NULL, NULL, 'price', NULL, 1, 0, NULL, NULL, NULL, 'langs', 30, '2019-05-23 15:06:30', '2019-05-23 15:06:30'),
+(78, 'Số lượng', 'Number', NULL, NULL, NULL, NULL, 'number', NULL, 1, 0, NULL, NULL, NULL, 'langs', 31, '2019-05-23 15:07:28', '2019-05-23 15:07:28'),
+(80, 'Thao tác', 'Action', NULL, NULL, NULL, NULL, 'action', NULL, 1, 0, NULL, NULL, NULL, 'langs', 33, '2019-05-23 15:09:23', '2019-05-23 15:09:23'),
+(81, 'Xóa', 'Delete', NULL, NULL, NULL, NULL, 'delete', NULL, 1, 0, NULL, NULL, NULL, 'langs', 34, '2019-05-23 15:09:49', '2019-05-23 15:09:49'),
+(82, 'Thanh toán', 'Checkout', NULL, NULL, NULL, NULL, 'checkout', NULL, 1, 0, NULL, NULL, NULL, 'langs', 35, '2019-05-23 15:10:26', '2019-05-23 15:10:26'),
+(83, 'Cập nhật', 'Update', NULL, NULL, NULL, NULL, 'update', NULL, 1, 0, NULL, NULL, NULL, 'langs', 36, '2019-05-23 15:10:56', '2019-05-23 15:10:56'),
+(84, 'Tổng tiền', 'Order Total', NULL, NULL, NULL, NULL, 'total_order', NULL, 1, 0, NULL, NULL, NULL, 'langs', 37, '2019-05-23 15:20:15', '2019-05-23 15:20:15'),
+(85, 'Thông tin giao hàng', 'Shipping Address', NULL, NULL, NULL, NULL, 'shipping_address', NULL, 1, 0, NULL, NULL, NULL, 'langs', 38, '2019-05-23 15:26:30', '2019-05-23 15:26:30'),
+(86, 'Đặt hàng', 'Send order', NULL, NULL, NULL, NULL, 'send_order', NULL, 1, 0, NULL, NULL, NULL, 'langs', 39, '2019-05-23 15:30:57', '2019-05-23 15:30:57'),
+(87, 'Đơn hàng', 'Order', NULL, NULL, NULL, NULL, 'donhang', NULL, 1, 0, NULL, NULL, NULL, 'langs', 40, '2019-05-23 15:48:24', '2019-05-23 15:48:24');
 
 -- --------------------------------------------------------
 
@@ -1602,7 +1621,7 @@ ALTER TABLE `banner_position`
 -- AUTO_INCREMENT cho bảng `bills`
 --
 ALTER TABLE `bills`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT cho bảng `chinhanh`
@@ -1650,7 +1669,7 @@ ALTER TABLE `images`
 -- AUTO_INCREMENT cho bảng `langs`
 --
 ALTER TABLE `langs`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 
 --
 -- AUTO_INCREMENT cho bảng `lienket`

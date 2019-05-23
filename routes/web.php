@@ -330,7 +330,7 @@ Route::group(['middleware' => 'localization', 'prefix' => Session::get('locale')
 	Route::get('san-pham/{alias}.html','IndexController@getProductDetail')->name('detailProduct');
 	Route::get('san-pham/{alias}',['as'=>'getProductList', 'uses'=>'IndexController@getProductList']);
 	
-	Route::get('doi-tac-khach-hang', 'IndexController@partner');
+	
 	Route::get('gioi-thieu/{alias}','IndexController@getGioiThieu')->name('get.gioithieu');
 
 	Route::get('tin-tuc',['as'=>'getListNews', 'uses'=>'IndexController@getNews']);
@@ -343,18 +343,20 @@ Route::group(['middleware' => 'localization', 'prefix' => Session::get('locale')
 	Route::get('tim-kiem',['as'=>'search', 'uses'=>'IndexController@search']);
 	Route::post('newsletter',['as'=>'postNewsletter', 'uses'=>'IndexController@postNewsletter']);
 
-
 	Route::get('ajax/province/{id}',['as'=>'loadDistrictByProvince', 'uses'=>'IndexController@loadDistrictByProvince']);
-
 	Route::get('faq', 'IndexController@faq');
+	// gio hang
+	Route::get('thanh-toan',['as'=>'thanhtoan', 'uses' => 'IndexController@thanhtoan']);
+
+	Route::get('gio-hang',['as'=>'getCart', 'uses'=>'IndexController@getCart']);
+	Route::post('cart/add', ['as' => 'addProductToCart', 'uses' => 'IndexController@addCart']);
+	Route::post('cart/update',['as' => 'updateCart', 'uses' => 'IndexController@updateCart']);
+	Route::post('gui-don-hang', ['as' =>'postOrder', 'uses'=> 'ContactController@postOrder']);
+	Route::get('xoa-gio-hang/{id}','IndexController@deleteCart');
 	// Route::get('thu-vien-anh',['as'=>'getThuvienanh', 'uses'=>'IndexController@getThuvienanh']);
 	// Route::get('hoi-vien',['as'=>'getHoivien', 'uses'=>'IndexController@getHoivien']);
 	// Route::get('{id}.html',['as'=>'getProductDetail', 'uses'=>'IndexController@getProductDetail']);
-	Route::get('bai-viet/{id}.html',['as'=>'getBaiVietDetail', 'uses'=>'IndexController@getBaiVietDetail']);
+	
 	Route::get('error/404.html',['as'=>'getErrorNotFount', 'uses'=>'IndexController@getErrorNotFount']);
-// Route::controllers([
-// 	'auth' => 'Auth\AuthController',
-// 	'password' => 'Auth\PasswordController',
-// ]);
 
 });

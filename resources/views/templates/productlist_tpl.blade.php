@@ -17,50 +17,24 @@
         <div class="row">
             <div class="box-des-category">
                 <h1>{{$product_cate['name_'.$lang]}}</h1>
-                <div class="des">{!! $product_cate['mota_'.$lang] !!}
+                <div class="des">{!! $product_cate['mota_'.$lang] !!}</div>
             <div class="col-md-3">
                 <div class="sidebar">
                     <nav class="sidebar-menu">
                         <ul id="menuMobile2" class="">
+                            @foreach($cate_pro as $key=>$category)
+                            <?php $cateChilds = \App\ProductCate::where('parent_id',$category['id'])->where('status',1)->get()->toArray(); ?>
                             <li>
-                                <a href="#" class="filter-options-title">Category</a>
-                                <a href="#cate1" data-toggle="collapse" class="_arrow-mobile flr"><i class="_icon fa fa-angle-down"></i></a>
-                                <ul class="collapse text-capitalize" id="cate1">
-                                    <li class=""><a href="#">Công trình 1</a></li>
-                                    <li><a href="#">Công trình 1</a></li>
-                                    <li><a href="#">Công trình 1</a></li>
-                                    <li><a href="#">Công trình 1</a></li>
-                                    <li><a href="#">Công trình 1</a></li>
+                                <a href="{{url('san-pham/'.$category['alias_vi'])}}" class="filter-options-title">{{$category['name_'.$lang]}}</a>
+                                <a href="#cate{{$key}}" data-toggle="collapse" class="_arrow-mobile flr"><i class="_icon fa fa-angle-down"></i></a>
+                                <ul class="collapse text-capitalize" id="cate{{$key}}">
+                                    @foreach($cateChilds as $childs)
+                                    <li class=""><a href="{{url('san-pham/'.$childs['alias_vi'])}}">{{$childs['name_'.$lang]}}</a></li>
+                                    @endforeach
                                     
                                 </ul>
                             </li>
-                            <li>
-                                <a href="#" class="filter-options-title">Danh mục 2</a>
-                                <a href="#cate2" data-toggle="collapse" class="_arrow-mobile flr"><i class="_icon fa fa-angle-down"></i></a>
-                                <ul class="collapse text-capitalize" id="cate2">
-                                    <li><a href="#">Công trình 1</a></li>
-                                    <li><a href="#">Công trình 1</a></li>
-                                    <li><a href="#">Công trình 1</a></li>
-                                    <li><a href="#">Công trình 1</a></li>
-                                    <li><a href="#">Công trình 1</a></li>
-                                    
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#" class="filter-options-title">Danh mục 3</a>
-                                <a href="#cate3" data-toggle="collapse" class="_arrow-mobile flr"><i class="_icon fa fa-angle-down"></i></a>
-                                <ul class="collapse text-capitalize" id="cate3">
-                                    <li><a href="#">Công trình 1</a></li>
-                                    <li><a href="#">Công trình 1</a></li>
-                                    <li><a href="#">Công trình 1</a></li>
-                                    <li><a href="#">Công trình 1</a></li>
-                                    <li><a href="#">Công trình 1</a></li>
-                                    
-                                </ul>
-                            </li>
-                            <li><a href="" class="filter-options-title" title="">Danh mục 4</a></li>
-                            <li><a href="" class="filter-options-title" title="">Danh mục 5</a></li>
-                            <li><a href="" class="filter-options-title" title="">Danh mục 6</a></li>
+                            @endforeach
                         </ul>
                     </nav>
                 </div>

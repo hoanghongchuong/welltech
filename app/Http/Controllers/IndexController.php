@@ -13,6 +13,7 @@ use App\Slider;
 use App\Images;
 use App\GioiThieu;
 use Cache;
+use Cart;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Http\Request;
@@ -211,7 +212,7 @@ class IndexController extends Controller {
 	public function getProductList($alias, Request $req)
 	{		
 		$lang = Session::get('locale');
-		$cate_pro = ProductCate::where('status',1)->where('parent_id',0)->orderby('id','asc')->get();
+		$cate_pro = ProductCate::where('status',1)->where('parent_id',0)->where('com','san-pham')->orderby('id','asc')->get()->toArray();
         $com = 'san-pham';
         $product_cate = ProductCate::select('*')->where('status', 1)->where('alias_vi', $alias)->where('com','san-pham')->first()->toArray();
 
@@ -234,6 +235,7 @@ class IndexController extends Controller {
 			$description = $product_cate["description_".$lang] ? $product_cate["description_".$lang] : $product_cate["name_".$lang];
 			$keyword = $product_cate["keyword_".$lang] ? $product_cate["keyword_".$lang] : $product_cate["name_".$lang];
             $img_share = asset('upload/product/' . $product_cate['photo']);
+
             return view('templates.productlist_tpl', compact('products', 'product_cate', 'keyword', 'description', 'title', 'img_share', 'cate_pro', 'cate_parent', 'com','lang','data_paginate'));
         } else {
             return redirect()->route('getErrorNotFount');
@@ -296,16 +298,6 @@ class IndexController extends Controller {
 		return view('templates.404_tpl', compact('banner_danhmuc'));
 	}
 
-	
-	public function video() {
-		$videos = DB::table('video')->orderBy('id', 'desc')->paginate(10);
-		$title = "Video";
-		$keyword = "Video";
-		$description = "Video";
-		$com = 'gallery';
-		return view('templates.video', compact('videos', 'title', 'keyword', 'description', 'com'));
-	}
-
 	public function getDetailAjaxProduct(Request $request) {
 		$id = $request->all();
 		$data = Products::where('id', $id)->first();
@@ -314,5 +306,88 @@ class IndexController extends Controller {
 		})->toArray();
 		return response()->json($data);
 	}
+	public function addCart(Request $req)
+	{
+		$lang = Session::get('locale');
+		$data = $req->only('product_id','product_numb');		
+		$product = Products::where('status',1)->where('id',$data['product_id'])->first();
+		// dd($product->photo);
+		if (!$product) {
+			die('Product not found');
+		}
+		if($lang =='vi'){
+			Cart::add(
+				array(
+					'id'=>$product->id,
+					'name'=>$product->name_vi,
+					'qty'=>$data['product_numb'],
+					'price'=>$product->price_vi,
+					'options'=>array('photo'=>$product->photo)
+				)
+			);
+		}
+		elseif($lang =='en'){
+			Cart::add(
+				array(
+					'id'=>$product->id,
+					'name'=>$product->name_en,
+					'qty'=>$data['product_numb'],
+					'price'=>$product->price_en,
+					'options'=>array('photo'=>$product->photo)
+				)
+			);
+		}
 
+		return redirect(route('getCart'));
+	}
+	public function getCart()
+	{
+		$lang = Session::get('locale');
+		$product_cart= Cart::content()->toArray();
+		// dd($product_cart);
+		// $bank = DB::table('bank_account')->get();
+		$total = $this->getTotalPrice();
+		// $province = DB::table('province')->get();
+		// $district = DB::table('district')->get();
+		$setting = Cache::get('setting');
+		// Cấu hình SEO
+		$title = "Giỏ hàng";
+		$keyword = "Giỏ hàng";
+		$description = "Giỏ hàng";
+		$img_share = '';
+		// End cấu hình SEO
+		return view('templates.giohang_tpl', compact('product_cart','keyword','description','title','img_share','total','lang'));
+	}
+
+	protected function getTotalPrice() 
+    {
+    	$cart = Cart::content();
+    	$total = 0;
+    	foreach ($cart as $key) {
+    		$total += $key->price * $key->qty;
+    	}
+    	return $total;
+    }
+    public function updateCart(Request $req){
+		$data = $req->numb;
+		// dd($data);
+		if($data>0){
+			foreach($data as $key=>$item){
+				Cart::update($key, $item);
+			}
+		}		
+		return redirect(route('getCart'));
+	}
+    public function thanhtoan(){
+    	$lang = Session::get('locale');
+    	// $bank = DB::table('bank_account')->get();
+    	$product_cart= Cart::content()->toArray();
+    	// dd($product_cart);
+    	$total = $this->getTotalPrice();
+		return view('templates.thanhtoan_tpl',compact('bank','product_cart','total','lang'));
+	}
+	public function deleteCart($id){
+        Cart::remove($id);
+        return redirect('gio-hang');
+    }
 }

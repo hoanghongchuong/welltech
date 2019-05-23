@@ -2,6 +2,8 @@
 namespace App\Http\Controllers;
 use App\Contact;
 use App\CV;
+use Cart;
+use App\Bill;
 use Illuminate\Http\Request as Requests;
 use DB,Cache,Mail,Request,File;
 class ContactController extends Controller {
@@ -73,6 +75,15 @@ class ContactController extends Controller {
 		return back()->with(['message' => __('message.post_contact_success')]);
 
 	}
+    protected function getTotalPrice() 
+    {
+        $cart = Cart::content();
+        $total = 0;
+        foreach ($cart as $key) {
+            $total += $key->price * $key->qty;
+        }
+        return $total;
+    }
 	public function postTuyenDung(Requests $req)
 	{
 		$setting = DB::table('setting')->select()->where('id',1)->get()->first();
@@ -105,5 +116,49 @@ class ContactController extends Controller {
 		$data->save();
 		return back()->with(['message' => __('message.post_contact_success')]);
 	}
+
+    public function postOrder(Requests $req){
+        $cart = Cart::content();
+        $bill = new Bill;
+        $bill->full_name = $req->full_name;
+        $bill->email = $req->email;
+        $bill->phone = $req->phone;
+        $bill->note = $req->note;
+        $bill->address = $req->address;
+        $bill->payment = (int)($req->payment_method);
+        // $bill->province = $req->province;
+        // $bill->district = $req->district;
+        $total = $this->getTotalPrice();
+        $bill->total = $total;
+        
+        $detail = [];
+        foreach ($cart as $key) {
+            $detail[] = [
+                'product_name' => $key->name,
+                'product_numb' => $key->qty,
+                'product_price' => $key->price,
+                'product_img' => $key->options->photo,
+                'product_code' => $key->options->color
+            ];
+        }               
+        $bill->detail = json_encode($detail);
+
+        // dd($bill);
+        if($total > 0){
+            $bill->save();
+        }
+        else{
+            echo "<script type='text/javascript'>
+                alert('Giỏ hàng của bạn rỗng!');
+                window.location = '".url('/')."' 
+            </script>";
+        }       
+        Cart::destroy();
+
+        echo "<script type='text/javascript'>
+                alert('Cảm ơn bạn đã đặt hàng, chúng tôi sẽ liên hệ với bạn sớm nhất!');
+                window.location = '".url('/')."' 
+            </script>";
+    }
 
 }
