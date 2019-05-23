@@ -3,38 +3,38 @@
 a:hover{text-decoration:none !important}
 ul li{list-style: none;}
 .clear{
-	clear: both;
+    clear: both;
 }
 
 body{
-	font-family: 'RoboR';
-	font-size: 14px;
+    font-family: 'RoboR';
+    font-size: 14px;
 }
 a:hover {
     text-decoration: none !important;
 }
 .pdl-0{
-	padding-left: 0px !important;
+    padding-left: 0px !important;
 }
 .pdr-0{
-	padding-right: 0px !important;
+    padding-right: 0px !important;
 }
 .pdt-10{
-	padding-top: 10px;
+    padding-top: 10px;
 }
 .tac{
-	text-align: center;
+    text-align: center;
 }
 .mt-0{
     margin-top: 0px !important;
 }
 .mt-30{
-	margin-top: 30px;
-	width: 100%;
-	float: left;
+    margin-top: 30px;
+    width: 100%;
+    float: left;
 }
 .mb-30{
-	margin-bottom: 30px;
+    margin-bottom: 30px;
 }
 .pdl-15{
     padding-left: 20px;
@@ -104,15 +104,15 @@ header{
     background: #222222;
 }
 .content-home{
-	margin-top: 30px;
-	width: 100%;
-	float: left;
-	text-align: center;
+    margin-top: 30px;
+    width: 100%;
+    float: left;
+    text-align: center;
 }
 .menu-mobile{
-	width: 100%;
-	float: left;
-	margin-top: 20px;
+    width: 100%;
+    float: left;
+    margin-top: 20px;
 }
 .vk-header__search {
     text-align: right;
@@ -152,23 +152,23 @@ header{
     justify-content: center;
 }
 .menu_Mobile{
-	font-size: 18px;
-	/*color: #d88e15;*/
+    font-size: 18px;
+    /*color: #d88e15;*/
 }
 .menu-cate, .top-menu{
-	width: 100%;
-	float: left;
+    width: 100%;
+    float: left;
 }
 .top-menu{
     margin-top: 5px;
     /*margin-bottom: 5px;*/
 }
 .navi{
-	/*width: 100%;*/
-	float: left;
-	margin-bottom: 0px;
+    /*width: 100%;*/
+    float: left;
+    margin-bottom: 0px;
     position: relative;
-	/*margin-top: 30px;*/
+    /*margin-top: 30px;*/
 }
 .menu  ul.navi > li {
     float: left;
@@ -181,11 +181,11 @@ header{
     padding-left: 0;
 }
 .menu ul.navi > li.active{
-	/*background: #d88e15;*/
+    /*background: #d88e15;*/
 }
 .menu ul.navi > li.active a{
-	
-	color: #fff;
+    
+    color: #fff;
 }
 .navi a{
     font-family: 'RobotoCondensed','Helvetica Neue',Helvetica,Arial,sans-serif;
@@ -267,10 +267,10 @@ ul.gt li a{
     color: #fff !important;
 }
 .menu ul.navi > li:hover{
-	/*background: #d88e15;*/
+    /*background: #d88e15;*/
 }
 .menu ul.navi > li:hover > a, .menu ul.navi > li:hover > i{
-	color: #fff;
+    color: #fff;
 }
 .box-search{
     float:right;
@@ -860,4 +860,15 @@ a.vk-btn{
 }
 .info-contact{
     padding-left: 10px;
+}
+.paginations{
+    width: 100%;
+    float: left;
+    text-align: center;
+}
+.content_detail_product img{
+    max-width: 100%;
+}
+.product_name{
+    font-size: 30px;
 }

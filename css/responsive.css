@@ -24,6 +24,31 @@
 	.name_news{
 		margin-top: 7px;
 	}
+	.content-box-form{
+		height: 100%;
+	}
+	.content-box-form i{
+		top:23% !important;
+	}
+	.product_name{
+		font-size: 22px;
+	}
+	.price_detail{
+		font-size: 22px;
+	}
+	.vk-btn{
+		padding: 10px;
+		margin-left: 0px;
+	}
+	.vk-calculator input{
+		height: 41px;
+	}
+	.qty{
+		font-size: 16px;
+	}
+	.detail_contentx{
+		padding-left: 15px;
+	}
 }
 @media (min-width: 768px) {
 	
@@ -46,7 +71,5 @@
 	
 }
 @media (min-width: 1200px){
-	.vk-menu__child{
-		/*min-width: 1000px;*/
-	}
+	
 }
