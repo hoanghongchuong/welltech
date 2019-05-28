@@ -27,7 +27,10 @@ class AuthServiceProvider extends ServiceProvider
         
         //define Gate
         Gate::define('admin_manager', 'App\Policies\AdminPolicy@adminManager');
-        Gate::define('can_news_category', 'App\Policies\AdminPolicy@categoryNewsManager');
+        Gate::define('can_product_category', 'App\Policies\AdminPolicy@categoryProductManager');
+        Gate::define('can_product', 'App\Policies\AdminPolicy@productManager');
+        Gate::define('can_orders', 'App\Policies\AdminPolicy@ordersManager');
+        Gate::define('can_news_category', 'App\Policies\AdminPolicy@categoryNewsManager');        
         Gate::define('can_news', 'App\Policies\AdminPolicy@newsManager');
         Gate::define('can_contact', 'App\Policies\AdminPolicy@contactManager');
         Gate::define('can_menu', 'App\Policies\AdminPolicy@menuManager');

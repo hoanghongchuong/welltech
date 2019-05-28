@@ -51,12 +51,15 @@
             <thead>
               <tr>
                 <!-- <th style="width: 20px;"><input type="checkbox" name="chonhet" class="minimal" id="chonhet" /></th> -->
-                <th class="text-center with_dieuhuong">Stt</th>                
+                <th class="text-center with_dieuhuong">Stt</th>
+                
                 <th>Họ tên</th>
-                <th>Tổng tiền</th>
+                <th>Số điện thoại</th>
                 <!-- <th>Phương thức thanh toán</th> -->
-                <th>Ngày đặt hàng</th>
-                <th>Trạng thái</th>
+                <th>Ngày đến(tháng/năm/ngày)</th>
+                <th>Ngày đi(tháng/năm/ngày)</th>
+                <th>Loại phòng</th>
+                <!-- <th>Trạng thái</th> -->
                 <th class="text-center with_dieuhuong">Sửa</th>
                 <th class="text-center with_dieuhuong">Xóa</th>
               </tr>
@@ -68,49 +71,12 @@
                 <!-- <td><input type="checkbox" name="chon" id="chon" value="{{$item->id}}" class="chon" /></td> -->
                 <td class="text-center with_dieuhuong">{{$k+1}}</td>
                 <td>{{$item->full_name}}</td>
-
-                <td>{{ number_format($item->total)}} {{ $item->language =='en' ? '$' : 'VNĐ' }}</td>
-                <!-- <td>
-                  <?php 
-                    if($item->payment == 0) echo"Thanh toán khi giao hàng";
-                    if($item->payment == 1) echo"Chuyển khoản qua ngân hàng";
-                  ?>
-                </td> -->
-                <td>{{ date('d/m/Y H:i:s', strtotime($item->created_at)) }}</td>
-                <td>
-                  <?php
-                      
-                      switch ($item->status) {
-                        case '0':
-                          echo "Mới đặt";
-                          break;
-                        case '1':
-                          echo "Xác nhận";
-                          break;
-                          case '2':
-                          echo "Đang giao hàng";
-                          break;
-                          case '3':
-                          echo "Hoàn thành";
-                          break;
-                          case '4':
-                          echo "Hủy";
-                          break;
-                        default:
-                          echo "Mới đặt";
-                          break;
-                      }
-                  ?>
-                   
-                 </td>
+                <td>{{$item->phone}}</td>
+                <td>{{date('m/d/Y', strtotime($item->check_in))}}</td>
+                <td>{{date('m/d/Y', strtotime($item->check_out))}}</td>
+                <?php $room = DB::table('product_categories')->where('id', $item->cate_room)->first(); ?>
+                <td>{{ @$room->name }}</td>
                 
-                <!-- <td class="text-center with_dieuhuong">
-                  @if($item->status>0)
-                    <a href="admin/orders/edit?id={{$item->id}}&hienthi={{ time() }}" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> Bật</a>
-                  @else
-                    <a href="admin/orders/edit?id={{$item->id}}&hienthi={{ time() }}" class="btn btn-danger btn-xs"><i class="fa fa-eye"></i> Tắt</a>
-                  @endif
-                </td> -->
                 <td class="text-center with_dieuhuong">
                   <i class="fa fa-pencil fa-fw"></i><a href="{{asset('backend/orders/edit/'.$item->id)}}">Chi tiết</a>
                 </td>

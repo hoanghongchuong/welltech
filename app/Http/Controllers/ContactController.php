@@ -6,6 +6,8 @@ use Cart;
 use App\Bill;
 use Illuminate\Http\Request as Requests;
 use DB,Cache,Mail,Request,File;
+use Session;
+
 class ContactController extends Controller {
 	protected $setting = NULL;
 
@@ -118,6 +120,7 @@ class ContactController extends Controller {
 	}
 
     public function postOrder(Requests $req){
+        $lang = Session::get('locale');
         $cart = Cart::content();
         $bill = new Bill;
         $bill->full_name = $req->full_name;
@@ -125,6 +128,7 @@ class ContactController extends Controller {
         $bill->phone = $req->phone;
         $bill->note = $req->note;
         $bill->address = $req->address;
+        $bill->language = $lang;
         $bill->payment = (int)($req->payment_method);
         // $bill->province = $req->province;
         // $bill->district = $req->district;
@@ -142,7 +146,6 @@ class ContactController extends Controller {
             ];
         }               
         $bill->detail = json_encode($detail);
-
         // dd($bill);
         if($total > 0){
             $bill->save();

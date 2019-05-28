@@ -51,7 +51,7 @@ Route::group(['middleware' =>'admin', 'prefix' => 'backend'], function(){
 	// 	Route::post('updateinfo',['as'=>'admin.users.updateinfo','uses'=>'Admin\UsersController@updateinfo']);
 	// });
 
-	Route::group(['prefix' => 'productcate'], function(){
+	Route::group(['prefix' => 'productcate', 'middleware' => 'can:can_product_category'], function(){
 		Route::get('/',['as'=>'admin.productcate.index','uses'=>'Admin\ProductCateController@getDanhSach']);
 		Route::get('add',['as'=>'admin.productcate.getAdd','uses'=>'Admin\ProductCateController@getAdd']);
 		Route::post('postAdd',['as'=>'admin.productcate.postAdd','uses'=>'Admin\ProductCateController@postAdd']);
@@ -63,7 +63,7 @@ Route::group(['middleware' =>'admin', 'prefix' => 'backend'], function(){
 		Route::get('{id}/delete',['as'=>'admin.productcate.getDelete','uses'=>'Admin\ProductCateController@getDelete']);
 		Route::get('{id}/delete_list',['as'=>'admin.productcate.getDeleteList','uses'=>'Admin\ProductCateController@getDeleteList']);
 	});
-	Route::group(['prefix' => 'product'], function(){
+	Route::group(['prefix' => 'product', 'middleware' => 'can:can_product'], function(){
 		Route::get('/',['as'=>'admin.product.index','uses'=>'Admin\ProductController@getList']);
 		Route::get('add',['as'=>'admin.product.getAdd','uses'=>'Admin\ProductController@getAdd']);
 		Route::post('postAdd',['as'=>'admin.product.postAdd','uses'=>'Admin\ProductController@postAdd']);
@@ -118,7 +118,17 @@ Route::group(['middleware' =>'admin', 'prefix' => 'backend'], function(){
 		Route::get('{id}/delete',['as'=>'admin.menu.getDelete','uses'=>'Admin\MenuController@getDelete']);
 		Route::get('{id}/delete_list',['as'=>'admin.menu.getDeleteList','uses'=>'Admin\MenuController@getDeleteList']);
 	});
+	Route::group(['prefix' => 'orders','middleware' => 'can:can_orders'], function(){
+		Route::get('/',['as'=>'admin.bill.index','uses'=>'Admin\BillController@getList']);
+		// Route::get('add',['as'=>'admin.obill.getAdd','uses'=>'Admin\BillController@getAdd']);
+		// Route::post('postAdd',['as'=>'admin.obill.postAdd','uses'=>'Admin\OBillController@postAdd']);
+		
+		Route::get('edit/{id}',['as'=>'admin.bill.getEdit','uses'=>'Admin\BillController@getEdit']);
+		Route::post('edit/{id}',['as'=>'admin.bill.update','uses'=>'Admin\BillController@update']);
 
+		Route::get('delete/{id}',['as'=>'admin.bill.getDelete','uses'=>'Admin\BillController@getDelete']);
+		// Route::get('{id}/delete_list',['as'=>'admin.obill.getDeleteList','uses'=>'Admin\OBillController@getDeleteList']);
+	});
 	Route::group(['prefix'=>'position'], function(){
 		Route::get('/',['as'=>'admin.position.index','uses'=>'Admin\PositionController@getList']);
 		Route::get('add',['as'=>'admin.position.getAdd','uses'=>'Admin\PositionController@getAdd']);

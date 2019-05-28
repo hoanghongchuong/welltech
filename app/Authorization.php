@@ -12,7 +12,10 @@ class Authorization extends Model
         'can_news_category',
         'can_news',
         'can_contact',
-        'can_menu',
+        'can_product_category',
+        'can_product',
+        'can_orders',
+        // 'can_menu',
         'can_partner',
         'can_about',
         // 'can_recruitment',
@@ -24,10 +27,13 @@ class Authorization extends Model
 
     public $selector = [
         'is_super_admin' => 'Super Admin',
-        'can_news_category'   => 'Quản lý danh mục',
+        'can_news_category'   => 'Quản lý danh mục tin tức',
+        'can_product_category'   => 'Quản lý danh mục sản phẩm',
+        'can_product'   => 'Quản lý sản phẩm',
+        'can_orders' => 'Quản lý đơn hàng',
         'can_news' => 'Quản lý bài viết', 
         'can_contact' => 'Quản lý liên hệ',
-        'can_menu' => 'Quản lý menu',
+        // 'can_menu' => 'Quản lý menu',
         'can_partner' => 'Quản lý đối tác và khách hàng',
         'can_about' => 'Quản lý giới thiệu',
         // 'can_recruitment' => 'Quản lý tuyển dụng',
@@ -41,7 +47,19 @@ class Authorization extends Model
     {
         return $this->is_super_admin;
     }
-
+    public function canProductCategory()
+    {
+        return $this->can_product_category;
+    }
+    public function canProduct()
+    {
+        return $this->can_product;
+    }
+    public function canOrders()
+    {
+        
+        return $this->can_orders;
+    }
     public function canNewsCategory()
     {
     	return $this->can_news_category;
@@ -54,10 +72,10 @@ class Authorization extends Model
     {
     	return $this->can_contact;
     }
-    public function canMenu()
-    {
-    	return $this->can_menu;
-    }
+    // public function canMenu()
+    // {
+    // 	return $this->can_menu;
+    // }
     public function canPartner()
     {
     	return $this->can_partner;

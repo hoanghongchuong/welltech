@@ -2,20 +2,23 @@
 <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
+
       <ul class="sidebar-menu">
+        @if($is_admin->can('can_product_category'))
         <li class="treeview {{ @$_GET['type'] == 'san-pham' ? 'active' : '' }}">
           <a href="javascript:;">
             <i class="fa fa-dashboard"></i> <span>Quản lý sản phẩm</span> <i class="fa fa-angle-left pull-right"></i>
           </a>
           <ul class="treeview-menu">
             <li><a href="backend/productcate?type=san-pham"><i class="fa fa-circle-o"></i> <span>Danh mục</span></a></li>
+            @if($is_admin->can('can_product'))
             <li><a href="backend/product?type=san-pham"><i class="fa fa-circle-o"></i> <span>Danh sách</span></a></li>
-            
+            @endif          
           </ul>
         </li>
-
-        @if($is_admin->can('can_menu'))
-        <li><a href="backend/menu?type=menu-top"><i class="fa fa-gear"></i> <span>Quản lý menu</span></a></li>
+        @endif
+        @if($is_admin->can('can_orders'))
+        <li><a href="backend/orders"><i class="fa fa-shopping-cart"></i> <span>Quản lý đơn hàng</span></a></li>
         @endif
         @if($is_admin->can('admin_manager'))
         <li class="{{ Request::segment(2) == 'admin' ? 'active' : '' }}">

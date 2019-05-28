@@ -88,10 +88,10 @@ $lang = Session::get('locale');
                 <div class="owl-carousel owl-theme owl-carousel-product owl-carousel-product1">
                     @foreach($hotProducts as $hot)
                     <div class="item">
-                        <a href="{{url('san-pham/'.$hot['alias_'.$lang].'.html')}}" title="{{$hot['name_'.$lang]}}"><img src="{{asset('upload/product/'.$hot['photo'])}}" alt="{{$hot['name_'.$lang]}}">
+                        <a href="{{url('san-pham/'.$hot['alias_vi'].'.html')}}" title="{{$hot['name_'.$lang]}}"><img src="{{asset('upload/product/'.$hot['photo'])}}" alt="{{$hot['name_'.$lang]}}">
                         </a>
                         <div class="footer-cate">
-                            <p class="name_product"><a href="{{url('san-pham/'.$hot['alias_'.$lang].'.html')}}" title="{{$hot['name_'.$lang]}}">{{$hot['name_'.$lang]}}</a></p>
+                            <p class="name_product"><a href="{{url('san-pham/'.$hot['alias_vi'].'.html')}}" title="{{$hot['name_'.$lang]}}">{{$hot['name_'.$lang]}}</a></p>
                             <div class="price">
                             @if($lang =='vi') 
                                 {{number_format($hot['price_vi'])}} vnđ

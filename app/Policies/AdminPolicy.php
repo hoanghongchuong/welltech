@@ -25,6 +25,18 @@ class AdminPolicy
         return $admin->authorization->isSuperAdmin();
         // return Auth::guard('admin')->check();
     }
+    public function categoryProductManager(Admin $admin)
+    {
+        return $admin->authorization->isSuperAdmin() || $admin->authorization->canProductCategory();
+    }
+    public function productManager(Admin $admin)
+    {
+        return $admin->authorization->isSuperAdmin() || $admin->authorization->canProduct();
+    }
+    public function ordersManager(Admin $admin)
+    {
+        return $admin->authorization->isSuperAdmin() || $admin->authorization->canOrders();
+    }
     public function categoryNewsManager(Admin $admin)
     {
         return $admin->authorization->isSuperAdmin() || $admin->authorization->canNewsCategory();

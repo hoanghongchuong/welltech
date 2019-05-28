@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 23, 2019 lúc 05:53 PM
+-- Thời gian đã tạo: Th5 28, 2019 lúc 04:22 PM
 -- Phiên bản máy phục vụ: 10.1.38-MariaDB
 -- Phiên bản PHP: 7.2.17
 
@@ -107,8 +107,8 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `name`, `username`, `password`, `email`, `phone`, `avatar`, `active`, `remember_token`, `created_at`, `updated_at`) VALUES
-(14, 'Hoàng Hồng Chương', 'chuonghh', '$2y$10$djhz7PqbI5znQ85CSMEAruto8L60wzHhM79bqE7mXV9t/7b5C1qHy', 'chuong1194@yahoo.com', '0987654321', NULL, 1, NULL, '2019-05-20 13:36:56', '2019-05-20 13:36:56'),
-(16, 'admin', 'admin', '$2y$10$3xfbQ423ijcq.kgRnuGB0O2U66gXaiz3kOvugj/d6YbBS0fSxQCVG', 'admin@team.vn', '0987654321', NULL, 1, 'RrBrzBSFCJTxZD5hTyHAi6cydyzGH6QPymSaCRdq8pxgnMcMm5BozO9njSw8', '2019-05-20 13:37:12', '2019-05-20 13:37:12');
+(14, 'Hoàng Hồng Chương', 'chuonghh', '$2y$10$djhz7PqbI5znQ85CSMEAruto8L60wzHhM79bqE7mXV9t/7b5C1qHy', 'chuong1194@yahoo.com', '0987654321', NULL, 1, NULL, '2019-05-28 14:20:02', '2019-05-28 14:20:02'),
+(16, 'admin', 'admin', '$2y$10$3xfbQ423ijcq.kgRnuGB0O2U66gXaiz3kOvugj/d6YbBS0fSxQCVG', 'admin@team.vn', '0987654321', NULL, 1, 'zOk8bvVETFd9kky7DJMZVHmu7xSiDmpqMh4Alm7roHurHglLiXir7gcyOh9b', '2019-05-28 13:41:29', '2019-05-20 13:37:12');
 
 -- --------------------------------------------------------
 
@@ -120,6 +120,9 @@ CREATE TABLE `authorizations` (
   `id` int(10) UNSIGNED NOT NULL,
   `admin_id` int(11) UNSIGNED NOT NULL,
   `is_super_admin` tinyint(1) NOT NULL DEFAULT '0',
+  `can_product_category` tinyint(1) NOT NULL DEFAULT '0',
+  `can_product` tinyint(1) NOT NULL DEFAULT '0',
+  `can_orders` tinyint(1) NOT NULL DEFAULT '0',
   `can_news_category` tinyint(1) NOT NULL DEFAULT '0',
   `can_news` tinyint(1) NOT NULL DEFAULT '0',
   `can_contact` tinyint(1) NOT NULL DEFAULT '0',
@@ -139,11 +142,11 @@ CREATE TABLE `authorizations` (
 -- Đang đổ dữ liệu cho bảng `authorizations`
 --
 
-INSERT INTO `authorizations` (`id`, `admin_id`, `is_super_admin`, `can_news_category`, `can_news`, `can_contact`, `can_menu`, `can_partner`, `can_about`, `can_recruitment`, `can_slider`, `can_project`, `can_business_area`, `can_cv`, `created_at`, `updated_at`) VALUES
-(1, 17, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, '2019-05-20 13:35:56', '2019-05-20 13:35:56'),
-(2, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '2018-11-13 14:34:31', '0000-00-00 00:00:00'),
-(3, 18, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, '2019-05-20 13:36:35', '2019-05-20 13:36:35'),
-(4, 14, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '2019-05-20 13:36:56', '2019-05-20 13:36:56');
+INSERT INTO `authorizations` (`id`, `admin_id`, `is_super_admin`, `can_product_category`, `can_product`, `can_orders`, `can_news_category`, `can_news`, `can_contact`, `can_menu`, `can_partner`, `can_about`, `can_recruitment`, `can_slider`, `can_project`, `can_business_area`, `can_cv`, `created_at`, `updated_at`) VALUES
+(1, 17, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, '2019-05-20 13:35:56', '2019-05-20 13:35:56'),
+(2, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '2018-11-13 14:34:31', '0000-00-00 00:00:00'),
+(3, 18, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, '2019-05-20 13:36:35', '2019-05-20 13:36:35'),
+(4, 14, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '2019-05-28 14:20:02', '2019-05-28 14:20:02');
 
 -- --------------------------------------------------------
 
@@ -231,18 +234,12 @@ CREATE TABLE `bills` (
   `status` tinyint(2) DEFAULT '0',
   `total` int(11) DEFAULT NULL,
   `detail` text,
+  `language` varchar(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT '0000-00-00 00:00:00',
   `card_code` varchar(250) DEFAULT NULL,
   `payment` int(2) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Đang đổ dữ liệu cho bảng `bills`
---
-
-INSERT INTO `bills` (`id`, `full_name`, `email`, `phone`, `address`, `province`, `district`, `note`, `status`, `total`, `detail`, `created_at`, `updated_at`, `card_code`, `payment`) VALUES
-(1, 'Hoàng Hồng Chương', 'admin@team.vn', '0987654321', 'Hà Nội', NULL, NULL, 'sdf sdf', 0, 12000000, '[{\"product_name\":\"Off-Grid Solar Power Kit With 960 Watts of Panels and 3500 Watt 24VDC 120VAC Inverter Power Panel\",\"product_numb\":4,\"product_price\":3000000,\"product_img\":\"1558451765_ogk-rec.jpeg\",\"product_code\":null}]', '2019-05-23 15:52:49', '2019-05-23 15:52:49', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -851,15 +848,6 @@ CREATE TABLE `orders` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Đang đổ dữ liệu cho bảng `orders`
---
-
-INSERT INTO `orders` (`id`, `full_name`, `phone`, `audult`, `children`, `cate_room`, `number_room`, `check_in`, `check_out`, `created_at`, `updated_at`) VALUES
-(4, 'Hoàng Hồng Chương', '0987654321', 2, 3, 2, 8, '2018-05-17', '2018-05-17', '2018-05-16 02:30:19', '2018-05-16 02:30:19'),
-(5, 'Hoàng Hồng Chương', '0987654321', 4, 3, 1, 3, '2018-05-17', '2018-05-26', '2018-05-16 02:32:08', '2018-05-16 02:32:08'),
-(6, 'bgdc', '0987654321', 7, 6, 2, 42, '2018-05-22', '2018-06-12', '2018-05-21 02:59:39', '2018-05-20 19:59:39');
 
 -- --------------------------------------------------------
 
@@ -1621,7 +1609,7 @@ ALTER TABLE `banner_position`
 -- AUTO_INCREMENT cho bảng `bills`
 --
 ALTER TABLE `bills`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `chinhanh`
@@ -1705,7 +1693,7 @@ ALTER TABLE `news_categories`
 -- AUTO_INCREMENT cho bảng `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `partner`
