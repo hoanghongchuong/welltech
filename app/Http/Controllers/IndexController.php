@@ -22,23 +22,7 @@ use Session;
 
 class IndexController extends Controller {
 	protected $setting = NULL;
-
-	/*
-		|--------------------------------------------------------------------------
-		| Welcome Controller
-		|--------------------------------------------------------------------------
-		|
-		| This controller renders the "marketing page" for the application and
-		| is configured to only allow guests. Like most of the other sample
-		| controllers, you are free to modify or remove it as you desire.
-		|
-	*/
-
-	/**
-	 * Create a new controller instance.
-	 *
-	 * @return void
-	 */
+	
 	public function __construct() {
 
 		$setting = DB::table('setting')->select()->where('id', 1)->get()->first();
@@ -215,7 +199,36 @@ class IndexController extends Controller {
 		$cate_pro = ProductCate::where('status',1)->where('parent_id',0)->where('com','san-pham')->orderby('id','asc')->get()->toArray();
         $com = 'san-pham';
         $product_cate = ProductCate::select('*')->where('status', 1)->where('alias_vi', $alias)->where('com','san-pham')->first()->toArray();
-
+        $price_sort = 'price_'.$lang;
+        $name_sort = 'name_'.$lang;
+        $sortType = [
+			'price-ascending' => [
+				'text' => $lang == "vi" ? 'Giá: Tăng dần' : 'Price: Ascending',
+				'order' => [$price_sort, 'ASC']
+			],
+			'price-descending' => [
+				'text' => $lang == "vi" ? 'Giá: Giảm dần' : 'Price: Descending',
+				'order' => [$price_sort, 'DESC']
+			],
+			'title-ascending' => [
+				'text' => $lang == "vi" ? 'Tên: A-Z' : 'Name: A-Z',
+				'order' => [$name_sort, 'ASC']
+			],
+			'title-descending' => [
+				'text' => $lang == "vi" ? 'Tên: Z-A' : 'Name: Z-A',
+				'order' => [$name_sort, 'DESC']
+			],
+			'created-ascending' => [
+				'text' => $lang == "vi" ? 'Cũ nhất' : 'Oldest',
+				'order' => ['created_at', 'ASC']
+			],
+			'created-descending' => [
+				'text' => $lang=="vi" ? 'Mới nhất' : 'Latest',
+				'order' => ['created_at', 'DESC']
+			]
+			
+		];
+		
         if (!empty($product_cate)) {            
         	// $cate_parent = ProductCate::where('parent_id', $product_cate['parent_id'])->first()->toArray();
         	
@@ -227,16 +240,33 @@ class IndexController extends Controller {
         			$array_cate[] = $cate['id'];
         		}
         	}
+        	$products = Products::whereIn('cate_id', $array_cate)->where('status',1);
+        	$limit = $req->view ? $req->view : 8;
+        	if($req->isMethod('GET')){
+        		$view_selected = $req->view;
+        	}
         	
-        	$products = Products::whereIn('cate_id', $array_cate)->orderBy('id','desc')->paginate(12)->toArray();
-        	$data_paginate = Products::whereIn('cate_id', $array_cate)->orderBy('id','desc')->paginate(12);
-            
+    		$selected = $req->sort;
+    		$appends = [];
+    		if($req->sort){
+    			if(isset($sortType[$req->sort])){
+    				$appends['sort'] = $req->sort;
+    				$products = $products->orderBy($sortType[$req->sort]['order'][0], $sortType[$req->sort]['order'][1]);
+    				
+    			}
+    		}
+    		$products = $products->paginate($limit);
+        	// $products = Products::whereIn('cate_id', $array_cate)->orderBy($price_sort, $sort)->paginate(12)->toArray();
+        	// $data_paginate = Products::whereIn('cate_id', $array_cate)->paginate(12);
+            if (count($appends)) {
+				$products = $products->appends($appends);
+			}
             $title = $product_cate["title_".$lang] ? $product_cate["title_".$lang] : $product_cate["name_".$lang];
 			$description = $product_cate["description_".$lang] ? $product_cate["description_".$lang] : $product_cate["name_".$lang];
 			$keyword = $product_cate["keyword_".$lang] ? $product_cate["keyword_".$lang] : $product_cate["name_".$lang];
             $img_share = asset('upload/product/' . $product_cate['photo']);
 
-            return view('templates.productlist_tpl', compact('products', 'product_cate', 'keyword', 'description', 'title', 'img_share', 'cate_pro', 'cate_parent', 'com','lang','data_paginate'));
+            return view('templates.productlist_tpl', compact('products', 'product_cate', 'keyword', 'description', 'title', 'img_share', 'cate_pro', 'cate_parent', 'com','lang','data_paginate','selected','sortType','view_selected'));
         } else {
             return redirect()->route('getErrorNotFount');
         }

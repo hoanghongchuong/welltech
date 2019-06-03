@@ -9,4 +9,8 @@ $(document).ready(function($){
         $('.btn-send-cv').attr("disabled", true);
     });
 
+    $('.form-change').on('change', function(){
+    	$('#filter_products').submit();
+  	});
+
 });
