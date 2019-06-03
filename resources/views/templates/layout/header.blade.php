@@ -32,9 +32,9 @@
             <div class="row">
                
                 <ul class="navi">
-                    <li><a href="{{url('')}}">Trang chủ</a></li>
+                    <li><a href="{{url('')}}">{{trans('label.home')}}</a></li>
                     <li>
-                        <a href="{{url('gioi-thieu')}}">Giới thiệu </a>
+                        <a href="{{url('gioi-thieu')}}">{{trans('label.gioithieu')}}</a>
                         <!-- <ul class="vk-menu__child gt">                                
                             <li><a href="#">Giới thiệu 1</a></li>
                             <li><a href="#">Giới thiệu 2</a></li>
@@ -44,7 +44,7 @@
                         </ul> -->
                     </li>
                     <li>
-                        <a href="">Sản phẩm <i class="fa fa-angle-down"></i></a>
+                        <a href="">{{trans('label.product')}}<i class="fa fa-angle-down"></i></a>
                         
                         <ul class="vk-menu__child">  
                         @foreach($categories as $category)                             
@@ -61,8 +61,8 @@
                         @endforeach                         
                         </ul>
                     </li>
-                    <li><a href="{{url('tin-tuc')}}">Tin tức</a></li>                            
-                    <li><a href="{{url('lien-he')}}">Liên hệ</a></li>
+                    <li><a href="{{url('tin-tuc')}}">{{trans('label.news')}}</a></li>                            
+                    <li><a href="{{url('lien-he')}}">{{trans('label.contact')}}</a></li>
                 </ul>
                 <div class="box-search">
                     <input type="text" name="txtSearch">
@@ -84,9 +84,9 @@
     </div>
     <nav class="vk-header__menu-mobile">
         <ul class="vk-menu__mobile collapse" id="menuMobile">
-            <li><a href="{{url('')}}">Trang chủ</a></li>
+            <li><a href="{{url('')}}">{{trans('label.home')}}</a></li>
             <li>
-                <a href="{{url('gioi-thieu')}}">Giới thiệu</a>
+                <a href="{{url('gioi-thieu')}}">{{trans('label.gioithieu')}}</a>
                 <!-- <a href="#menu1" data-toggle="collapse" class="_arrow-mobile"><i class="_icon fa fa-angle-down"></i></a>
                 <ul class="collapse" id="menu1">
                     <li><a href="#">Công trình 1</a></li>
@@ -97,20 +97,30 @@
                 </ul> -->
             </li>
             <li>
-                <a href="#">Sản phẩm</a>
+                <a href="#">{{trans('label.product')}}</a>
 
                 <a href="#menu2" data-toggle="collapse" class="_arrow-mobile"><i class="_icon fa fa-angle-down"></i></a>
-                <!-- <ul class="collapse" id="menu2">
-                    <li><a href="#">Công trình 1</a></li>
-                    <li><a href="#">Công trình 1</a></li>
-                    <li><a href="#">Công trình 1</a></li>
-                    <li><a href="#">Công trình 1</a></li>
-                    <li><a href="#">Công trình 1</a></li>                       
-                </ul> -->
+                <ul class="collapse" id="menu2">
+                    @foreach($categories as $k=>$category)
+                    <li>
+                        <a href="{{url('san-pham/'.$category['alias_vi'])}}">{{$category['name_'.$lang]}}</a>                        
+                        <?php $category_chidls = \App\ProductCate::where('parent_id',$category['id'])->get()->toArray(); ?>
+                        @if(count($category_chidls) > 0)
+                        <a href="#menu-child{{$k}}" data-toggle="collapse" class="_arrow-mobile"><i class="_icon fa fa-angle-down"></i></a>
+                        <ul class="collapse" id="menu-child{{$k}}">
+                            @foreach($category_chidls as $child)                                    
+                            <li><a href="{{url('san-pham/'.$child['alias_'.$lang])}}" title="{{$child['name_'.$lang]}}">{{$child['name_'.$lang]}}</a></li>
+                            @endforeach
+                        </ul>
+                        @endif
+                    </li>
+                    @endforeach
+                                      
+                </ul>
             </li>
             
-            <li><a href="{{url('tin-tuc')}}">Tin tức</a></li>                            
-            <li><a href="{{url('lien-he')}}">Liên hệ</a></li>
+            <li><a href="{{url('tin-tuc')}}">{{trans('label.news')}}</a></li>                            
+            <li><a href="{{url('lien-he')}}">{{trans('label.contact')}}</a></li>
         </ul>
     </nav>        
 </div>
