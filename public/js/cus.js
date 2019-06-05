@@ -13,4 +13,9 @@ $(document).ready(function($){
     	$('#filter_products').submit();
   	});
 
+    $('#form-post-order').on('submit', function(){
+        console.log('da click');
+        $('.btn-send-post-order').attr("disabled", true);
+    });
+
 });

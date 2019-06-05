@@ -21,7 +21,11 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="a-w-title">
-                    <h1>{{trans('label.checkout')}}</h1>
+                    <h1>{{trans('label.checkout')}}&nbsp;
+                        @if(session('message'))
+                        <span class="flash-message">{{session('message')}}</span>
+                        @endif
+                    </h1>
                 </div>
             </div>
         </div>
@@ -78,7 +82,7 @@
 
 <section class="cart">
     <div class="container">
-        <form action="{{route('postOrder')}}" method="post" accept-charset="utf-8">
+        <form action="{{route('postOrder')}}" method="post" id="form-post-order" accept-charset="utf-8">
             <input type="hidden" name="_token" value="{{csrf_token()}}">        
             <div class="row">
                 <div class="col-md-6">
@@ -87,22 +91,36 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label>{{trans('label.hoten')}} <span>*</span></label>
-                                    <input type="text" class="cf-input" name="full_name" placeholder="" required="">
+                                    @if ($errors->first('full_name')!='')
+                                        <span style="color: red">( {!! $errors->first('full_name'); !!})</span>
+                                    @endif 
+                                    <input type="text" class="cf-input" name="full_name" placeholder="">
                                 </div>
                                 <div class="col-md-6">
                                     <label>{{trans('label.phone')}} <span>*</span></label>
-                                    <input type="text" name="phone" class="cf-input" placeholder="" required="">
+                                    @if ($errors->first('phone')!='')
+                                        <span style="color: red">( {!! $errors->first('phone'); !!})</span>
+                                    @endif
+                                    <input type="text" name="phone" class="cf-input" placeholder="">
                                 </div>
                             </div>
                             <label>Email <span>*</span></label>
-                            <input type="text" class="cf-input" name="email" placeholder="" required="">
-
+                            @if ($errors->first('email')!='')
+                                <span style="color: red">( {!! $errors->first('email'); !!})</span>
+                            @endif
+                            <input type="text" class="cf-input" name="email" placeholder="">                
                             <label>{{trans('label.diachi')}} <span>*</span></label>
-                            <input type="text" class="cf-input" name="address" placeholder="" required="">
+                            @if ($errors->first('address')!='')
+                                <span style="color: red">( {!! $errors->first('address'); !!})</span>
+                            @endif
+                            <input type="text" class="cf-input" name="address" placeholder="">
                             <label>{{trans('label.content')}}</label>
-                            <textarea name="note" id="" cols="30" rows="8" class="cf-input" placeholder="" required=""></textarea>
+                            @if ($errors->first('note')!='')
+                                <span style="color: red">( {!! $errors->first('note'); !!})</span>
+                            @endif
+                            <textarea name="note" id="" cols="30" rows="8" class="cf-input" placeholder=""></textarea>
                             <div class="flex-center-center">
-                                <button class="btn-order">{{trans('label.send_order')}}</button>
+                                <button class="btn-order btn-send-post-order">{{trans('label.send_order')}}</button>
                             </div>
                         </div>
                 </div>
