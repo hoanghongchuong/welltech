@@ -6,7 +6,7 @@ $(document).ready(function($){
 
     $('.form-post-register').on('submit', function(){
         console.log('da click');
-        $('.btn-send-cv').attr("disabled", true);
+        $('.btn-send').attr("disabled", true);
     });
 
     $('.form-change').on('change', function(){

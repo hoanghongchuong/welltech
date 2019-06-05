@@ -876,3 +876,22 @@ a.vk-btn:hover{
 .product_name{
     font-size: 30px;
 }
+.contact-frm input{
+    margin-bottom: 10px;
+}
+.btn-gui{
+    margin-top: 10px;
+}
+.map-box{
+    margin-top: 30px;
+}
+.map-box iframe{
+    width: 100%;
+}
+.more-btn {
+    padding: 10px 30px;
+    background: #0D4E96;
+    color: #fff;
+    font-size: 15px;
+    border-radius: 0;
+}
