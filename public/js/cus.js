@@ -18,4 +18,41 @@ $(document).ready(function($){
         $('.btn-send-post-order').attr("disabled", true);
     });
 
+
+    //caculator
+    var trElement = '';
+    var defaultHoursOnDay = 1;
+    var defaultDaysOnWeek = 7;
+    var defaultQuantity = 1;
+    var defaultMinutesOnHour = '';
+    var trIndex = 0;
+    
+    function bindData(appliance, quantity, watts, minutesOnHour, hoursOnDay, daysOnWeek) {
+        var avgTotal = hoursOnDay;
+        console.log(avgTotal);
+        var total = 0;
+        trIndex ++;
+        var maxHoursDay = watts * hoursOnDay;
+        return '<tr>'+
+                        '<td><input type="text" name="appliance['+ trIndex +']" value="'+ appliance +'"></td>'+
+                        '<td><input type="number" min="0" name="quantity['+ trIndex +']" value="' + quantity + '"></td>' +
+                        '<td><input type="number" min="0" name="watts['+ trIndex +']" value="'+ watts +'"></td>' +
+                        '<td><input type="number" name="minutes_on_per_hour['+ trIndex +']" min="0" max="60" value="'+ minutesOnHour +'"></td>' +
+                        '<td><input type="number" name="hours_on_per_day['+ trIndex +']" min="0" max="24" value="' + hoursOnDay + '"></td>' +
+                        '<td><input type="number" name="days_on_per_week['+ trIndex +']" min="0" max="7" value="' + daysOnWeek + '"></td>' +
+                        '<td><input type="text" name="avg_total['+ trIndex +']" value="'+avgTotal+'" disabled="disabled"></td>' +
+                        '<td><input type="text" name="total['+ trIndex +']" value="'+ maxHoursDay +'" disabled="disabled"></td>' +
+                        '<td><input type="button" class="delete-button action primary button small" name="delete-button" value="X"></td>'+
+                    '</tr>';
+    }
+    // insert first element
+    $('#add-row, .add-item').click(function() {
+        var name = $(this).data('name') || '';
+        var watt = $(this).data('watt') || '';
+        $(bindData(name, defaultQuantity, watt, trIndex == 0 ? '' : defaultMinutesOnHour, trIndex == 0 ? '' :  defaultHoursOnDay, trIndex == 0 ? '' :  defaultDaysOnWeek)).insertBefore('#add-reset-row');
+    });
+    $('#add-row').click();
+    $('body').on('click', '.delete-button', function() {
+        $(this).parents('tr').remove();
+    });
 });

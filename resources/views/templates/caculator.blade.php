@@ -23,8 +23,9 @@
 				            <th>&nbsp;</th>
 				        </tr>
 				    </thead>
-			        <tbody>
-				        <tr class="row-to-clone no-display">
+			        <tbody id="tr-content">
+				        
+				        <!-- <tr>
 				            <td><input type="text" name="appliance"></td>
 				            <td><input type="number" min="0" name="quantity"></td>
 				            <td><input type="number" min="0" name="watts"></td>
@@ -35,19 +36,7 @@
 				            <td><input type="text" name="total" value="0" disabled="disabled"></td>
 				            <td><input type="button" class="delete-button action primary button small" name="delete-button" value="X">
 				            </td>
-				        </tr>
-				        <tr>
-				            <td><input type="text" name="appliance"></td>
-				            <td><input type="number" min="0" name="quantity"></td>
-				            <td><input type="number" min="0" name="watts"></td>
-				            <td><input type="number" name="minutes-on-per-hour" min="0" max="60"></td>
-				            <td><input type="number" name="hours-on-per-day" min="0" max="24"></td>
-				            <td><input type="number" name="days-on-per-week" min="0" max="7"></td>
-				            <td><input type="text" name="avg-total" value="0" disabled="disabled"></td>
-				            <td><input type="text" name="total" value="0" disabled="disabled"></td>
-				            <td><input type="button" class="delete-button action primary button small" name="delete-button" value="X">
-				            </td>
-				        </tr>
+				        </tr> -->
 				        <tr id="add-reset-row">
 				            <td colspan="1">
 				                <input class="button-control action primary button small" id="add-row" type="button" value="Add Appliance"><br>
@@ -80,10 +69,9 @@
 
 				@foreach($products as $item)
 				<div class="col-md-4 col-lg-4 box-item">
-					
 					<div class="info-item">
 						<div class="pull-left">
-							<input type="button" class="action primary button small solar-calculator-items" value="+"> <span class="appliance-name">{{$item->name_vi}}</span>
+							<input type="button" class="action primary button small solar-calculator-items add-item" value="+" data-name="{{ $item->name_vi }}" data-watt="{{$item->id}}"> <span class="appliance-name">{{$item->name_vi}}</span>
 						</div>						
 						<div class="pull-right">{{$item->id}}</div>
 					</div>					
