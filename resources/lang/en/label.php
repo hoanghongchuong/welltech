@@ -39,4 +39,5 @@
                 'shipping_address' => "Shipping Address",
                 'send_order' => "Send order",
                 'donhang' => "Order",
+                'caculator' => "Load Calculator",
                 ];

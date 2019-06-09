@@ -876,3 +876,47 @@ a.vk-btn:hover{
 .product_name{
     font-size: 30px;
 }
+.load-caculator{
+    width: 100%;
+    float: left;
+    margin-top: 20px;
+}
+.action.primary {
+    background-image: none;
+    background: #9dbd00;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 400;
+    padding: 10px 20px;
+    font-size: 1.4rem;
+    box-sizing: border-box;
+    vertical-align: middle;
+}
+
+.solar-calculator-wrapper #load-calc #add-reset-row input {
+    margin-top: 3px;
+    width: auto;
+}
+.solar-calculator-wrapper #load-calc input {
+    padding: 5px;
+    width: 100px;
+}
+.solar-calculator-items .left{
+    float:left;
+}
+.solar-calculator-items .box-item{
+   
+    margin-bottom: 15px;
+}
+.info-item{
+    width: 100%;
+    float: left;
+    margin-top: 5px;
+}
+.title-pro{
+    font-weight: bold;
+    color: #000;
+    font-size: 16px;
+}

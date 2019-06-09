@@ -61,6 +61,7 @@
                         @endforeach                         
                         </ul>
                     </li>
+                    <li><a href="{{url('caculator')}}">{{trans('label.caculator')}}</a></li>
                     <li><a href="{{url('tin-tuc')}}">{{trans('label.news')}}</a></li>                            
                     <li><a href="{{url('lien-he')}}">{{trans('label.contact')}}</a></li>
                 </ul>

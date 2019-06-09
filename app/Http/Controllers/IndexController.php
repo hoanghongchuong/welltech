@@ -420,4 +420,11 @@ class IndexController extends Controller {
         Cart::remove($id);
         return redirect('gio-hang');
     }
+
+
+    public function getCaculator()
+    {
+    	
+    	return view('templates.caculator');
+    }
 }

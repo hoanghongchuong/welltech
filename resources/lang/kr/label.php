@@ -39,4 +39,5 @@
                 'shipping_address' => "",
                 'send_order' => "",
                 'donhang' => "",
+                'caculator' => "",
                 ];

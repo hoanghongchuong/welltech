@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 28, 2019 lúc 04:22 PM
+-- Thời gian đã tạo: Th6 09, 2019 lúc 11:54 AM
 -- Phiên bản máy phục vụ: 10.1.38-MariaDB
 -- Phiên bản PHP: 7.2.17
 
@@ -515,7 +515,8 @@ INSERT INTO `langs` (`id`, `name_vi`, `name_en`, `name_jp`, `name_kr`, `name_chn
 (84, 'Tổng tiền', 'Order Total', NULL, NULL, NULL, NULL, 'total_order', NULL, 1, 0, NULL, NULL, NULL, 'langs', 37, '2019-05-23 15:20:15', '2019-05-23 15:20:15'),
 (85, 'Thông tin giao hàng', 'Shipping Address', NULL, NULL, NULL, NULL, 'shipping_address', NULL, 1, 0, NULL, NULL, NULL, 'langs', 38, '2019-05-23 15:26:30', '2019-05-23 15:26:30'),
 (86, 'Đặt hàng', 'Send order', NULL, NULL, NULL, NULL, 'send_order', NULL, 1, 0, NULL, NULL, NULL, 'langs', 39, '2019-05-23 15:30:57', '2019-05-23 15:30:57'),
-(87, 'Đơn hàng', 'Order', NULL, NULL, NULL, NULL, 'donhang', NULL, 1, 0, NULL, NULL, NULL, 'langs', 40, '2019-05-23 15:48:24', '2019-05-23 15:48:24');
+(87, 'Đơn hàng', 'Order', NULL, NULL, NULL, NULL, 'donhang', NULL, 1, 0, NULL, NULL, NULL, 'langs', 40, '2019-05-23 15:48:24', '2019-05-23 15:48:24'),
+(88, 'Bộ tính', 'Load Calculator', NULL, NULL, NULL, NULL, 'caculator', NULL, 1, 0, NULL, NULL, NULL, 'langs', 41, '2019-06-08 07:45:46', '2019-06-08 07:45:46');
 
 -- --------------------------------------------------------
 
@@ -1657,7 +1658,7 @@ ALTER TABLE `images`
 -- AUTO_INCREMENT cho bảng `langs`
 --
 ALTER TABLE `langs`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 
 --
 -- AUTO_INCREMENT cho bảng `lienket`

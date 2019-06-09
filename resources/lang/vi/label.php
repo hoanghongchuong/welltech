@@ -39,4 +39,5 @@
                 'shipping_address' => "Thông tin giao hàng",
                 'send_order' => "Đặt hàng",
                 'donhang' => "Đơn hàng",
+                'caculator' => "Bộ tính",
                 ];

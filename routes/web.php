@@ -340,6 +340,7 @@ Route::group(['middleware' => 'localization', 'prefix' => Session::get('locale')
 	Route::get('san-pham/{alias}.html','IndexController@getProductDetail')->name('detailProduct');
 	Route::get('san-pham/{alias}',['as'=>'getProductList', 'uses'=>'IndexController@getProductList']);
 	
+Route::get('caculator', 'IndexController@getCaculator');
 	
 	Route::get('gioi-thieu/{alias}','IndexController@getGioiThieu')->name('get.gioithieu');
 
