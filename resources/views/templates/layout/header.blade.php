@@ -15,7 +15,7 @@
                 
                     <div class="box-right">
                         <span class="phone"><i class="fa fa-phone"></i>&nbsp {{$setting->phone}}</span>
-                        <span class="shopping-cart"><a href=""><i class="fa fa-shopping-cart"></i>({{Cart::count()}})</a></span>
+                        <span class="shopping-cart"><a href="{{url('gio-hang')}}"><i class="fa fa-shopping-cart"></i>({{Cart::count()}})</a></span>
                         <span class="language">
                             <a href="{{url('lang/'.'en')}}"><img src="{{ asset('public/images/en.png')}}"></a> &nbsp
                             <a href="{{url('lang/'.'vi')}}"><img src="{{ asset('public/images/vi.png')}}"></a>

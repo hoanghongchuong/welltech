@@ -120,6 +120,21 @@ class ContactController extends Controller {
 	}
 
     public function postOrder(Requests $req){
+        $this->validate($req, [
+            "full_name" => "required",
+            "phone" => "required|max:100|min:1",
+            "email" => "required|email",
+            "address" => "required",
+            "note" => "required",
+        ],
+        [
+            "full_name.required" =>  __('message.name'),
+            "phone.required" =>  __('message.phone'),
+            "email.required" =>  __('message.email'),
+            "email.email" => __('message.email_invalid'),
+            "address.required" =>  __('message.address'),
+            "note.required" =>  __('message.content'),
+        ]);
         $lang = Session::get('locale');
         $cart = Cart::content();
         $bill = new Bill;
@@ -133,8 +148,7 @@ class ContactController extends Controller {
         // $bill->province = $req->province;
         // $bill->district = $req->district;
         $total = $this->getTotalPrice();
-        $bill->total = $total;
-        
+        $bill->total = $total;        
         $detail = [];
         foreach ($cart as $key) {
             $detail[] = [
@@ -146,22 +160,36 @@ class ContactController extends Controller {
             ];
         }               
         $bill->detail = json_encode($detail);
-        // dd($bill);
         if($total > 0){
+            try {
+                // $data = [
+                //     'hoten' => $req->full_name,
+                //     'diachi' => $req->address,
+                //     'dienthoai' => $req->phone,
+                //     'email' => $req->email,
+                //     'noidung' => $req->get('note')
+                // ];
+                $data = $bill->toArray();
+                
+                // $detail_orders = json_decode($data['detail']);
+                
+                // return view('templates.guidonhang', compact('data','detail_orders'));
+                Mail::send('templates.guidonhang', $data, function ($msg) {
+                    $setting = Cache::get('setting');
+                    $msg->from(Request::input('email'), 'Welltech.vn');
+                    $msg->to($setting->email, 'WELLTECH')->subject('Đơn hàng');
+                });
+            } catch (Exception $e) {
+                echo " khong gui dc email";
+            }
             $bill->save();
         }
         else{
-            echo "<script type='text/javascript'>
-                alert('Giỏ hàng của bạn rỗng!');
-                window.location = '".url('/')."' 
-            </script>";
+            return back()->with(['message' => __('message.post_order_fail')]);
         }       
         Cart::destroy();
 
-        echo "<script type='text/javascript'>
-                alert('Cảm ơn bạn đã đặt hàng, chúng tôi sẽ liên hệ với bạn sớm nhất!');
-                window.location = '".url('/')."' 
-            </script>";
+        return back()->with(['message' => __('message.post_order_success')]);
     }
 
 }

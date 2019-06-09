@@ -825,7 +825,7 @@ footer a{
     font-family: RoboB;
 }
 a.vk-btn{
-    /*padding: 17px;*/
+    padding: 17px;
 }
 .vk-shopcart__total {
     font-size: 22px;
@@ -876,6 +876,7 @@ a.vk-btn:hover{
 .product_name{
     font-size: 30px;
 }
+<<<<<<< HEAD
 .load-caculator{
     width: 100%;
     float: left;
@@ -919,4 +920,26 @@ a.vk-btn:hover{
     font-weight: bold;
     color: #000;
     font-size: 16px;
+}
+.contact-frm input{
+    margin-bottom: 10px;
+}
+.btn-gui{
+    margin-top: 10px;
+}
+.map-box{
+    margin-top: 30px;
+}
+.map-box iframe{
+    width: 100%;
+}
+.more-btn {
+    padding: 10px 30px;
+    background: #0D4E96;
+    color: #fff;
+    font-size: 15px;
+    border-radius: 0;
+}
+.flash-message{
+    color: #14793C;
 }

@@ -41,7 +41,7 @@ $setting = \App\Setting::where('id', 1)->first()->toArray();
                     <h4 class="box-title text-green alert-success">{{ session('message') }}</h4>
                 </div>
                 @endif
-                <form action="{{route('postContact')}}" method="post" accept-charset="utf-8" class="contact-frm">
+                <form action="{{route('postContact')}}" method="post" accept-charset="utf-8" class="contact-frm form-post-register">
                     {{ csrf_field() }}
                     <div class="row">                        
                         <div class="col-md-6">
@@ -49,14 +49,14 @@ $setting = \App\Setting::where('id', 1)->first()->toArray();
                                 @if ($errors->first('name')!='')
                                     <span style="color: red">( {!! $errors->first('name'); !!})</span>
                                 @endif                           
-                            <input type="text" name="name" value="" required="" class="form-control">
+                            <input type="text" name="name" value=""  class="form-control">
                         </div>
                         <div class="col-md-6">
                             <label for="">{{trans('label.diachi')}}</label>
                             @if ($errors->first('address')!='')
                                 <span style="color: red">( {!! $errors->first('address'); !!})</span>
                             @endif
-                            <input type="text" name="address" value="" required="" class="form-control" placeholder="">
+                            <input type="text" name="address" value="" class="form-control" placeholder="">
                             
                         </div>
                         <div class="col-md-6">
@@ -64,7 +64,7 @@ $setting = \App\Setting::where('id', 1)->first()->toArray();
                             @if ($errors->first('phone')!='')
                                 <span style="color: red">( {!! $errors->first('phone'); !!})</span>
                             @endif
-                            <input type="text" name="phone" required="" value="" class="form-control" placeholder="">
+                            <input type="text" name="phone" value="" class="form-control" placeholder="">
                             
                         </div>
                         <div class="col-md-6">
@@ -72,7 +72,7 @@ $setting = \App\Setting::where('id', 1)->first()->toArray();
                             @if ($errors->first('email')!='')
                                 <span style="color: red">( {!! $errors->first('email'); !!})</span>
                             @endif
-                            <input type="email" name="email" required="" value="" class="form-control" placeholder="">
+                            <input type="email" name="email" value="" class="form-control" placeholder="">
                         </div>
                         <div class="col-md-12">
                             <label for="">{{trans('label.content')}}</label>
@@ -82,7 +82,7 @@ $setting = \App\Setting::where('id', 1)->first()->toArray();
                             <textarea name="content" rows="5" class="form-control" placeholder="{{trans('label.content')}}"></textarea>
                         </div>
                         <div class="text-md-right btn-gui col-md-12">
-                            <button type="submit" class="btn bold more-btn btn-primary" id="btn-submit-form">{{trans('label.send')}}</button>
+                            <button type="submit" class="btn bold more-btn btn-primary btn-send" id="btn-submit-form">{{trans('label.send')}}</button>
                         </div>
                     </div>
                 </form>

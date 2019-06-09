@@ -158,7 +158,7 @@ class ProductCateController extends Controller {
 
             return redirect('backend/productcate/edit?id='.$id)->with('status','Cập nhật thành công');
         }else{
-            return redirect('backend/productcate/')->with('status','Dữ liệu không có thực');
+            return redirect()->back()->with('status','Dữ liệu không có thực');
         }
     }
     public function getDelete($id)

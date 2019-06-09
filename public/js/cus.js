@@ -6,11 +6,16 @@ $(document).ready(function($){
 
     $('.form-post-register').on('submit', function(){
         console.log('da click');
-        $('.btn-send-cv').attr("disabled", true);
+        $('.btn-send').attr("disabled", true);
     });
 
     $('.form-change').on('change', function(){
     	$('#filter_products').submit();
   	});
+
+    $('#form-post-order').on('submit', function(){
+        console.log('da click');
+        $('.btn-send-post-order').attr("disabled", true);
+    });
 
 });

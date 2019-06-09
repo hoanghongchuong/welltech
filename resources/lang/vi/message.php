@@ -7,5 +7,7 @@
           'email' => 'Chưa điền email',   
           'email_invalid' => 'Email không hợp lệ',   
           'address' => 'Chưa điền địa chỉ',   
-          'content' => 'Chưa điền nội dung',   
+          'content' => 'Chưa điền nội dung',
+          'post_order_fail' => 'Giỏ hàng rỗng',
+          'post_order_success' => 'Đặt hàng thành công'   
     ];
