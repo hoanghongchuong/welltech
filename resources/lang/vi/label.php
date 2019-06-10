@@ -40,4 +40,5 @@
                 'send_order' => "Đặt hàng",
                 'donhang' => "Đơn hàng",
                 'caculator' => "Bộ tính",
+                'why' => "Tại sao chọn chúng tôi",
                 ];

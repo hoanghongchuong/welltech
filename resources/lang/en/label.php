@@ -40,4 +40,5 @@
                 'send_order' => "Send order",
                 'donhang' => "Order",
                 'caculator' => "Load Calculator",
+                'why' => "Why choose us",
                 ];
