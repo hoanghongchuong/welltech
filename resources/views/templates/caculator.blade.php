@@ -45,7 +45,7 @@
 				            </td>
 				            <td colspan="6">
 				                Total Average Watt-Hours/Day: <input id="total-average-watt-hours-per-day" type="text" value="0" readonly=""><br>
-				                Total Max Watt-Hours/Day: <input id="total-max-watt-hours-per-day" type="text" value="0" readonly=""><br>
+				                Total Max Watt-Hours/Day: <input class="setWatt" id="total-max-watt-hours-per-day" type="text" value="0" readonly=""><br>
 				            </td>
 				        </tr>
 			        </tbody>
