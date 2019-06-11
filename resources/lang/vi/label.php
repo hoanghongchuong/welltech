@@ -39,6 +39,8 @@
                 'shipping_address' => "Thông tin giao hàng",
                 'send_order' => "Đặt hàng",
                 'donhang' => "Đơn hàng",
-                'caculator' => "Bộ tính",
+                'hot_news' => "Tin nổi bật",
+                'hot_product' => "Sản phẩm nổi bật",
                 'why' => "Tại sao chọn chúng tôi",
+                'caculator' => "Bộ tính",
                 ];

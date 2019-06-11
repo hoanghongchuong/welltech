@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th6 09, 2019 lúc 11:54 AM
+-- Thời gian đã tạo: Th6 11, 2019 lúc 11:16 AM
 -- Phiên bản máy phục vụ: 10.1.38-MariaDB
 -- Phiên bản PHP: 7.2.17
 
@@ -241,6 +241,13 @@ CREATE TABLE `bills` (
   `payment` int(2) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Đang đổ dữ liệu cho bảng `bills`
+--
+
+INSERT INTO `bills` (`id`, `full_name`, `email`, `phone`, `address`, `province`, `district`, `note`, `status`, `total`, `detail`, `language`, `created_at`, `updated_at`, `card_code`, `payment`) VALUES
+(8, 'Hoàng Hồng Chương', 'admin@team.vn', '0987654321', 'Hà Nội', NULL, NULL, 's sdf sd ư', 1, 213, '[{\"product_name\":\"Off-Grid Solar Power Kit With 960 Watts of Panels and 3500 Watt 24VDC 120VAC Inverter Power Panel\",\"product_numb\":\"1\",\"product_price\":213,\"product_img\":\"1558451765_ogk-rec.jpeg\",\"product_code\":null}]', 'en', '2019-06-05 07:24:35', '2019-06-05 07:24:35', NULL, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -288,7 +295,8 @@ CREATE TABLE `contacts` (
 --
 
 INSERT INTO `contacts` (`id`, `name`, `email`, `phone`, `address`, `content`, `status`, `created_at`, `updated_at`) VALUES
-(5, 'Hoàng Hồng Chương', 'admin@team.vn', '0987654321', NULL, 'giao hàng giờ hành chính', 1, '2019-05-21 14:08:07', '2019-05-21 14:08:20');
+(5, 'Hoàng Hồng Chương', 'admin@team.vn', '0987654321', NULL, 'giao hàng giờ hành chính', 1, '2019-05-21 14:08:07', '2019-05-21 14:08:20'),
+(6, 'Hoàng Hồng Chương', 'admin@team.vn', '0987654321', NULL, 'test email', 0, '2019-06-05 01:27:28', '2019-06-05 01:27:28');
 
 -- --------------------------------------------------------
 
@@ -444,6 +452,15 @@ CREATE TABLE `images` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `images`
+--
+
+INSERT INTO `images` (`id`, `product_id`, `service_id`, `name`, `alias`, `photo`, `status`, `image_path`, `alt`, `stt`, `created_at`, `updated_at`) VALUES
+(29, 15, NULL, NULL, NULL, '1560134624_duan3.jpg', 1, NULL, NULL, 0, '2019-06-10 02:43:44', NULL),
+(30, 15, NULL, NULL, NULL, '1560134624_duan4.jpg', 1, NULL, NULL, 0, '2019-06-10 02:43:44', NULL),
+(31, 15, NULL, NULL, NULL, '1560134624_sp1.png', 1, NULL, NULL, 0, '2019-06-10 02:43:44', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -516,7 +533,10 @@ INSERT INTO `langs` (`id`, `name_vi`, `name_en`, `name_jp`, `name_kr`, `name_chn
 (85, 'Thông tin giao hàng', 'Shipping Address', NULL, NULL, NULL, NULL, 'shipping_address', NULL, 1, 0, NULL, NULL, NULL, 'langs', 38, '2019-05-23 15:26:30', '2019-05-23 15:26:30'),
 (86, 'Đặt hàng', 'Send order', NULL, NULL, NULL, NULL, 'send_order', NULL, 1, 0, NULL, NULL, NULL, 'langs', 39, '2019-05-23 15:30:57', '2019-05-23 15:30:57'),
 (87, 'Đơn hàng', 'Order', NULL, NULL, NULL, NULL, 'donhang', NULL, 1, 0, NULL, NULL, NULL, 'langs', 40, '2019-05-23 15:48:24', '2019-05-23 15:48:24'),
-(88, 'Bộ tính', 'Load Calculator', NULL, NULL, NULL, NULL, 'caculator', NULL, 1, 0, NULL, NULL, NULL, 'langs', 41, '2019-06-08 07:45:46', '2019-06-08 07:45:46');
+(88, 'Tin nổi bật', 'Hot news', NULL, NULL, NULL, NULL, 'hot_news', NULL, 1, 0, NULL, NULL, NULL, 'langs', 41, '2019-06-11 09:10:53', '2019-06-11 09:10:53'),
+(89, 'Sản phẩm nổi bật', 'Hot Products', NULL, NULL, NULL, NULL, 'hot_product', NULL, 1, 0, NULL, NULL, NULL, 'langs', 42, '2019-06-11 09:12:12', '2019-06-11 09:12:12'),
+(90, 'Tại sao chọn chúng tôi', 'Why choose us', NULL, NULL, NULL, NULL, 'why', NULL, 1, 0, NULL, NULL, NULL, 'langs', 43, '2019-06-11 09:13:25', '2019-06-11 09:13:25'),
+(91, 'Bộ tính', 'Load Calculator', NULL, NULL, NULL, NULL, 'caculator', NULL, 1, 0, NULL, NULL, NULL, 'langs', 44, '2019-06-11 09:14:06', '2019-06-11 09:14:06');
 
 -- --------------------------------------------------------
 
@@ -1273,12 +1293,12 @@ INSERT INTO `slider` (`id`, `user_id`, `name_vi`, `name_en`, `name_jp`, `name_kr
 
 CREATE TABLE `slogan` (
   `id` int(11) NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
+  `name_vi` varchar(255) DEFAULT NULL,
   `name_en` varchar(255) DEFAULT NULL,
   `photo` text,
-  `content` text,
+  `content_vi` text,
   `content_en` text,
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -1286,7 +1306,7 @@ CREATE TABLE `slogan` (
 -- Đang đổ dữ liệu cho bảng `slogan`
 --
 
-INSERT INTO `slogan` (`id`, `name`, `name_en`, `photo`, `content`, `content_en`, `created_at`, `updated_at`) VALUES
+INSERT INTO `slogan` (`id`, `name_vi`, `name_en`, `photo`, `content_vi`, `content_en`, `created_at`, `updated_at`) VALUES
 (1, 'Giao hàng kịp thời', 'Timely delivery', '1513754983_quality-item-1.png', '<p>Kh&ocirc;ng m&aacute;y in n&agrave;o nhanh hơn. Đặt h&agrave;ng ng&agrave;y h&ocirc;m nay v&agrave;o l&uacute;c 8 giờ tối theo giờ EST</p>', '<p>No printer any faster. Order today at 8pm EST</p>', '2017-12-20 09:42:26', '2017-12-20 02:42:26'),
 (3, 'In chất lượng', NULL, '1513754996_quality-item-2.png', '<p>Mực tươi s&aacute;ng. Giấy d&agrave;y. Cắt ch&iacute;nh x&aacute;c. Ch&uacute;ng t&ocirc;i tin rằng vấn đề in chất lượng l&agrave; vấn đề.</p>', NULL, '2017-12-20 07:30:08', '2017-12-20 00:30:08'),
 (4, 'Lời hứa của công ty', NULL, '1513755045_quality-item-3.png', '<p>Lu&ocirc;n l&agrave;m việc chuy&ecirc;n nghiệp, sản phẩm uy t&iacute;n v&agrave; chất lượng đến tay kh&aacute;ch h&agrave;ng</p>', NULL, '2017-12-20 07:30:45', '2017-12-20 00:30:45');
@@ -1610,7 +1630,7 @@ ALTER TABLE `banner_position`
 -- AUTO_INCREMENT cho bảng `bills`
 --
 ALTER TABLE `bills`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT cho bảng `chinhanh`
@@ -1622,7 +1642,7 @@ ALTER TABLE `chinhanh`
 -- AUTO_INCREMENT cho bảng `contacts`
 --
 ALTER TABLE `contacts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `cv`
@@ -1652,13 +1672,13 @@ ALTER TABLE `gioithieu`
 -- AUTO_INCREMENT cho bảng `images`
 --
 ALTER TABLE `images`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT cho bảng `langs`
 --
 ALTER TABLE `langs`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
 
 --
 -- AUTO_INCREMENT cho bảng `lienket`

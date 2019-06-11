@@ -39,6 +39,8 @@
                 'shipping_address' => "Shipping Address",
                 'send_order' => "Send order",
                 'donhang' => "Order",
-                'caculator' => "Load Calculator",
+                'hot_news' => "Hot news",
+                'hot_product' => "Hot Products",
                 'why' => "Why choose us",
+                'caculator' => "Load Calculator",
                 ];

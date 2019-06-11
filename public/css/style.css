@@ -904,6 +904,9 @@ a.vk-btn:hover{
     padding: 5px;
     width: 100px;
 }
+.solar-calculator-wrapper #load-calc td:first-of-type input {
+    width: 210px;
+}
 .solar-calculator-items .left{
     float:left;
 }
