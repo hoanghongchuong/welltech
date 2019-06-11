@@ -31,36 +31,15 @@ $lang = Session::get('locale');
             <div class="title-why-choose">{{trans('label.why')}}</div>
             <div class="dongke"><span></span></div>
             <div class="box-item">
+                @foreach($slogans as $slogan)
                 <div class="col-md-4">
                     <div class="box">
-                        <img src="{{asset('public/images/icon1.png')}}">
-                        <p class="name">Bảo vệ môi trường</p>
-                        <div class="des">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat.</div>
+                        <img src="{{asset('upload/hinhanh/'.$slogan['photo'])}}">
+                        <p class="name">{{$slogan['name_'.$lang]}}</p>
+                        <div class="des">{!! $slogan['content_'.$lang] !!}</div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="box">
-                        <img src="{{asset('public/images/icon2.png')}}">
-                        <p class="name">Tiết kiệm điện năng</p>
-                        <div class="des">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat.</div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="box">
-                        <img src="{{asset('public/images/icon3.png')}}">
-                        <p class="name">Chất lượng cao</p>
-                        <div class="des">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat.</div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>

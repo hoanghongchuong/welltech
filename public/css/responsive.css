@@ -49,6 +49,12 @@
 	.detail_contentx{
 		padding-left: 15px;
 	}
+	.hot-proudct-box{
+		margin-top: 20px;
+	}
+	.about-us{
+		margin-bottom: 0px;
+	}
 }
 @media (min-width: 768px) {
 	

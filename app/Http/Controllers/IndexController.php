@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use App\Contact;
 use App\NewsCate;
 use App\News;
+use App\Slogan;
 use App\NewsLetter;
 use App\Recruitment;
 use App\Products;
@@ -28,12 +29,8 @@ class IndexController extends Controller {
 		$setting = DB::table('setting')->select()->where('id', 1)->get()->first();
 
 		$dichvu = DB::table('news')->select()->where('status', 1)->where('com', 'dich-vu')->orderBy('stt', 'asc')->get();
-
-		$about = DB::table('about')->where('com', 'gioi-thieu')->get();
-		
-		Cache::forever('setting', $setting);
-
-		
+		$about = DB::table('about')->where('com', 'gioi-thieu')->get();		
+		Cache::forever('setting', $setting);		
 		session_start();
 		// App::setLocale(Session::get('locale'));
 		if (Session::has('locale')) {
@@ -48,7 +45,6 @@ class IndexController extends Controller {
 	 * @return Response
 	 */
 	public function getLangs(Request $request) {
-
 		// App::setLocale($request->id);
 		//Session::set('locale', $request->id);
 		Session::put('locale', $request->slug);
@@ -61,6 +57,7 @@ class IndexController extends Controller {
 		$news = News::where('status',1)->where('com','tin-tuc')->orderBy('id','desc')->take(5)->get()->toArray();
 		$hot_news = News::where('status',1)->where('com','tin-tuc')->where('noibat',1)->orderBy('id','desc')->take(4)->get()->toArray();
 		$hotProducts = Products::where('noibat',1)->where('status',1)->take(20)->orderBy('id','desc')->get()->toArray();
+		$slogans = Slogan::get();
 		$partners = DB::table('lienket')->where('com','doitac')->orWhere('com','khachhang')->get();
 		$about_home = About::where('status',1)->where('com','gioi-thieu')->first()->toArray();
 		$feedbacks = Feedback::get()->toArray();
@@ -72,7 +69,7 @@ class IndexController extends Controller {
 		$description = $setting->description_vi;
 		// End cấu hình SEO
 		$img_share = asset('upload/hinhanh/' . $setting->photo);
-		return view('templates.index_tpl', compact('sliders', 'com', 'about', 'news', 'keyword', 'description', 'title', 'img_share', 'hotProducts', 'slider', 'partners', 'projects', 'lang', 'about_video', 'feedbacks','about_home','hot_news'));
+		return view('templates.index_tpl', compact('sliders', 'com', 'about', 'news', 'keyword', 'description', 'title', 'img_share', 'hotProducts', 'slider', 'partners', 'projects', 'lang', 'about_video', 'feedbacks','about_home','hot_news','slogans'));
 	}
 
 	public function getAbout() {
@@ -117,8 +114,8 @@ class IndexController extends Controller {
 		$description = "Search: " . $search;
 		$img_share = '';
 		$com = 'search';
-		$value = ['tin-tuc', 'du-an','linh-vuc'];
-		$data = News::whereIn('com', $value)->where('name_'.$lang, 'LIKE', '%' . $search . '%')->orderBy('id', 'DESC')->get()->toArray();		
+		$value = ['san-pham'];
+		$data = Products::whereIn('com', $value)->where('name_'.$lang, 'LIKE', '%' . $search . '%')->orderBy('id', 'DESC')->get();		
 
 		return view('templates.search_tpl', compact('data', 'description', 'title', 'img_share', 'search', 'com','lang'));
 	}

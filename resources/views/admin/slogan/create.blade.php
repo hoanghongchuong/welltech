@@ -35,17 +35,17 @@
             
             <div class="col-md-6">
               <div class="form-group">
-                <label for="">Tên</label>
-                <input type="text" name="txtName" class="form-control" value="">
+                <label for="">Tên tiếng việt</label>
+                <input type="text" name="name_vi" class="form-control" value="">
               </div>
               <div class="form-group">
                   <label for="">Nội dung</label>
-                  <textarea name="content" id="txtContent" cols="30" rows="10"></textarea>
+                  <textarea name="content_vi" id="txtContent" cols="30" rows="10"></textarea>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label for="">Tên</label>
+                <label for="">Tên tiếng anh</label>
                 <input type="text" name="name_en" class="form-control" value="">
               </div>
             	<div class="form-group">
@@ -58,7 +58,7 @@
             <div class="row">
             <div class="col-md-6">
                 <button type="submit" class="btn btn-primary">Lưu</button>
-                <button type="button" onclick="javascript:window.location='backend/backend'" class="btn btn-danger">Thoát</button>
+                <button type="button" onclick="javascript:window.location='backend/slogan'" class="btn btn-danger">Thoát</button>
               </div>
             </div>
           </div>

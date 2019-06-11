@@ -37,12 +37,12 @@
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label for="">Tên</label>
-                <input type="text" name="txtName" class="form-control" value="{{$slogan->name}}">
+                <label for="">Tên tiếng việt</label>
+                <input type="text" name="name_vi" class="form-control" value="{{$slogan->name_vi}}">
               </div>
               <div class="form-group">
                   <label for="">Nội dung</label>
-                  <textarea name="content" id="txtContent" cols="30" rows="10">{{$slogan->content}}</textarea>
+                  <textarea name="content_vi" id="txtContent" cols="30" rows="10">{{$slogan->content_vi}}</textarea>
               </div>
             </div>
             <div class="col-md-6">

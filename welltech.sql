@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th6 11, 2019 lúc 11:16 AM
+-- Thời gian đã tạo: Th6 11, 2019 lúc 12:10 PM
 -- Phiên bản máy phục vụ: 10.1.38-MariaDB
 -- Phiên bản PHP: 7.2.17
 
@@ -459,7 +459,10 @@ CREATE TABLE `images` (
 INSERT INTO `images` (`id`, `product_id`, `service_id`, `name`, `alias`, `photo`, `status`, `image_path`, `alt`, `stt`, `created_at`, `updated_at`) VALUES
 (29, 15, NULL, NULL, NULL, '1560134624_duan3.jpg', 1, NULL, NULL, 0, '2019-06-10 02:43:44', NULL),
 (30, 15, NULL, NULL, NULL, '1560134624_duan4.jpg', 1, NULL, NULL, 0, '2019-06-10 02:43:44', NULL),
-(31, 15, NULL, NULL, NULL, '1560134624_sp1.png', 1, NULL, NULL, 0, '2019-06-10 02:43:44', NULL);
+(31, 15, NULL, NULL, NULL, '1560134624_sp1.png', 1, NULL, NULL, 0, '2019-06-10 02:43:44', NULL),
+(32, 8, NULL, NULL, NULL, '1560246762_p1.jpg', 1, NULL, NULL, 0, '2019-06-11 09:52:42', NULL),
+(33, 8, NULL, NULL, NULL, '1560246762_p2.png', 1, NULL, NULL, 0, '2019-06-11 09:52:42', NULL),
+(34, 8, NULL, NULL, NULL, '1560246762_p3.jpg', 1, NULL, NULL, 0, '2019-06-11 09:52:42', NULL);
 
 -- --------------------------------------------------------
 
@@ -494,7 +497,7 @@ CREATE TABLE `langs` (
 
 INSERT INTO `langs` (`id`, `name_vi`, `name_en`, `name_jp`, `name_kr`, `name_chn`, `title_en`, `alias`, `photo`, `status`, `lever`, `title_vi`, `keyword`, `description`, `com`, `stt`, `created_at`, `updated_at`) VALUES
 (71, 'Chi tiết', 'Detail', NULL, NULL, NULL, NULL, 'detail', NULL, 1, 0, NULL, NULL, NULL, 'langs', 24, '2019-05-20 14:15:51', '2019-05-20 14:15:51'),
-(72, 'Link Map', 'Link bản đồ', NULL, NULL, NULL, NULL, 'link_map', NULL, 1, 0, NULL, NULL, NULL, 'langs', 25, '2019-05-20 14:40:54', '2019-05-20 14:40:54'),
+(72, 'Link bản đồ', 'Link Map', NULL, NULL, NULL, NULL, 'link_map', NULL, 1, 0, NULL, NULL, NULL, 'langs', 25, '2019-06-11 09:46:19', '2019-06-11 09:46:19'),
 (73, 'Sản phẩm', 'Product', NULL, NULL, NULL, NULL, 'product', NULL, 1, 0, NULL, NULL, NULL, 'langs', 26, '2019-05-22 14:51:42', '2019-05-22 14:51:42'),
 (29, 'Đối tác', 'Partner', NULL, NULL, NULL, NULL, 'doitac', NULL, 1, 0, NULL, NULL, NULL, 'langs', 9, '2018-11-15 14:53:35', '2018-11-15 14:53:35'),
 (79, 'Thành tiền', 'Subtotal', NULL, NULL, NULL, NULL, 'subtotal', NULL, 1, 0, NULL, NULL, NULL, 'langs', 32, '2019-05-23 15:08:17', '2019-05-23 15:08:17'),
@@ -1232,7 +1235,7 @@ CREATE TABLE `setting` (
 --
 
 INSERT INTO `setting` (`id`, `name_vi`, `name_en`, `name_jp`, `name_kr`, `name_chn`, `title_vi`, `title_en`, `company_vi`, `company_en`, `company_jp`, `company_kr`, `company_chn`, `website`, `address_vi`, `address_en`, `address_jp`, `address_kr`, `address_chn`, `phone`, `hotline`, `hotline_hr`, `fax`, `email`, `email_test`, `email_hr`, `photo`, `logo`, `favico`, `title_index`, `mota_vi`, `mota_en`, `content_vi`, `content_en`, `facebook`, `twitter`, `skype`, `google`, `zalo`, `youtube`, `slogan_vi`, `slogan_en`, `slogan_jp`, `slogan_kr`, `slogan_chn`, `status`, `cv`, `toado`, `copyright`, `iframemap`, `codechat`, `analytics`, `keyword_vi`, `description_vi`, `created_at`, `updated_at`) VALUES
-(1, NULL, NULL, NULL, NULL, NULL, 'CÔNG TY CỔ PHẦN Welltech', NULL, 'CÔNG TY CỔ PHẦN Welltech', 'CÔNG TY CỔ PHẦN Welltech', NULL, NULL, NULL, NULL, 'Tầng 5, Tòa nhà Bưu Điện Đại Kim, số 15 đường Nguyễn Cảnh Dị, Q.Hoàng Mai, Hà Nội', 'Tầng 5, Tòa nhà Bưu Điện Đại Kim, số 15 đường Nguyễn Cảnh Di', NULL, NULL, NULL, '024 3540 0800', '0911 872 884', NULL, NULL, 'chuonghoanghong@gmail.com', NULL, NULL, '1558360486_logo.jpg', '1558360486_logo.jpg', '1558360486_logo.jpg', NULL, NULL, NULL, NULL, NULL, 'https://www.facebook.com/FacebookforDevelopers/', NULL, NULL, 'https://plus.google.com/?hl=vi', 'sdfs', 'https://www.youtube.com/', 'Chúng tôi luôn quan niệm rằng việc xây dựng chữ TÍN với Quý khách hàng và đối tác phải đặt lên hàng đầu, là giá trị to lớn nhất để phát triển doanh nghiệp bền vững.', 'Slogan tieengs anh', NULL, NULL, NULL, 1, '1543305485_WEB IVY - ĐIỂM CẦN SỬA-converted.docx', NULL, '© Copyright 2019. WELLTECH - All rights reseverd', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7451.171877144796!2d105.871187!3d20.969137!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ac25be4ca5e3%3A0xe81d88694b0116b9!2zWcOqbiBEdXnDqm4sIFnDqm4gU-G7nywgSG_DoG5nIE1haSwgSMOgIE7hu5lpLCBWaWV0bmFt!5e0!3m2!1sen!2s!4v1509609109763\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>', NULL, NULL, NULL, NULL, '2019-05-21 14:05:49', '2019-05-21 14:05:49');
+(1, NULL, NULL, NULL, NULL, NULL, 'CÔNG TY CỔ PHẦN Welltech', NULL, 'CÔNG TY CỔ PHẦN Welltech', 'CÔNG TY CỔ PHẦN Welltech', NULL, NULL, NULL, NULL, 'Tầng 5, Tòa nhà Bưu Điện Đại Kim, số 15 đường Nguyễn Cảnh Dị, Q.Hoàng Mai, Hà Nội', 'Tầng 5, Tòa nhà Bưu Điện Đại Kim, số 15 đường Nguyễn Cảnh Di', NULL, NULL, NULL, '024 3540 0800', '0911 872 884', NULL, NULL, 'chuonghoanghong@gmail.com', NULL, NULL, '1560246540_logofix.png', '1560246540_logofix.png', '1560246540_logofix.png', NULL, NULL, NULL, NULL, NULL, 'https://www.facebook.com/FacebookforDevelopers/', NULL, NULL, 'https://plus.google.com/?hl=vi', 'sdfs', 'https://www.youtube.com/', 'Chúng tôi luôn quan niệm rằng việc xây dựng chữ TÍN với Quý khách hàng và đối tác phải đặt lên hàng đầu, là giá trị to lớn nhất để phát triển doanh nghiệp bền vững.', 'Slogan tieengs anh', NULL, NULL, NULL, 1, '1543305485_WEB IVY - ĐIỂM CẦN SỬA-converted.docx', NULL, '© Copyright 2019. WELLTECH - All rights reseverd', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7451.171877144796!2d105.871187!3d20.969137!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ac25be4ca5e3%3A0xe81d88694b0116b9!2zWcOqbiBEdXnDqm4sIFnDqm4gU-G7nywgSG_DoG5nIE1haSwgSMOgIE7hu5lpLCBWaWV0bmFt!5e0!3m2!1sen!2s!4v1509609109763\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>', NULL, NULL, NULL, NULL, '2019-06-11 09:49:00', '2019-06-11 09:49:00');
 
 -- --------------------------------------------------------
 
@@ -1307,9 +1310,9 @@ CREATE TABLE `slogan` (
 --
 
 INSERT INTO `slogan` (`id`, `name_vi`, `name_en`, `photo`, `content_vi`, `content_en`, `created_at`, `updated_at`) VALUES
-(1, 'Giao hàng kịp thời', 'Timely delivery', '1513754983_quality-item-1.png', '<p>Kh&ocirc;ng m&aacute;y in n&agrave;o nhanh hơn. Đặt h&agrave;ng ng&agrave;y h&ocirc;m nay v&agrave;o l&uacute;c 8 giờ tối theo giờ EST</p>', '<p>No printer any faster. Order today at 8pm EST</p>', '2017-12-20 09:42:26', '2017-12-20 02:42:26'),
-(3, 'In chất lượng', NULL, '1513754996_quality-item-2.png', '<p>Mực tươi s&aacute;ng. Giấy d&agrave;y. Cắt ch&iacute;nh x&aacute;c. Ch&uacute;ng t&ocirc;i tin rằng vấn đề in chất lượng l&agrave; vấn đề.</p>', NULL, '2017-12-20 07:30:08', '2017-12-20 00:30:08'),
-(4, 'Lời hứa của công ty', NULL, '1513755045_quality-item-3.png', '<p>Lu&ocirc;n l&agrave;m việc chuy&ecirc;n nghiệp, sản phẩm uy t&iacute;n v&agrave; chất lượng đến tay kh&aacute;ch h&agrave;ng</p>', NULL, '2017-12-20 07:30:45', '2017-12-20 00:30:45');
+(1, 'Bảo vệ môi trường', 'Bảo vệ môi trường en', '1560246105_icon1.png', '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>', '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. en</p>', '2019-06-11 09:41:45', '2019-06-11 09:41:45'),
+(2, 'Tiết kiệm điện năng', 'Tiết kiệm điện năng en', '1560246143_icon2.png', '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>', '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. en</p>', '2019-06-11 09:42:23', '2019-06-11 09:42:23'),
+(3, 'Chất lượng cao', 'Chất lượng cao en', '1560246168_icon3.png', '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>', '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. en</p>', '2019-06-11 09:42:48', '2019-06-11 09:42:48');
 
 -- --------------------------------------------------------
 
@@ -1672,7 +1675,7 @@ ALTER TABLE `gioithieu`
 -- AUTO_INCREMENT cho bảng `images`
 --
 ALTER TABLE `images`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT cho bảng `langs`
@@ -1762,7 +1765,7 @@ ALTER TABLE `slider`
 -- AUTO_INCREMENT cho bảng `slogan`
 --
 ALTER TABLE `slogan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT cho bảng `useronline`

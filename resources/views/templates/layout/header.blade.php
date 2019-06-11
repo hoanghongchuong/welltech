@@ -9,7 +9,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3">
-                <img src="{{asset('upload/hinhanh/'.$setting->photo)}}" class="img-logo">
+                <a href="{{url('')}}" title=""><img src="{{asset('upload/hinhanh/'.$setting->photo)}}" class="img-logo"></a>
             </div>
             <div class="col-md-9">
                 
@@ -29,8 +29,7 @@
 <div class="menu-cate visible-md menu visible-lg">
     <div class="top-menu">  
         <div class="container">
-            <div class="row">
-               
+            <div class="row">               
                 <ul class="navi">
                     <li><a href="{{url('')}}">{{trans('label.home')}}</a></li>
                     <li>
@@ -66,8 +65,11 @@
                     <li><a href="{{url('lien-he')}}">{{trans('label.contact')}}</a></li>
                 </ul>
                 <div class="box-search">
-                    <input type="text" name="txtSearch">
-                    <i class="fa fa-search"></i>
+                    <form action="{{route('search')}}" method="get" accept-charset="utf-8">
+                        <input type="text" name="txtSearch" placeholder="search product...">
+                        <i class="fa fa-search"></i>
+                    </form>
+                    
                 </div>
 
             </div>

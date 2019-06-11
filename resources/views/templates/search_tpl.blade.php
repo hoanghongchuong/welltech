@@ -15,25 +15,24 @@
     <div class="container">
         <div class="row">           
             <div class="col-md-9">
-               <!--  <h1 class="title-about">{{$search}}</h1>
-                <p><span class="under-line"></span></p>   -->                      
-                @foreach($data as $item)                
-                <div class="row mb-30">
-                    <div class="col-sm-3">                                
-                        <a href="{{url($item['com'].'/'.$item["alias_vi"].'.html')}}" class="vk-project-item__img">
-                            <img src="{{asset('upload/news/'.$item["photo"])}}" alt="{{$item["name_".$lang]}}">
-                            <!-- <span class="_title">VINHOMES SKYLAKE </span> -->
+               <div class="list-product-item mt-0">
+                    @foreach($data as $item)
+                    <div class="box-item-product col-md-3 col-xs-6">
+                        <a href="{{url('san-pham/'.$item['alias_vi'].'.html')}}" title="{{$item['name_'.$lang]}}">
+                            <img src="{{asset('upload/product/'.$item['photo'])}}" alt="{{$item['name_'.$lang]}}">
                         </a>
-                    </div>    
-                    <div class="col-sm-9 left-news">
-                        <div class="name_news"><a href="{{url($item['com'].'/'.$item["alias_vi"].'.html')}}">{{$item["name_".$lang]}}</a></div>
-                        <p class="date-create">{{date('d/m/Y', strtotime($item["created_at"]))}}</p>
-                        <div class="short_content">
-                            {!! $item['mota_'.$lang] !!}
+                        <div class="footer-cate">
+                            <p class="name_product"><a href="{{url('san-pham/'.$item['alias_vi'].'.html')}}" title="{{$item['name_'.$lang]}}">{{$item['name_'.$lang]}}</a></p>
+                            <div class="price">
+                                @if($lang =='vi') {{number_format($item['price_vi'])}} vnđ
+                                @elseif($lang =='en') $ {{$item['price_en']}}
+                                @endif
+                            </div>
                         </div>
-                    </div>                            
-                </div>
-                @endforeach
+                    </div>                    
+                    @endforeach
+                    
+            </div>
             </div>
         </div>
     </div>

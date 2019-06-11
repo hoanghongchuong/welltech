@@ -74,7 +74,7 @@ header{
 }
 .box-right{
     float: right;
-    margin-top: 60px;
+    margin-top: 30px;
 
 }
 .phone{
@@ -286,6 +286,10 @@ ul.gt li a{
     height: 30px;
     width: 0px;
     display: none;
+    color: #fff;
+}
+.box-search input::placeholder{
+    color: #fff;
 }
 .show-input-search{
     display: inline-block !important;
@@ -341,7 +345,7 @@ ul.gt li a{
     width: 100%;
     float: left;
     margin-top: 40px;
-    margin-bottom: 40px;
+    /*margin-bottom: 40px;*/
 }
 .title-about{
     color: #4d4d4d;
@@ -376,7 +380,7 @@ ul.gt li a{
     float: left;
     margin-top: 40px;
     background: #f8f8f8;
-    padding-bottom: 50px;
+    /*padding-bottom: 50px;*/
 }
 .slider{
     width: 100%;
@@ -544,8 +548,7 @@ ul.gt li a{
     color: #fff;
     width: 100%;
     float: left;
-    padding:40px 0;
-    margin-top: 20px;
+    padding-bottom: 0px;
 }
 .vk-footer__top-content {
     -webkit-box-pack: justify;
