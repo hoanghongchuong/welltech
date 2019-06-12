@@ -17,16 +17,13 @@ $(document).ready(function($){
         console.log('da click');
         $('.btn-send-post-order').attr("disabled", true);
     });
-
-
     //caculator
     var trElement = '';
     var defaultHoursOnDay = 1;
     var defaultDaysOnWeek = 7;
     var defaultQuantity = 1;
     var defaultMinutesOnHour = '';
-    var trIndex = 0;
-    
+    var trIndex = 0;    
     function bindData(appliance, quantity, watts, minutesOnHour, hoursOnDay, daysOnWeek) {
         var avgTotal = hoursOnDay;
         var total = 0;
