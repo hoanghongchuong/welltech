@@ -34,10 +34,10 @@ $(document).ready(function($){
         var maxHoursDay = watts * hoursOnDay;
         return '<tr class="row_item">'+
                     '<td><input type="text" name="appliance['+ trIndex +']" value="'+ appliance +'"></td>'+
-                    '<td class="quantity"><input type="number" min="0" name="quantity['+ trIndex +']" value="' + quantity + '"></td>' +
-                    '<td><input type="number" min="0" name="watts['+ trIndex +']" value="'+ watts +'"></td>' +
+                    '<td><input type="number" min="0" name="quantity['+ trIndex +']" value="' + quantity + '" class="quantity"></td>' +
+                    '<td><input type="number" min="0" name="watts['+ trIndex +']" value="'+ watts +'" class="watt"></td>' +
                     '<td><input type="number" name="minutes_on_per_hour['+ trIndex +']" min="0" max="60" value="'+ minutesOnHour +'"></td>' +
-                    '<td><input type="number" name="hours_on_per_day['+ trIndex +']" min="0" max="24" value="' + hoursOnDay + '"></td>' +
+                    '<td><input type="number" name="hours_on_per_day['+ trIndex +']" min="0" max="24" value="' + hoursOnDay + '" class="hoursOnDay"></td>' +
                     '<td><input type="number" name="days_on_per_week['+ trIndex +']" min="0" max="7" value="' + daysOnWeek + '"></td>' +
                     '<td><input type="text" name="avg_total['+ trIndex +']" value="'+avgTotal+'" disabled="disabled"></td>' +
                     '<td class="get_total" ><input type="text" name="total['+ trIndex +']" value="'+ maxHoursDay +'" disabled="disabled"></td>' +
@@ -65,11 +65,28 @@ $(document).ready(function($){
            $('.setWatt').val(total); 
         });
     }
-    $(".row_item").change(function(){
-        // alert(1);
-        var quantity = $(this).find('.quantity input').val();
-        console.log(quantity);
+    $('body').on('keyup', '.quantity', function() {
+        var quantity = $(this).val();
+        var watt = $(this).parents('tr').find('.watt').val() || 0;
+        var hoursOnDay = $(this).parents('tr').find('.hoursOnDay').val();        
+        var result = quantity * watt * hoursOnDay;
+        $(this).parents('tr').find('.get_total input').val(result);
         totalMaxWatts();
     });
-    
+    $('body').on('keyup', '.watt', function() {
+        var watt = $(this).val();
+        var quantity = $(this).parents('tr').find('.quantity').val() || 0;
+        var hoursOnDay = $(this).parents('tr').find('.hoursOnDay').val();        
+        var result = quantity * watt * hoursOnDay;
+        $(this).parents('tr').find('.get_total input').val(result);
+        totalMaxWatts();
+    });
+    $('body').on('keyup', '.hoursOnDay', function() {
+        var hoursOnDay = $(this).val();
+        var quantity = $(this).parents('tr').find('.quantity').val() || 0;
+        var watt = $(this).parents('tr').find('.watt').val();        
+        var result = quantity * watt * hoursOnDay;
+        $(this).parents('tr').find('.get_total input').val(result);
+        totalMaxWatts();
+    });
 });
