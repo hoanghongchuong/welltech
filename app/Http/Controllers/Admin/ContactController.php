@@ -9,7 +9,7 @@ class ContactController extends Controller
 {
     //
     public function getContact(){
-    	$data = Contact::get();
+    	$data = Contact::orderBy('id','desc')->get();
     	$trang = "liên hệ";
     	return view('admin.contact.list', compact('data'));
     }

@@ -7,7 +7,7 @@ ul li{list-style: none;}
 }
 
 body{
-    font-family: 'RoboR';
+    /*font-family: 'RoboR';*/
     font-size: 14px;
 }
 a:hover {
@@ -63,6 +63,11 @@ a:hover {
 @font-face {
     font-family: 'RoboI';
     src: url('../fonts/Roboto-Italic.ttf');
+    font-style: normal;
+}
+@font-face {
+    font-family: 'SVN-Gotham';
+    src: url('../fonts/SVN-GothamBold.woff');
     font-style: normal;
 }
 header{
@@ -191,7 +196,7 @@ header{
     color: #fff;
 }
 .navi a{
-    font-family: 'RobotoCondensed','Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-family: ;
     text-transform: uppercase;
 }
 .menu ul.navi > li  a {
@@ -311,7 +316,6 @@ ul.gt li a{
     text-align: center;
     text-transform: uppercase;
     margin-top: 40px;
-    font-family: RoboB;
 }
 .dongke {
     width: 100%;
@@ -354,7 +358,7 @@ ul.gt li a{
     color: #4d4d4d;
     text-transform: uppercase;
     font-size: 26px;
-    font-family: RoboB;
+    /*font-family: RoboB;*/
     margin-top: 30px;
     margin-bottom: 20px;
 }
@@ -515,6 +519,7 @@ ul.gt li a{
     /*height: 320px;*/
     padding-top: 50px;
     padding-bottom: 50px;
+    background-size: cover;
 }
 .list-feedback{
     margin-top: 50px;
@@ -525,6 +530,12 @@ ul.gt li a{
     margin-top: 30px;
     text-transform: uppercase;
     font-size: 20px;
+}
+.owl-carousel-feedback img{
+    width: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
 }
 .feedback .owl-controls{
     margin-top: 30px;

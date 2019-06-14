@@ -156,7 +156,11 @@ $lang = Session::get('locale');
                     @foreach($feedbacks as $k=>$fb)
                     <div class="item @if($k==0)active @endif">
                         <div class="des">{!! $fb['content_'.$lang] !!}</div>
-                        <div class="name-feedback">{{$fb['name_'.$lang]}}</div>
+
+                        <div class="name-feedback">
+                            <img src="{{asset('upload/hinhanh/'.$fb['photo'])}}">
+                            <p>{{$fb['name_'.$lang]}}</p>
+                        </div>
                     </div>
                     @endforeach
                 </div>

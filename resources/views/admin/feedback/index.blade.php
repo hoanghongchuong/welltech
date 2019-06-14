@@ -27,7 +27,7 @@
               <tr>
                 <!-- <th style="width: 20px;"><input type="checkbox" name="chonhet" class="minimal" id="chonhet" /></th> -->
                 <th class="text-center with_dieuhuong">Stt</th>
-                <!-- <th>Hình ảnh</th> -->
+                <th>Hình ảnh</th>
                 <th>Tên</th>
                 <th>Nội dung</th>
                 <!-- <th>Chức vụ</th> -->
@@ -42,7 +42,7 @@
               <tr>
                 <!-- <td><input type="checkbox" name="chon" id="chon" value="" class="chon" /></td> -->
                 <td>{{$key+1}}</td>
-                <!-- <td><img src="{{asset('upload/hinhanh/'.$item->photo)}}" class="img_product" alt=""></td> -->
+                <td><img src="{{asset('upload/hinhanh/'.$item->photo)}}" class="img_product" alt=""></td>
                 <td>{{$item->name_vi}}</td>
                 <!-- <td>{{$item->position}}</td>   -->
                 <td>{!!$item->content_vi!!}</td>            

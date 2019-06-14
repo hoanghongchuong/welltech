@@ -28,20 +28,20 @@ $(document).ready(function($){
 	  		loop:true, 							
 	  		nav:true, 							
 	  		navText:['<i class="fa fa-caret-left"></i>','<i class="fa fa-caret-right"></i>'], 
-	  		autoplay:false, 						
+	  		autoplay:true, 						
 	  		autoplayTimeout:1500,
 			autoplayHoverPause:true,
 			autoplaySpeed: 2000,
 			responsiveClass:true, 				
 		    responsive:{
 		        0:{
-		            items:1,									            									            
+		            items:2,									            									            
 		        },
 		        600:{
-		            items:1,          
+		            items:2,          
 		        },
 		        1000:{
-		            items:1,  
+		            items:2,  
 		        }
 		    }
 		});

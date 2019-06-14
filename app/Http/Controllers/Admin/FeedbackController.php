@@ -17,17 +17,17 @@ class FeedbackController extends Controller
     	return view('admin.feedback.create');
     }
     public function postCreate(Request $request){
-    	// $img = $request->file('fImages');
-     //    $path_img='upload/hinhanh';
-     //    $img_name='';
-     //    if(!empty($img)){
-     //        $img_name=time().'_'.$img->getClientOriginalName();
-     //        $img->move($path_img,$img_name);
-     //    }
+    	$img = $request->file('fImages');
+        $path_img='upload/hinhanh';
+        $img_name='';
+        if(!empty($img)){
+            $img_name=time().'_'.$img->getClientOriginalName();
+            $img->move($path_img,$img_name);
+        }
         $data = new Feedback;
         $data->name_vi = $request->name_vi;
         $data->name_en = $request->name_en;
-        // $data->photo = $img_name; 
+        $data->photo = $img_name; 
         // $data->position = $request->position;
         $data->content_vi = $request->content_vi;
         $data->content_en = $request->content_en;
@@ -40,20 +40,20 @@ class FeedbackController extends Controller
     }
     public function postEdit(Request $request, $id){
         $data = Feedback::find($id);
-        // $img = $request->file('fImages');
-        // $img_current = 'upload/hinhanh/'.$request->img_current;
-        // if(!empty($img)){
-        //     $path_img='upload/hinhanh';
-        //     $img_name=time().'_'.$img->getClientOriginalName();
-        //     $img->move($path_img,$img_name);
-        //     $data->photo = $img_name;
-        //     if (File::exists($img_current)) {
-        //         File::delete($img_current);
-        //     }
-        // }
+        $img = $request->file('fImages');
+        $img_current = 'upload/hinhanh/'.$request->img_current;
+        if(!empty($img)){
+            $path_img='upload/hinhanh';
+            $img_name=time().'_'.$img->getClientOriginalName();
+            $img->move($path_img,$img_name);
+            $data->photo = $img_name;
+            if (File::exists($img_current)) {
+                File::delete($img_current);
+            }
+        }
         $data->name_vi = $request->name_vi;
         $data->name_en = $request->name_en;
-        // $data->photo = $img_name; 
+        $data->photo = $img_name; 
         // $data->position = $request->position;
         $data->content_vi = $request->content_vi;
         $data->content_en = $request->content_en;
