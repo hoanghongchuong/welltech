@@ -120,7 +120,7 @@
                             @endif
                             <textarea name="note" id="" cols="30" rows="8" class="cf-input" placeholder=""></textarea>
                             <div class="flex-center-center">
-                                <button class="btn-order btn-send-post-order">{{trans('label.send_order')}}</button>
+                                <button class="btn-order btn-send-post-order" style="margin-bottom: 20px;">{{trans('label.send_order')}}</button>
                             </div>
                         </div>
                 </div>

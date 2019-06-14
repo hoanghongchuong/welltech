@@ -43,7 +43,7 @@
                         </ul> -->
                     </li>
                     <li>
-                        <a href="">{{trans('label.product')}}<i class="fa fa-angle-down"></i></a>
+                        <a href="">{{trans('label.product')}} <i class="fa fa-angle-down"></i></a>
                         
                         <ul class="vk-menu__child">  
                         @foreach($categories as $category)                             
@@ -60,7 +60,7 @@
                         @endforeach                         
                         </ul>
                     </li>
-                    <li><a href="{{url('caculator')}}">{{trans('label.caculator')}}</a></li>
+                    <!-- <li><a href="{{url('caculator')}}">{{trans('label.caculator')}}</a></li> -->
                     <li><a href="{{url('tin-tuc')}}">{{trans('label.news')}}</a></li>                            
                     <li><a href="{{url('lien-he')}}">{{trans('label.contact')}}</a></li>
                 </ul>
@@ -100,8 +100,7 @@
                 </ul> -->
             </li>
             <li>
-                <a href="#">{{trans('label.product')}}</a>
-
+                <a href="#">{{trans('label.product')}} </a>
                 <a href="#menu2" data-toggle="collapse" class="_arrow-mobile"><i class="_icon fa fa-angle-down"></i></a>
                 <ul class="collapse" id="menu2">
                     @foreach($categories as $k=>$category)

@@ -1,6 +1,6 @@
 @media (max-width: 767px){
 	.box-right{
-		margin-top: 0px;
+		margin-top: 20px;
 	}
 	.list-hot-item{
 		display: block;
@@ -20,6 +20,7 @@
 	}
 	.vk-footer__item{
 		padding: 0;
+		margin-top: 20px;
 	}
 	.name_news{
 		margin-top: 7px;

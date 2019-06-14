@@ -68,6 +68,8 @@ a:hover {
 header{
     width: 100%;
     float: left;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 .img-logo{
     width: 100%;
@@ -101,7 +103,8 @@ header{
 .menu{
     width: 100%;
     float: left;
-    background: #222222;
+    background: #409693;
+    /*background: #222222;*/
 }
 .content-home{
     margin-top: 30px;
@@ -112,7 +115,7 @@ header{
 .menu-mobile{
     width: 100%;
     float: left;
-    margin-top: 20px;
+    /*margin-top: 20px;*/
 }
 .vk-header__search {
     text-align: right;
@@ -585,7 +588,7 @@ ul.gt li a{
 }
 .img-logo-footer{
     width: 260px;
-    height: 148px;
+    /*height: 148px;*/
 }
 .vk-footer__title{
     margin-top: 0px;
@@ -621,6 +624,7 @@ footer a{
 .content-box{
     width: 100%;
     float: left;
+    margin-bottom: 20px;
     /*margin-top: 30px;*/
 }
 .box-des-category{
