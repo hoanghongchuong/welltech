@@ -366,12 +366,12 @@ ul.gt li a{
     text-align: justify;
     font-size: 15px;
     line-height: 1.4;
-    -webkit-line-clamp: 5;
+    -webkit-line-clamp: 10;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    height: 147px;
+    height: 210px;
 }
 .read-more{
     margin-top: 30px;
