@@ -524,18 +524,40 @@ ul.gt li a{
 .list-feedback{
     margin-top: 50px;
     color: #fff;
-    text-align: center;
+    /*text-align: center;*/
 }
 .name-feedback{
-    margin-top: 30px;
-    text-transform: uppercase;
-    font-size: 20px;
+    margin-top: 10px;
+       
+    margin-bottom: 20px;
+}
+.name-feedback .name{
+    font-size: 16px;
+    margin-bottom: 0;
+    text-transform: uppercase; 
+}
+.position{
+    font-size: 13px;
 }
 .owl-carousel-feedback img{
-    width: 100px;
-    margin-left: auto;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    /*margin-left: auto;
     margin-right: auto;
-    margin-bottom: 10px;
+    margin-bottom: 10px;*/
+}
+.owl-carousel-feedback .media-heading{
+    color: #fff;
+    margin-top: 15px;
+    font-size: 16px;
+}
+.owl-carousel-feedback .item{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.owl-carousel-feedback .des{
+    font-style: italic;
 }
 .feedback .owl-controls{
     margin-top: 30px;

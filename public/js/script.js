@@ -28,7 +28,7 @@ $(document).ready(function($){
 	  		loop:true, 							
 	  		nav:true, 							
 	  		navText:['<i class="fa fa-caret-left"></i>','<i class="fa fa-caret-right"></i>'], 
-	  		autoplay:true, 						
+	  		autoplay:false, 						
 	  		autoplayTimeout:1500,
 			autoplayHoverPause:true,
 			autoplaySpeed: 2000,

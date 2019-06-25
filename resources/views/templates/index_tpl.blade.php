@@ -155,11 +155,19 @@ $lang = Session::get('locale');
                 <div class="owl-carousel owl-theme owl-carousel-feedback owl-carousel-product1">
                     @foreach($feedbacks as $k=>$fb)
                     <div class="item @if($k==0)active @endif">
+                        <div class="media">
+                            <a class="pull-left" href="#">
+                                <img class="media-object" class="img-circle" src="{{asset('upload/hinhanh/'.$fb['photo'])}}" alt="Image">
+                            </a>
+                            <div class="media-body">
+                                <h4 class="media-heading">{{$fb['mota_'.$lang]}}</h4>
+                                <!-- <p>Text goes here...</p> -->
+                            </div>
+                        </div>
                         <div class="des">{!! $fb['content_'.$lang] !!}</div>
-
                         <div class="name-feedback">
-                            <img src="{{asset('upload/hinhanh/'.$fb['photo'])}}">
-                            <p>{{$fb['name_'.$lang]}}</p>
+                            <p class="name">{{$fb['name_'.$lang]}}</p>
+                            <p class="position">{{$fb['position_'.$lang]}}</p>
                         </div>
                     </div>
                     @endforeach
