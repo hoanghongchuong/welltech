@@ -2,10 +2,10 @@
 -- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th6 14, 2019 lúc 08:01 AM
--- Phiên bản máy phục vụ: 10.1.38-MariaDB
--- Phiên bản PHP: 7.2.17
+-- Máy chủ: localhost:3306
+-- Thời gian đã tạo: Th6 25, 2019 lúc 07:28 PM
+-- Phiên bản máy phục vụ: 10.2.24-MariaDB-cll-lve
+-- Phiên bản PHP: 7.2.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `welltech`
+-- Cơ sở dữ liệu: `wel03484_db`
 --
 
 -- --------------------------------------------------------
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `about` (
   `id` int(10) UNSIGNED NOT NULL,
-  `user_id` int(11) DEFAULT '0',
+  `user_id` int(11) DEFAULT 0,
   `name_vi` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `name_en` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `name_jp` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -41,37 +41,37 @@ CREATE TABLE `about` (
   `alias_jp` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `alias_kr` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `alias_chn` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `photo` text COLLATE utf8_unicode_ci,
-  `mota_vi` text COLLATE utf8_unicode_ci,
-  `mota_en` text CHARACTER SET utf8,
-  `mota_jp` text COLLATE utf8_unicode_ci,
-  `mota_kr` text COLLATE utf8_unicode_ci,
-  `mota_chn` text COLLATE utf8_unicode_ci,
-  `link` text COLLATE utf8_unicode_ci,
-  `content_vi` longtext COLLATE utf8_unicode_ci,
-  `content_en` longtext CHARACTER SET utf8,
-  `content_jp` text COLLATE utf8_unicode_ci,
-  `content_kr` text COLLATE utf8_unicode_ci,
-  `content_chn` text COLLATE utf8_unicode_ci,
-  `status` int(11) DEFAULT '1',
-  `status_en` int(11) DEFAULT '1',
+  `photo` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `mota_vi` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `mota_en` text CHARACTER SET utf8 DEFAULT NULL,
+  `mota_jp` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `mota_kr` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `mota_chn` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `link` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `content_vi` longtext COLLATE utf8_unicode_ci DEFAULT NULL,
+  `content_en` longtext CHARACTER SET utf8 DEFAULT NULL,
+  `content_jp` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `content_kr` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `content_chn` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `status` int(11) DEFAULT 1,
+  `status_en` int(11) DEFAULT 1,
   `title_vi` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `title_en` varchar(250) CHARACTER SET utf8 DEFAULT NULL,
   `title_jp` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
   `title_kr` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
   `title_chn` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `keyword_vi` text COLLATE utf8_unicode_ci,
-  `keyword_en` text COLLATE utf8_unicode_ci,
-  `keyword_jp` text COLLATE utf8_unicode_ci,
-  `keyword_kr` text COLLATE utf8_unicode_ci,
-  `keyword_chn` text COLLATE utf8_unicode_ci,
-  `description_vi` text COLLATE utf8_unicode_ci,
-  `description_en` text CHARACTER SET utf8,
-  `description_jp` text COLLATE utf8_unicode_ci,
-  `description_kr` text COLLATE utf8_unicode_ci,
-  `description_chn` text COLLATE utf8_unicode_ci,
-  `com` text COLLATE utf8_unicode_ci,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `keyword_vi` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `keyword_en` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `keyword_jp` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `keyword_kr` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `keyword_chn` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description_vi` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description_en` text CHARACTER SET utf8 DEFAULT NULL,
+  `description_jp` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description_kr` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description_chn` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `com` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -80,7 +80,7 @@ CREATE TABLE `about` (
 --
 
 INSERT INTO `about` (`id`, `user_id`, `name_vi`, `name_en`, `name_jp`, `name_kr`, `name_chn`, `alias_vi`, `alias_en`, `alias_jp`, `alias_kr`, `alias_chn`, `photo`, `mota_vi`, `mota_en`, `mota_jp`, `mota_kr`, `mota_chn`, `link`, `content_vi`, `content_en`, `content_jp`, `content_kr`, `content_chn`, `status`, `status_en`, `title_vi`, `title_en`, `title_jp`, `title_kr`, `title_chn`, `keyword_vi`, `keyword_en`, `keyword_jp`, `keyword_kr`, `keyword_chn`, `description_vi`, `description_en`, `description_jp`, `description_kr`, `description_chn`, `com`, `created_at`, `updated_at`) VALUES
-(1, 16, 'Giới thiệu về công ty', 'About us', 'ten tieng nhat', 'ten tieng han', 'ten tieng trung', NULL, NULL, NULL, NULL, NULL, '1558363846_about.jpg', '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Excepteur</p>', '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Excepteur</p>', NULL, NULL, NULL, NULL, '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Excepteur.&nbsp;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Excepteur&nbsp;</p>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Excepteur&nbsp;</p>', '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Excepteur.&nbsp;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>', NULL, NULL, NULL, 1, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'gioi-thieu', '2019-05-20 14:50:46', '2019-05-20 14:50:46');
+(1, 16, NULL, 'About us', 'ten tieng nhat', 'ten tieng han', 'ten tieng trung', NULL, NULL, NULL, NULL, NULL, '1558363846_about.jpg', '<p><span style=\"font-family: arial, helvetica, sans-serif; font-size: 10pt;\">WellTech is one of Vietnam&rsquo;s leading companies in renewable energy. We specialize in design, engineering, supply, installation, commissioning, operations and maintenance of solar power systems, ranging from KW to MW capacities. Welltech leadership team brings wealth of business experience of working in global, professional environment.</span></p>\r\n<p><span style=\"font-family: arial, helvetica, sans-serif; font-size: 10pt;\">Over the years, WellTech has developed and commercialized unique solar power solutions customized for each application. These include rooftop systems for different types of roofs (RCC floor, industrial metal roof), solarized petrol pumps, DC water pumps for agriculture and domestic requirement. WellTech has strong focus on continuous efficiency improvement and reduction in Rs./watt through innovative solutions &amp; vertical integration. With our knowledge of the photovoltaic domain, we are able to leverage global sourcing of high quality, reliable and cost effective solar panels and other components.</span></p>', '<p><span style=\"font-family: arial, helvetica, sans-serif; font-size: 10pt;\">WellTech is one of Vietnam&rsquo;s leading companies in renewable energy. We specialize in design, engineering, supply, installation, commissioning, operations and maintenance of solar power systems, ranging from KW to MW capacities. Welltech leadership team brings wealth of business experience of working in global, professional environment.</span></p>\r\n<p><span style=\"font-family: arial, helvetica, sans-serif; font-size: 10pt;\">Over the years, WellTech has developed and commercialized unique solar power solutions customized for each application. These include rooftop systems for different types of roofs (RCC floor, industrial metal roof), solarized petrol pumps, DC water pumps for agriculture and domestic requirement. WellTech has strong focus on continuous efficiency improvement and reduction in Rs./watt through innovative solutions &amp; vertical integration. With our knowledge of the photovoltaic domain, we are able to leverage global sourcing of high quality, reliable and cost effective solar panels and other components.</span></p>', NULL, NULL, NULL, NULL, '<h2 style=\"text-transform: uppercase;\"><span style=\"font-family: arial, helvetica, sans-serif;\">Why You Can Trust Us With Your Business</span></h2>\r\n<p style=\"text-align: justify;\"><span style=\"font-family: arial, helvetica, sans-serif; font-size: 10pt;\">WellTech is one of Vietnam&rsquo;s leading companies in renewable energy. We specialize in design, engineering, supply, installation, commissioning, operations and maintenance of solar power systems, ranging from KW to MW capacities. Welltech leadership team brings wealth of business experience of working in global, professional environment.</span></p>\r\n<p style=\"text-align: justify;\"><span style=\"font-family: arial, helvetica, sans-serif; font-size: 10pt;\">Over the years, WellTech has developed and commercialized unique solar power solutions customized for each application. These include rooftop systems for different types of roofs (RCC floor, industrial metal roof), solarized petrol pumps, DC water pumps for agriculture and domestic requirement. WellTech has strong focus on continuous efficiency improvement and reduction in Rs./watt through innovative solutions &amp; vertical integration. With our knowledge of the photovoltaic domain, we are able to leverage global sourcing of high quality, reliable and cost effective solar panels and other components.</span></p>\r\n<p style=\"text-align: justify;\"><span style=\"font-size: 10pt; font-family: arial, helvetica, sans-serif;\">You may be asking yourself why you should trust WellTech with your business. The short answer is because we care about every one of our customers. From the moment you place an order or contact our sales team, your satisfaction is our number one priority. If you\'re not happy with our service, then we\'re not happy. We will do everything we can in order to earn your trust as a lifelong customer.</span></p>\r\n<p style=\"text-align: justify;\"><span style=\"font-size: 10pt; font-family: arial, helvetica, sans-serif;\">Thank you for your trust and choosing us!</span></p>', '<h2 style=\"text-transform: uppercase;\">Why You Can Trust Us With Your Business</h2>\r\n<p style=\"text-align: justify;\"><span style=\"font-family: arial, helvetica, sans-serif; font-size: 10pt;\">WellTech is one of Vietnam&rsquo;s leading companies in renewable energy. We specialize in design, engineering, supply, installation, commissioning, operations and maintenance of solar power systems, ranging from KW to MW capacities. Welltech leadership team brings wealth of business experience of working in global, professional environment.</span></p>\r\n<p style=\"text-align: justify;\"><span style=\"font-family: arial, helvetica, sans-serif; font-size: 10pt;\">Over the years, WellTech has developed and commercialized unique solar power solutions customized for each application. These include rooftop systems for different types of roofs (RCC floor, industrial metal roof), solarized petrol pumps, DC water pumps for agriculture and domestic requirement. WellTech has strong focus on continuous efficiency improvement and reduction in Rs./watt through innovative solutions &amp; vertical integration. With our knowledge of the photovoltaic domain, we are able to leverage global sourcing of high quality, reliable and cost effective solar panels and other components.</span></p>\r\n<p style=\"text-align: justify;\"><span style=\"font-size: 10pt; font-family: arial, helvetica, sans-serif;\">You may be asking yourself why you should trust WellTech with your business. The short answer is because we care about every one of our customers. From the moment you place an order or contact our sales team, your satisfaction is our number one priority. If you\'re not happy with our service, then we\'re not happy. We will do everything we can in order to earn your trust as a lifelong customer.</span></p>\r\n<p style=\"text-align: justify;\"><span style=\"font-size: 10pt; font-family: arial, helvetica, sans-serif;\">Thank you for your trust and choosing us!</span></p>', NULL, NULL, NULL, 1, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'gioi-thieu', '2019-06-14 08:55:24', '2019-06-14 08:55:24');
 
 -- --------------------------------------------------------
 
@@ -96,9 +96,9 @@ CREATE TABLE `admins` (
   `email` varchar(250) NOT NULL,
   `phone` varchar(11) DEFAULT NULL,
   `avatar` varchar(250) DEFAULT NULL,
-  `active` int(1) NOT NULL DEFAULT '0',
+  `active` int(1) NOT NULL DEFAULT 0,
   `remember_token` varchar(100) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -108,7 +108,7 @@ CREATE TABLE `admins` (
 
 INSERT INTO `admins` (`id`, `name`, `username`, `password`, `email`, `phone`, `avatar`, `active`, `remember_token`, `created_at`, `updated_at`) VALUES
 (14, 'Hoàng Hồng Chương', 'chuonghh', '$2y$10$djhz7PqbI5znQ85CSMEAruto8L60wzHhM79bqE7mXV9t/7b5C1qHy', 'chuong1194@yahoo.com', '0987654321', NULL, 1, NULL, '2019-05-28 14:20:02', '2019-05-28 14:20:02'),
-(16, 'admin', 'admin', '$2y$10$3xfbQ423ijcq.kgRnuGB0O2U66gXaiz3kOvugj/d6YbBS0fSxQCVG', 'admin@team.vn', '0987654321', NULL, 1, 'zOk8bvVETFd9kky7DJMZVHmu7xSiDmpqMh4Alm7roHurHglLiXir7gcyOh9b', '2019-05-28 13:41:29', '2019-05-20 13:37:12');
+(16, 'admin', 'admin', '$2y$10$qgG39pKcakHa3B8OiSpBjO3nzRK9QDVLJGFiZEEnfQi0lRYNiMN.q', 'admin@team.vn', '0987654321', NULL, 1, 'MpeDEwi9OPo2bosSofhNHk1rIIZg7B5l3how0xVXJWXlbmVQNe1c0EvXUj72', '2019-06-14 06:14:34', '2019-06-14 06:14:31');
 
 -- --------------------------------------------------------
 
@@ -119,22 +119,22 @@ INSERT INTO `admins` (`id`, `name`, `username`, `password`, `email`, `phone`, `a
 CREATE TABLE `authorizations` (
   `id` int(10) UNSIGNED NOT NULL,
   `admin_id` int(11) UNSIGNED NOT NULL,
-  `is_super_admin` tinyint(1) NOT NULL DEFAULT '0',
-  `can_product_category` tinyint(1) NOT NULL DEFAULT '0',
-  `can_product` tinyint(1) NOT NULL DEFAULT '0',
-  `can_orders` tinyint(1) NOT NULL DEFAULT '0',
-  `can_news_category` tinyint(1) NOT NULL DEFAULT '0',
-  `can_news` tinyint(1) NOT NULL DEFAULT '0',
-  `can_contact` tinyint(1) NOT NULL DEFAULT '0',
-  `can_menu` tinyint(1) NOT NULL DEFAULT '0',
-  `can_partner` tinyint(1) NOT NULL DEFAULT '0',
-  `can_about` tinyint(1) NOT NULL DEFAULT '0',
-  `can_recruitment` tinyint(1) NOT NULL DEFAULT '0',
-  `can_slider` tinyint(1) NOT NULL DEFAULT '0',
-  `can_project` tinyint(1) NOT NULL DEFAULT '0',
-  `can_business_area` tinyint(1) NOT NULL DEFAULT '0',
-  `can_cv` tinyint(1) NOT NULL DEFAULT '0',
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `is_super_admin` tinyint(1) NOT NULL DEFAULT 0,
+  `can_product_category` tinyint(1) NOT NULL DEFAULT 0,
+  `can_product` tinyint(1) NOT NULL DEFAULT 0,
+  `can_orders` tinyint(1) NOT NULL DEFAULT 0,
+  `can_news_category` tinyint(1) NOT NULL DEFAULT 0,
+  `can_news` tinyint(1) NOT NULL DEFAULT 0,
+  `can_contact` tinyint(1) NOT NULL DEFAULT 0,
+  `can_menu` tinyint(1) NOT NULL DEFAULT 0,
+  `can_partner` tinyint(1) NOT NULL DEFAULT 0,
+  `can_about` tinyint(1) NOT NULL DEFAULT 0,
+  `can_recruitment` tinyint(1) NOT NULL DEFAULT 0,
+  `can_slider` tinyint(1) NOT NULL DEFAULT 0,
+  `can_project` tinyint(1) NOT NULL DEFAULT 0,
+  `can_business_area` tinyint(1) NOT NULL DEFAULT 0,
+  `can_cv` tinyint(1) NOT NULL DEFAULT 0,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -146,7 +146,7 @@ INSERT INTO `authorizations` (`id`, `admin_id`, `is_super_admin`, `can_product_c
 (1, 17, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, '2019-05-20 13:35:56', '2019-05-20 13:35:56'),
 (2, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '2018-11-13 14:34:31', '0000-00-00 00:00:00'),
 (3, 18, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, '2019-05-20 13:36:35', '2019-05-20 13:36:35'),
-(4, 14, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '2019-05-28 14:20:02', '2019-05-28 14:20:02');
+(4, 14, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '2019-06-25 07:18:46', '2019-05-28 14:20:02');
 
 -- --------------------------------------------------------
 
@@ -158,13 +158,13 @@ CREATE TABLE `banner` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `alias` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `photo` text COLLATE utf8_unicode_ci,
-  `status` int(11) NOT NULL DEFAULT '1',
+  `photo` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `status` int(11) NOT NULL DEFAULT 1,
   `image_path` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `alt` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `stt` int(11) NOT NULL DEFAULT '0',
+  `stt` int(11) NOT NULL DEFAULT 0,
   `com` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -179,7 +179,7 @@ CREATE TABLE `banner_content` (
   `image` varchar(255) NOT NULL,
   `link` varchar(255) DEFAULT NULL,
   `position` int(11) DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -201,7 +201,7 @@ INSERT INTO `banner_content` (`id`, `image`, `link`, `position`, `updated_at`, `
 CREATE TABLE `banner_position` (
   `id` int(11) NOT NULL,
   `name` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -230,15 +230,15 @@ CREATE TABLE `bills` (
   `address` varchar(250) DEFAULT NULL,
   `province` varchar(250) DEFAULT NULL,
   `district` varchar(250) DEFAULT NULL,
-  `note` text,
-  `status` tinyint(2) DEFAULT '0',
+  `note` text DEFAULT NULL,
+  `status` tinyint(2) DEFAULT 0,
   `total` int(11) DEFAULT NULL,
-  `detail` text,
+  `detail` text DEFAULT NULL,
   `language` varchar(11) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
   `updated_at` timestamp NULL DEFAULT '0000-00-00 00:00:00',
   `card_code` varchar(250) DEFAULT NULL,
-  `payment` int(2) DEFAULT '0'
+  `payment` int(2) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -246,7 +246,8 @@ CREATE TABLE `bills` (
 --
 
 INSERT INTO `bills` (`id`, `full_name`, `email`, `phone`, `address`, `province`, `district`, `note`, `status`, `total`, `detail`, `language`, `created_at`, `updated_at`, `card_code`, `payment`) VALUES
-(8, 'Hoàng Hồng Chương', 'admin@team.vn', '0987654321', 'Hà Nội', NULL, NULL, 's sdf sd ư', 1, 213, '[{\"product_name\":\"Off-Grid Solar Power Kit With 960 Watts of Panels and 3500 Watt 24VDC 120VAC Inverter Power Panel\",\"product_numb\":\"1\",\"product_price\":213,\"product_img\":\"1558451765_ogk-rec.jpeg\",\"product_code\":null}]', 'en', '2019-06-05 07:24:35', '2019-06-05 07:24:35', NULL, 0);
+(8, 'Hoàng Hồng Chương', 'admin@team.vn', '0987654321', 'Hà Nội', NULL, NULL, 's sdf sd ư', 1, 213, '[{\"product_name\":\"Off-Grid Solar Power Kit With 960 Watts of Panels and 3500 Watt 24VDC 120VAC Inverter Power Panel\",\"product_numb\":\"1\",\"product_price\":213,\"product_img\":\"1558451765_ogk-rec.jpeg\",\"product_code\":null}]', 'en', '2019-06-05 07:24:35', '2019-06-05 07:24:35', NULL, 0),
+(9, 'Hoàng Hồng Chương', 'admin@team.vn', '0987654321', 'Hà Nội', NULL, NULL, 'w w w w  ư ư', 0, 9600000, '[{\"product_name\":\"Off-Grid Solar Power Kit With 960 Watts of Panels and 3500 Watt 24VDC 120VAC Inverter Power Panel\",\"product_numb\":\"2\",\"product_price\":3000000,\"product_img\":\"1558451765_ogk-rec.jpeg\",\"product_code\":null},{\"product_name\":\"600 Watt Backup Kit With 56 Amp-hour Battery\",\"product_numb\":\"3\",\"product_price\":1200000,\"product_img\":\"1558455551_wind-sun_2272_12609628.jpg\",\"product_code\":null}]', 'vi', '2019-06-14 06:12:26', '2019-06-14 06:12:26', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -260,7 +261,7 @@ CREATE TABLE `chinhanh` (
   `website` varchar(250) DEFAULT NULL,
   `phone` varchar(250) DEFAULT NULL,
   `address` varchar(250) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -283,10 +284,10 @@ CREATE TABLE `contacts` (
   `name` varchar(255) DEFAULT NULL,
   `email` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
   `phone` varchar(11) CHARACTER SET latin1 DEFAULT NULL,
-  `address` text,
-  `content` text,
-  `status` tinyint(2) DEFAULT '0',
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `address` text DEFAULT NULL,
+  `content` text DEFAULT NULL,
+  `status` tinyint(2) DEFAULT 0,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -310,8 +311,8 @@ CREATE TABLE `cv` (
   `name` varchar(255) DEFAULT NULL,
   `phone` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
-  `document` text,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `document` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -332,7 +333,7 @@ CREATE TABLE `district` (
   `id` int(11) NOT NULL,
   `district_name` varchar(250) DEFAULT NULL,
   `province_id` int(11) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -356,9 +357,14 @@ CREATE TABLE `feedback` (
   `id` int(11) NOT NULL,
   `name_vi` varchar(250) DEFAULT NULL,
   `name_en` varchar(250) DEFAULT NULL,
-  `content_vi` text,
-  `content_en` text,
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `mota_vi` text DEFAULT NULL,
+  `mota_en` text DEFAULT NULL,
+  `content_vi` text DEFAULT NULL,
+  `content_en` text DEFAULT NULL,
+  `photo` varchar(250) DEFAULT NULL,
+  `position_vi` text DEFAULT NULL,
+  `position_en` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -366,10 +372,10 @@ CREATE TABLE `feedback` (
 -- Đang đổ dữ liệu cho bảng `feedback`
 --
 
-INSERT INTO `feedback` (`id`, `name_vi`, `name_en`, `content_vi`, `content_en`, `created_at`, `updated_at`) VALUES
-(1, 'Mr Leex', 'MLee', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat', '2019-05-20 15:29:22', '2019-05-20 15:29:22'),
-(2, 'Nguyễn Văn A', 'Nguyen Van A', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat', '2019-05-20 15:27:16', '2019-05-20 15:27:16'),
-(3, 'Nguyễn Văn B', 'Nguyen B', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat', '2019-05-20 15:28:15', '2019-05-20 15:28:15');
+INSERT INTO `feedback` (`id`, `name_vi`, `name_en`, `mota_vi`, `mota_en`, `content_vi`, `content_en`, `photo`, `position_vi`, `position_en`, `created_at`, `updated_at`) VALUES
+(1, 'Mr Leex', 'MLee', 'thật sự hài lòng', 'Thật sự hài lòng en', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat', '1560574472_logo1.png', 'Giám đốc', 'manager', '2019-06-15 04:54:32', '2019-06-25 07:45:00'),
+(2, 'Nguyễn Văn A', 'Nguyen Van A', NULL, NULL, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat', '1560574486_logo1.png', NULL, NULL, '2019-06-15 04:54:46', '2019-06-15 04:54:46'),
+(3, 'Nguyễn Văn B', 'Nguyen B', 'Là sự lựa chọn hoàn hảo nhât', 'Là sự lựa chọn hoàn hảo nhâtsss', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat', '1561448782_29830021_969691806520970_1378909707_o.jpg', 'Giám đốc', 'manager', '2019-05-20 15:28:15', '2019-06-25 07:46:22');
 
 -- --------------------------------------------------------
 
@@ -389,34 +395,34 @@ CREATE TABLE `gioithieu` (
   `alias_kr` varchar(250) DEFAULT NULL,
   `alias_en` varchar(250) DEFAULT NULL,
   `alias_chn` varchar(250) DEFAULT NULL,
-  `image` text,
-  `mota_vi` text,
-  `mota_en` text,
-  `mota_jp` text,
-  `mota_kr` text,
-  `mota_chn` text,
-  `content_vi` text,
-  `content_en` text,
-  `content_jp` text,
-  `content_kr` text,
-  `content_chn` text,
+  `image` text DEFAULT NULL,
+  `mota_vi` text DEFAULT NULL,
+  `mota_en` text DEFAULT NULL,
+  `mota_jp` text DEFAULT NULL,
+  `mota_kr` text DEFAULT NULL,
+  `mota_chn` text DEFAULT NULL,
+  `content_vi` text DEFAULT NULL,
+  `content_en` text DEFAULT NULL,
+  `content_jp` text DEFAULT NULL,
+  `content_kr` text DEFAULT NULL,
+  `content_chn` text DEFAULT NULL,
   `title_vi` varchar(250) DEFAULT NULL,
   `title_en` varchar(250) DEFAULT NULL,
   `title_jp` varchar(250) DEFAULT NULL,
   `title_kr` varchar(250) DEFAULT NULL,
   `title_chn` varchar(250) DEFAULT NULL,
-  `keyword_vi` text,
-  `keyword_en` text,
-  `keyword_jp` text,
-  `keyword_kr` text,
-  `keyword_chn` text,
-  `description_vi` text,
-  `description_en` text,
-  `description_jp` text,
-  `description_kr` text,
-  `description_chn` text,
-  `status` int(2) DEFAULT '1',
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `keyword_vi` text DEFAULT NULL,
+  `keyword_en` text DEFAULT NULL,
+  `keyword_jp` text DEFAULT NULL,
+  `keyword_kr` text DEFAULT NULL,
+  `keyword_chn` text DEFAULT NULL,
+  `description_vi` text DEFAULT NULL,
+  `description_en` text DEFAULT NULL,
+  `description_jp` text DEFAULT NULL,
+  `description_kr` text DEFAULT NULL,
+  `description_chn` text DEFAULT NULL,
+  `status` int(2) DEFAULT 1,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -443,12 +449,12 @@ CREATE TABLE `images` (
   `service_id` int(11) DEFAULT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `alias` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `photo` text COLLATE utf8_unicode_ci,
-  `status` int(11) NOT NULL DEFAULT '1',
+  `photo` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `status` int(11) NOT NULL DEFAULT 1,
   `image_path` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `alt` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `stt` int(11) NOT NULL DEFAULT '0',
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `stt` int(11) NOT NULL DEFAULT 0,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -477,17 +483,17 @@ CREATE TABLE `langs` (
   `name_jp` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
   `name_kr` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
   `name_chn` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `title_en` text COLLATE utf8_unicode_ci,
+  `title_en` text COLLATE utf8_unicode_ci DEFAULT NULL,
   `alias` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `photo` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `status` int(11) NOT NULL DEFAULT '0',
-  `lever` int(11) NOT NULL DEFAULT '0',
-  `title_vi` text COLLATE utf8_unicode_ci,
-  `keyword` longtext COLLATE utf8_unicode_ci,
-  `description` longtext COLLATE utf8_unicode_ci,
-  `com` text COLLATE utf8_unicode_ci,
-  `stt` int(11) DEFAULT '0',
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `status` int(11) NOT NULL DEFAULT 0,
+  `lever` int(11) NOT NULL DEFAULT 0,
+  `title_vi` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `keyword` longtext COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description` longtext COLLATE utf8_unicode_ci DEFAULT NULL,
+  `com` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `stt` int(11) DEFAULT 0,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -550,19 +556,19 @@ INSERT INTO `langs` (`id`, `name_vi`, `name_en`, `name_jp`, `name_kr`, `name_chn
 CREATE TABLE `lienket` (
   `id` int(10) UNSIGNED NOT NULL,
   `user_id` int(11) DEFAULT NULL,
-  `name` text COLLATE utf8_unicode_ci,
-  `name_en` text COLLATE utf8_unicode_ci,
-  `link` text COLLATE utf8_unicode_ci,
-  `photo` text COLLATE utf8_unicode_ci,
-  `mota` longtext COLLATE utf8_unicode_ci,
-  `content` longtext COLLATE utf8_unicode_ci,
-  `content_en` text COLLATE utf8_unicode_ci,
-  `status` int(11) NOT NULL DEFAULT '1',
-  `status_en` int(11) DEFAULT '1',
-  `noibat` int(11) NOT NULL DEFAULT '0',
-  `com` text COLLATE utf8_unicode_ci,
+  `name` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `name_en` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `link` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `photo` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `mota` longtext COLLATE utf8_unicode_ci DEFAULT NULL,
+  `content` longtext COLLATE utf8_unicode_ci DEFAULT NULL,
+  `content_en` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `status` int(11) NOT NULL DEFAULT 1,
+  `status_en` int(11) DEFAULT 1,
+  `noibat` int(11) NOT NULL DEFAULT 0,
+  `com` text COLLATE utf8_unicode_ci DEFAULT NULL,
   `stt` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -618,18 +624,18 @@ CREATE TABLE `menu` (
   `alias_kr` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `alias_chn` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `photo` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `status` int(11) NOT NULL DEFAULT '0',
-  `lever` int(11) NOT NULL DEFAULT '0',
-  `parent_id` int(11) NOT NULL DEFAULT '0',
+  `status` int(11) NOT NULL DEFAULT 0,
+  `lever` int(11) NOT NULL DEFAULT 0,
+  `parent_id` int(11) NOT NULL DEFAULT 0,
   `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `title_en` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `keyword` longtext COLLATE utf8_unicode_ci,
-  `keyword_en` text CHARACTER SET utf8,
-  `description` longtext COLLATE utf8_unicode_ci,
-  `description_en` text CHARACTER SET utf8,
-  `com` text COLLATE utf8_unicode_ci,
-  `stt` int(11) NOT NULL DEFAULT '0',
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `keyword` longtext COLLATE utf8_unicode_ci DEFAULT NULL,
+  `keyword_en` text CHARACTER SET utf8 DEFAULT NULL,
+  `description` longtext COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description_en` text CHARACTER SET utf8 DEFAULT NULL,
+  `com` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `stt` int(11) NOT NULL DEFAULT 0,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -697,21 +703,21 @@ CREATE TABLE `news` (
   `alias_jp` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `alias_kr` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `alias_chn` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `photo` text COLLATE utf8_unicode_ci,
-  `photo_en` text COLLATE utf8_unicode_ci,
-  `background` text COLLATE utf8_unicode_ci,
-  `mota_vi` text COLLATE utf8_unicode_ci,
-  `mota_en` text CHARACTER SET utf8,
-  `mota_jp` text COLLATE utf8_unicode_ci,
-  `mota_kr` text COLLATE utf8_unicode_ci,
-  `mota_chn` text COLLATE utf8_unicode_ci,
-  `content_vi` text COLLATE utf8_unicode_ci,
-  `content_en` text CHARACTER SET utf8,
-  `content_jp` text COLLATE utf8_unicode_ci,
-  `content_kr` text COLLATE utf8_unicode_ci,
-  `content_chn` text COLLATE utf8_unicode_ci,
+  `photo` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `photo_en` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `background` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `mota_vi` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `mota_en` text CHARACTER SET utf8 DEFAULT NULL,
+  `mota_jp` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `mota_kr` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `mota_chn` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `content_vi` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `content_en` text CHARACTER SET utf8 DEFAULT NULL,
+  `content_jp` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `content_kr` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `content_chn` text COLLATE utf8_unicode_ci DEFAULT NULL,
   `status` int(11) NOT NULL,
-  `noibat` int(11) DEFAULT '0',
+  `noibat` int(11) DEFAULT 0,
   `title_vi` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `title_en` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `title_jp` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -722,15 +728,15 @@ CREATE TABLE `news` (
   `keyword_jp` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `keyword_kr` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `keyword_chn` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `description_vi` text COLLATE utf8_unicode_ci,
-  `description_en` text CHARACTER SET utf8,
-  `description_jp` text COLLATE utf8_unicode_ci,
-  `description_kr` text COLLATE utf8_unicode_ci,
-  `description_chn` text COLLATE utf8_unicode_ci,
-  `com` text COLLATE utf8_unicode_ci,
+  `description_vi` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description_en` text CHARACTER SET utf8 DEFAULT NULL,
+  `description_jp` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description_kr` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description_chn` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `com` text COLLATE utf8_unicode_ci DEFAULT NULL,
   `stt` int(11) NOT NULL,
   `status_en` int(11) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -752,19 +758,19 @@ INSERT INTO `news` (`id`, `cate_id`, `user_id`, `name_vi`, `name_en`, `name_jp`,
 
 CREATE TABLE `newsletter` (
   `id` int(10) UNSIGNED NOT NULL,
-  `user_id` int(11) NOT NULL DEFAULT '0',
-  `name` text COLLATE utf8_unicode_ci,
-  `link` text COLLATE utf8_unicode_ci,
-  `email` text COLLATE utf8_unicode_ci,
-  `phone` text COLLATE utf8_unicode_ci,
-  `photo` text COLLATE utf8_unicode_ci,
-  `mota` longtext COLLATE utf8_unicode_ci,
-  `content` longtext COLLATE utf8_unicode_ci,
-  `status` int(11) NOT NULL DEFAULT '1',
-  `noibat` int(11) NOT NULL DEFAULT '0',
-  `com` text COLLATE utf8_unicode_ci,
-  `stt` int(11) NOT NULL DEFAULT '0',
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `user_id` int(11) NOT NULL DEFAULT 0,
+  `name` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `link` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `email` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `phone` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `photo` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `mota` longtext COLLATE utf8_unicode_ci DEFAULT NULL,
+  `content` longtext COLLATE utf8_unicode_ci DEFAULT NULL,
+  `status` int(11) NOT NULL DEFAULT 1,
+  `noibat` int(11) NOT NULL DEFAULT 0,
+  `com` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `stt` int(11) NOT NULL DEFAULT 0,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -795,34 +801,34 @@ CREATE TABLE `news_categories` (
   `alias_kr` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `alias_chn` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `photo` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `mota_vi` text COLLATE utf8_unicode_ci,
-  `mota_en` text CHARACTER SET utf8,
-  `mota_jp` text COLLATE utf8_unicode_ci,
-  `mota_kr` text COLLATE utf8_unicode_ci,
-  `mota_chn` text COLLATE utf8_unicode_ci,
-  `status` int(11) NOT NULL DEFAULT '0',
-  `lever` int(11) NOT NULL DEFAULT '0',
-  `parent_id` int(11) NOT NULL DEFAULT '0',
+  `mota_vi` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `mota_en` text CHARACTER SET utf8 DEFAULT NULL,
+  `mota_jp` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `mota_kr` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `mota_chn` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `status` int(11) NOT NULL DEFAULT 0,
+  `lever` int(11) NOT NULL DEFAULT 0,
+  `parent_id` int(11) NOT NULL DEFAULT 0,
   `title_vi` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
   `title_en` varchar(250) CHARACTER SET utf8 DEFAULT NULL,
   `title_jp` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
   `title_kr` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
   `title_chn` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `keyword_vi` text COLLATE utf8_unicode_ci,
-  `keyword_en` text CHARACTER SET utf8,
-  `keyword_jp` text COLLATE utf8_unicode_ci,
-  `keyword_kr` text COLLATE utf8_unicode_ci,
-  `keyword_chn` text COLLATE utf8_unicode_ci,
-  `description_vi` text COLLATE utf8_unicode_ci,
-  `description_en` text COLLATE utf8_unicode_ci,
-  `description_jp` text COLLATE utf8_unicode_ci,
-  `description_kr` text COLLATE utf8_unicode_ci,
-  `description_chn` text COLLATE utf8_unicode_ci,
-  `com` text COLLATE utf8_unicode_ci,
-  `stt` int(11) NOT NULL DEFAULT '0',
-  `status_en` int(11) DEFAULT '0',
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `background` text COLLATE utf8_unicode_ci,
+  `keyword_vi` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `keyword_en` text CHARACTER SET utf8 DEFAULT NULL,
+  `keyword_jp` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `keyword_kr` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `keyword_chn` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description_vi` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description_en` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description_jp` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description_kr` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description_chn` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `com` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `stt` int(11) NOT NULL DEFAULT 0,
+  `status_en` int(11) DEFAULT 0,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `background` text COLLATE utf8_unicode_ci DEFAULT NULL,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -869,7 +875,7 @@ CREATE TABLE `orders` (
   `number_room` int(11) DEFAULT NULL,
   `check_in` date DEFAULT NULL,
   `check_out` date DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -883,12 +889,12 @@ CREATE TABLE `partner` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` text COLLATE utf8_unicode_ci NOT NULL,
   `name_en` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `url` text COLLATE utf8_unicode_ci,
-  `photo` text COLLATE utf8_unicode_ci,
-  `desc` longtext COLLATE utf8_unicode_ci,
-  `content` longtext COLLATE utf8_unicode_ci,
+  `url` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `photo` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `desc` longtext COLLATE utf8_unicode_ci DEFAULT NULL,
+  `content` longtext COLLATE utf8_unicode_ci DEFAULT NULL,
   `com` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `status` int(11) NOT NULL DEFAULT '1',
+  `status` int(11) NOT NULL DEFAULT 1,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -924,9 +930,9 @@ CREATE TABLE `password_resets` (
 
 CREATE TABLE `products` (
   `id` int(10) UNSIGNED NOT NULL,
-  `user_id` int(11) NOT NULL DEFAULT '0',
-  `cate_id` int(11) UNSIGNED NOT NULL DEFAULT '0',
-  `code` text COLLATE utf8_unicode_ci,
+  `user_id` int(11) NOT NULL DEFAULT 0,
+  `cate_id` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `code` text COLLATE utf8_unicode_ci DEFAULT NULL,
   `stt` int(11) DEFAULT NULL,
   `name_vi` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `name_en` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
@@ -938,43 +944,43 @@ CREATE TABLE `products` (
   `alias_jp` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `alias_kr` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `alias_chn` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `photo` text COLLATE utf8_unicode_ci,
-  `price_vi` int(11) NOT NULL DEFAULT '0',
-  `price_en` int(11) DEFAULT '0',
-  `sale` int(11) DEFAULT '0',
-  `price_old` int(11) DEFAULT '0',
-  `mota_vi` text COLLATE utf8_unicode_ci,
-  `mota_en` text CHARACTER SET utf8,
-  `mota_jp` text COLLATE utf8_unicode_ci,
-  `mota_kr` text COLLATE utf8_unicode_ci,
-  `mota_chn` text COLLATE utf8_unicode_ci,
-  `content_vi` longtext COLLATE utf8_unicode_ci,
-  `content_en` text CHARACTER SET utf8,
-  `content_jp` text COLLATE utf8_unicode_ci,
-  `content_kr` text COLLATE utf8_unicode_ci,
-  `content_chn` text COLLATE utf8_unicode_ci,
-  `model` text COLLATE utf8_unicode_ci,
+  `photo` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `price_vi` int(11) NOT NULL DEFAULT 0,
+  `price_en` int(11) DEFAULT 0,
+  `sale` int(11) DEFAULT 0,
+  `price_old` int(11) DEFAULT 0,
+  `mota_vi` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `mota_en` text CHARACTER SET utf8 DEFAULT NULL,
+  `mota_jp` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `mota_kr` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `mota_chn` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `content_vi` longtext COLLATE utf8_unicode_ci DEFAULT NULL,
+  `content_en` text CHARACTER SET utf8 DEFAULT NULL,
+  `content_jp` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `content_kr` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `content_chn` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `model` text COLLATE utf8_unicode_ci DEFAULT NULL,
   `ratepoint` int(2) DEFAULT NULL,
-  `noibat` int(11) NOT NULL DEFAULT '0',
-  `spbc` int(11) NOT NULL DEFAULT '0',
-  `status` int(11) NOT NULL DEFAULT '1',
+  `noibat` int(11) NOT NULL DEFAULT 0,
+  `spbc` int(11) NOT NULL DEFAULT 0,
+  `status` int(11) NOT NULL DEFAULT 1,
   `title_vi` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `title_en` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `title_jp` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `title_kr` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `title_chn` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `keyword_vi` text COLLATE utf8_unicode_ci,
-  `keyword_en` text CHARACTER SET utf8,
-  `keyword_jp` text COLLATE utf8_unicode_ci,
-  `keyword_kr` text COLLATE utf8_unicode_ci,
-  `keyword_chn` text COLLATE utf8_unicode_ci,
-  `description_vi` text COLLATE utf8_unicode_ci,
-  `description_en` text CHARACTER SET utf8,
-  `description_jp` text COLLATE utf8_unicode_ci,
-  `description_kr` text COLLATE utf8_unicode_ci,
-  `description_chn` text COLLATE utf8_unicode_ci,
+  `keyword_vi` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `keyword_en` text CHARACTER SET utf8 DEFAULT NULL,
+  `keyword_jp` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `keyword_kr` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `keyword_chn` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description_vi` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description_en` text CHARACTER SET utf8 DEFAULT NULL,
+  `description_jp` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description_kr` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description_chn` text COLLATE utf8_unicode_ci DEFAULT NULL,
   `com` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -1007,7 +1013,7 @@ INSERT INTO `products` (`id`, `user_id`, `cate_id`, `code`, `stt`, `name_vi`, `n
 
 CREATE TABLE `product_categories` (
   `id` int(10) UNSIGNED NOT NULL,
-  `parent_id` int(11) DEFAULT '0',
+  `parent_id` int(11) DEFAULT 0,
   `stt` int(11) DEFAULT NULL,
   `name_vi` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `name_en` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
@@ -1019,32 +1025,32 @@ CREATE TABLE `product_categories` (
   `alias_jp` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `alias_kr` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `alias_chn` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `mota_vi` text CHARACTER SET utf8,
-  `mota_en` text CHARACTER SET utf8,
-  `mota_jp` text COLLATE utf8_unicode_ci,
-  `mota_chn` text COLLATE utf8_unicode_ci,
-  `mota_kr` text COLLATE utf8_unicode_ci,
-  `photo` text COLLATE utf8_unicode_ci,
-  `noibat` int(2) DEFAULT '0',
+  `mota_vi` text CHARACTER SET utf8 DEFAULT NULL,
+  `mota_en` text CHARACTER SET utf8 DEFAULT NULL,
+  `mota_jp` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `mota_chn` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `mota_kr` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `photo` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `noibat` int(2) DEFAULT 0,
   `status` int(11) NOT NULL,
-  `lever` int(11) NOT NULL DEFAULT '0',
+  `lever` int(11) NOT NULL DEFAULT 0,
   `title_vi` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `title_en` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `title_jp` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `title_kr` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `title_chn` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `keyword_vi` text COLLATE utf8_unicode_ci,
-  `keyword_en` text CHARACTER SET utf8,
-  `keyword_jp` text COLLATE utf8_unicode_ci,
-  `keyword_kr` text COLLATE utf8_unicode_ci,
-  `keyword_chn` text COLLATE utf8_unicode_ci,
-  `description_vi` text COLLATE utf8_unicode_ci,
-  `description_en` text COLLATE utf8_unicode_ci,
-  `description_jp` text COLLATE utf8_unicode_ci,
-  `description_kr` text COLLATE utf8_unicode_ci,
-  `description_chn` text COLLATE utf8_unicode_ci,
+  `keyword_vi` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `keyword_en` text CHARACTER SET utf8 DEFAULT NULL,
+  `keyword_jp` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `keyword_kr` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `keyword_chn` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description_vi` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description_en` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description_jp` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description_kr` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description_chn` text COLLATE utf8_unicode_ci DEFAULT NULL,
   `com` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -1108,31 +1114,31 @@ CREATE TABLE `recruitment` (
   `name_chn` varchar(250) DEFAULT NULL,
   `alias_vi` varchar(250) CHARACTER SET latin1 DEFAULT NULL,
   `photo` varchar(250) DEFAULT NULL,
-  `mota_vi` text,
-  `mota_en` text,
-  `mota_jp` text,
-  `mota_kr` text,
-  `mota_chn` text,
-  `yeucau_vi` text,
-  `yeucau_en` text,
-  `yeucau_jp` text,
-  `yeucau_kr` text,
-  `yeucau_chn` text,
-  `chedo_vi` text,
-  `chedo_en` text,
-  `chedo_jp` text,
-  `chedo_kr` text,
-  `chedo_chn` text,
-  `hoso_vi` text,
-  `hoso_en` text,
-  `hoso_jp` text,
-  `hoso_kr` text,
-  `hoso_chn` text,
-  `room_vi` text,
-  `room_en` text,
-  `room_jp` text,
-  `room_kr` text,
-  `room_chn` text,
+  `mota_vi` text DEFAULT NULL,
+  `mota_en` text DEFAULT NULL,
+  `mota_jp` text DEFAULT NULL,
+  `mota_kr` text DEFAULT NULL,
+  `mota_chn` text DEFAULT NULL,
+  `yeucau_vi` text DEFAULT NULL,
+  `yeucau_en` text DEFAULT NULL,
+  `yeucau_jp` text DEFAULT NULL,
+  `yeucau_kr` text DEFAULT NULL,
+  `yeucau_chn` text DEFAULT NULL,
+  `chedo_vi` text DEFAULT NULL,
+  `chedo_en` text DEFAULT NULL,
+  `chedo_jp` text DEFAULT NULL,
+  `chedo_kr` text DEFAULT NULL,
+  `chedo_chn` text DEFAULT NULL,
+  `hoso_vi` text DEFAULT NULL,
+  `hoso_en` text DEFAULT NULL,
+  `hoso_jp` text DEFAULT NULL,
+  `hoso_kr` text DEFAULT NULL,
+  `hoso_chn` text DEFAULT NULL,
+  `room_vi` text DEFAULT NULL,
+  `room_en` text DEFAULT NULL,
+  `room_jp` text DEFAULT NULL,
+  `room_kr` text DEFAULT NULL,
+  `room_chn` text DEFAULT NULL,
   `number` int(11) DEFAULT NULL,
   `end_date` date DEFAULT NULL,
   `title_vi` varchar(255) DEFAULT NULL,
@@ -1140,19 +1146,19 @@ CREATE TABLE `recruitment` (
   `title_jp` varchar(255) DEFAULT NULL,
   `title_kr` varchar(255) DEFAULT NULL,
   `title_chn` varchar(255) DEFAULT NULL,
-  `description_vi` text,
-  `description_en` text,
-  `description_jp` text,
-  `description_kr` text,
-  `description_chn` text,
+  `description_vi` text DEFAULT NULL,
+  `description_en` text DEFAULT NULL,
+  `description_jp` text DEFAULT NULL,
+  `description_kr` text DEFAULT NULL,
+  `description_chn` text DEFAULT NULL,
   `keyword_vi` varchar(255) DEFAULT NULL,
   `keyword_en` varchar(255) DEFAULT NULL,
   `keyword_jp` varchar(255) DEFAULT NULL,
   `keyword_kr` varchar(255) DEFAULT NULL,
   `keyword_chn` varchar(255) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `status` tinyint(2) DEFAULT '0'
+  `status` tinyint(2) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -1173,60 +1179,60 @@ INSERT INTO `recruitment` (`id`, `name_vi`, `name_en`, `name_jp`, `name_kr`, `na
 
 CREATE TABLE `setting` (
   `id` int(10) UNSIGNED NOT NULL,
-  `name_vi` text COLLATE utf8_unicode_ci,
+  `name_vi` text COLLATE utf8_unicode_ci DEFAULT NULL,
   `name_en` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `name_jp` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `name_kr` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `name_chn` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `title_vi` text COLLATE utf8_unicode_ci,
-  `title_en` text CHARACTER SET utf8,
+  `title_vi` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `title_en` text CHARACTER SET utf8 DEFAULT NULL,
   `company_vi` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `company_en` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `company_jp` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `company_kr` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `company_chn` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `website` text COLLATE utf8_unicode_ci,
-  `address_vi` text COLLATE utf8_unicode_ci,
-  `address_en` text CHARACTER SET utf8,
-  `address_jp` text COLLATE utf8_unicode_ci,
-  `address_kr` text COLLATE utf8_unicode_ci,
-  `address_chn` text COLLATE utf8_unicode_ci,
+  `website` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `address_vi` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `address_en` text CHARACTER SET utf8 DEFAULT NULL,
+  `address_jp` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `address_kr` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `address_chn` text COLLATE utf8_unicode_ci DEFAULT NULL,
   `phone` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `hotline` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `hotline_hr` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `fax` text COLLATE utf8_unicode_ci,
-  `email` text COLLATE utf8_unicode_ci,
-  `email_test` text COLLATE utf8_unicode_ci,
-  `email_hr` text COLLATE utf8_unicode_ci,
-  `photo` text COLLATE utf8_unicode_ci,
-  `logo` text COLLATE utf8_unicode_ci,
-  `favico` text COLLATE utf8_unicode_ci,
-  `title_index` text COLLATE utf8_unicode_ci,
-  `mota_vi` longtext COLLATE utf8_unicode_ci,
-  `mota_en` text CHARACTER SET utf8,
-  `content_vi` longtext COLLATE utf8_unicode_ci,
-  `content_en` text CHARACTER SET utf8,
-  `facebook` text COLLATE utf8_unicode_ci,
-  `twitter` text COLLATE utf8_unicode_ci,
-  `skype` text COLLATE utf8_unicode_ci,
-  `google` text COLLATE utf8_unicode_ci,
-  `zalo` text COLLATE utf8_unicode_ci,
-  `youtube` text COLLATE utf8_unicode_ci,
-  `slogan_vi` text CHARACTER SET utf8,
-  `slogan_en` text CHARACTER SET utf8,
-  `slogan_jp` text COLLATE utf8_unicode_ci,
-  `slogan_kr` text COLLATE utf8_unicode_ci,
-  `slogan_chn` text COLLATE utf8_unicode_ci,
-  `status` int(11) NOT NULL DEFAULT '0',
+  `fax` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `email` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `email_test` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `email_hr` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `photo` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `logo` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `favico` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `title_index` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `mota_vi` longtext COLLATE utf8_unicode_ci DEFAULT NULL,
+  `mota_en` text CHARACTER SET utf8 DEFAULT NULL,
+  `content_vi` longtext COLLATE utf8_unicode_ci DEFAULT NULL,
+  `content_en` text CHARACTER SET utf8 DEFAULT NULL,
+  `facebook` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `twitter` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `skype` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `google` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `zalo` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `youtube` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `slogan_vi` text CHARACTER SET utf8 DEFAULT NULL,
+  `slogan_en` text CHARACTER SET utf8 DEFAULT NULL,
+  `slogan_jp` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `slogan_kr` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `slogan_chn` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `status` int(11) NOT NULL DEFAULT 0,
   `cv` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `toado` text COLLATE utf8_unicode_ci,
-  `copyright` text COLLATE utf8_unicode_ci,
-  `iframemap` text COLLATE utf8_unicode_ci,
-  `codechat` longtext COLLATE utf8_unicode_ci,
-  `analytics` longtext COLLATE utf8_unicode_ci,
-  `keyword_vi` longtext COLLATE utf8_unicode_ci,
-  `description_vi` longtext COLLATE utf8_unicode_ci,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `toado` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `copyright` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `iframemap` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `codechat` longtext COLLATE utf8_unicode_ci DEFAULT NULL,
+  `analytics` longtext COLLATE utf8_unicode_ci DEFAULT NULL,
+  `keyword_vi` longtext COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description_vi` longtext COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -1235,7 +1241,7 @@ CREATE TABLE `setting` (
 --
 
 INSERT INTO `setting` (`id`, `name_vi`, `name_en`, `name_jp`, `name_kr`, `name_chn`, `title_vi`, `title_en`, `company_vi`, `company_en`, `company_jp`, `company_kr`, `company_chn`, `website`, `address_vi`, `address_en`, `address_jp`, `address_kr`, `address_chn`, `phone`, `hotline`, `hotline_hr`, `fax`, `email`, `email_test`, `email_hr`, `photo`, `logo`, `favico`, `title_index`, `mota_vi`, `mota_en`, `content_vi`, `content_en`, `facebook`, `twitter`, `skype`, `google`, `zalo`, `youtube`, `slogan_vi`, `slogan_en`, `slogan_jp`, `slogan_kr`, `slogan_chn`, `status`, `cv`, `toado`, `copyright`, `iframemap`, `codechat`, `analytics`, `keyword_vi`, `description_vi`, `created_at`, `updated_at`) VALUES
-(1, NULL, NULL, NULL, NULL, NULL, 'CÔNG TY CỔ PHẦN Welltech', NULL, 'CÔNG TY CỔ PHẦN Welltech', 'CÔNG TY CỔ PHẦN Welltech', NULL, NULL, NULL, NULL, 'Tầng 3, Toà nhà Gaden Gate, số 8 Hoàng Minh Giám, phường 9, quận Phú Nhuận, Tp Hồ Chí Minh', '3th Floor, Garden Gate Building, No.8 Hoang Minh Giam Street, Ward 9, Phu Nhuan District, Ho Chi Minh City', NULL, NULL, NULL, '(028) 35400400', '0904 855559', NULL, NULL, 'chuonghoanghong@gmail.com', NULL, NULL, '1560491299_logo1.png', '1560491299_logo2.png', '1560491299_logo1.png', NULL, NULL, NULL, NULL, NULL, 'https://www.facebook.com/FacebookforDevelopers/', NULL, NULL, 'https://plus.google.com/?hl=vi', 'sdfs', 'https://www.youtube.com/', 'Chúng tôi luôn quan niệm rằng việc xây dựng chữ TÍN với Quý khách hàng và đối tác phải đặt lên hàng đầu, là giá trị to lớn nhất để phát triển doanh nghiệp bền vững.', 'Slogan tieengs anh', NULL, NULL, NULL, 1, '1543305485_WEB IVY - ĐIỂM CẦN SỬA-converted.docx', NULL, '© Copyright 2019. WELLTECH - All rights reseverd', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.0204299793886!2d106.67180031526053!3d10.80974696153258!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3175292057c1dea7%3A0xc1067795d779feb2!2sChung+c%C6%B0+Garden+Gate!5e0!3m2!1svi!2s!4v1560491672446!5m2!1svi!2s\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>', NULL, NULL, NULL, NULL, '2019-06-14 05:54:40', '2019-06-14 05:54:40');
+(1, NULL, NULL, NULL, NULL, NULL, 'Công ty TNHH WellTech', NULL, 'Công ty TNHH WellTech', 'Công ty TNHH WellTech', NULL, NULL, NULL, NULL, 'Tầng 3, Toà nhà Gaden Gate, số 8 Hoàng Minh Giám, phường 9, quận Phú Nhuận, Tp Hồ Chí Minh', '3th Floor, Garden Gate Building, No.8 Hoang Minh Giam Street, Ward 9, Phu Nhuan District, Ho Chi Minh City', NULL, NULL, NULL, '(028) 35400400', '0904 855559', NULL, NULL, 'info@welltech.vn', NULL, NULL, '1560491299_logo1.png', '1560491299_logo2.png', '1560491299_logo1.png', NULL, NULL, NULL, NULL, NULL, 'https://www.facebook.com', NULL, NULL, 'https://plus.google.com/?hl=vi', 'https://zalo.vn', 'https://www.youtube.com/', 'Chúng tôi luôn quan niệm rằng việc xây dựng chữ TÍN với Quý khách hàng và đối tác phải đặt lên hàng đầu, là giá trị to lớn nhất để phát triển doanh nghiệp bền vững.', 'Chúng tôi luôn quan niệm rằng việc xây dựng chữ TÍN với Quý khách hàng và đối tác phải đặt lên hàng đầu, là giá trị to lớn nhất để phát triển doanh nghiệp bền vững.', NULL, NULL, NULL, 1, '1543305485_WEB IVY - ĐIỂM CẦN SỬA-converted.docx', NULL, '© Copyright 2019. WELLTECH - All rights reseverd', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2233.937413964129!2d106.6728579!3d10.8104233!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3175290c19d03695%3A0x25447e1bee95c6cf!2sGarden+Gate+Novoland!5e1!3m2!1svi!2s!4v1560513661490!5m2!1svi!2s\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>', NULL, NULL, NULL, NULL, '2019-06-14 12:00:27', '2019-06-14 12:00:27');
 
 -- --------------------------------------------------------
 
@@ -1251,26 +1257,26 @@ CREATE TABLE `slider` (
   `name_jp` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `name_kr` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `name_chn` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `link_vi` text COLLATE utf8_unicode_ci,
-  `link_en` text COLLATE utf8_unicode_ci,
-  `link_jp` text COLLATE utf8_unicode_ci,
+  `link_vi` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `link_en` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `link_jp` text COLLATE utf8_unicode_ci DEFAULT NULL,
   `link_kr` text COLLATE utf8_unicode_ci NOT NULL,
-  `link_chn` text COLLATE utf8_unicode_ci,
-  `photo` text COLLATE utf8_unicode_ci,
-  `photo_en` text COLLATE utf8_unicode_ci,
-  `icon` text COLLATE utf8_unicode_ci,
-  `mota_vi` longtext COLLATE utf8_unicode_ci,
-  `content_vi` text COLLATE utf8_unicode_ci,
-  `content_en` text COLLATE utf8_unicode_ci,
-  `content_jp` text COLLATE utf8_unicode_ci,
-  `content_kr` text COLLATE utf8_unicode_ci,
-  `content_chn` text COLLATE utf8_unicode_ci,
-  `status` int(11) NOT NULL DEFAULT '1',
-  `status_en` int(11) DEFAULT '1',
-  `noibat` int(11) NOT NULL DEFAULT '0',
+  `link_chn` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `photo` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `photo_en` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `icon` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `mota_vi` longtext COLLATE utf8_unicode_ci DEFAULT NULL,
+  `content_vi` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `content_en` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `content_jp` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `content_kr` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `content_chn` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `status` int(11) NOT NULL DEFAULT 1,
+  `status_en` int(11) DEFAULT 1,
+  `noibat` int(11) NOT NULL DEFAULT 0,
   `com` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `stt` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -1298,10 +1304,10 @@ CREATE TABLE `slogan` (
   `id` int(11) NOT NULL,
   `name_vi` varchar(255) DEFAULT NULL,
   `name_en` varchar(255) DEFAULT NULL,
-  `photo` text,
-  `content_vi` text,
-  `content_en` text,
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `photo` text DEFAULT NULL,
+  `content_vi` text DEFAULT NULL,
+  `content_en` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -1340,12 +1346,12 @@ CREATE TABLE `users` (
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `phone` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `address` text COLLATE utf8_unicode_ci,
-  `level` int(11) NOT NULL DEFAULT '2',
-  `photo` text COLLATE utf8_unicode_ci,
-  `status` int(11) NOT NULL DEFAULT '1',
+  `address` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `level` int(11) NOT NULL DEFAULT 2,
+  `photo` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `status` int(11) NOT NULL DEFAULT 1,
   `remember_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -1357,7 +1363,8 @@ INSERT INTO `users` (`id`, `username`, `password`, `name`, `email`, `phone`, `ad
 (3, 'tuanduy2012', '$2y$10$DceYJxR4ALmUW.Vt6k9En.1ubJhJGvWX1HISRloBERLNJ8Qq85itO', 'Tuan Duy', 'duydoan.nina@gmail.com', '', '', 1, NULL, 1, 'X37mpbjW1WDCjwH3s4Vq1Jkv3WRNJceXZlbLwHaa', '2017-06-14 23:42:39', '2017-06-14 23:42:39'),
 (4, 'evernigh', '$2y$10$pprRO9LhYKADS60bvetRnOYoS3L74giVWf3D/wNZXlDLDRRx0bH6e', 'Duy Đoàn', 'tuanduy_mc2006@yahoo.com', '', '', 0, NULL, 1, '6CirvIekDhWLx3xFrnv7v39bFmalTsH21F4WABTq', '2017-06-16 02:51:34', '2017-06-16 02:51:34'),
 (5, 'gco_admin', '$2y$10$Lm3vxVo0UYuWFSzJkpvmwOKecqZm5coQSy1D3QW/Tc8c569RgBNFK', 'Admin', 'gco@gmail.com', '0985431797', '315 Trường chinh, Thanh Xuân, Hà Nội', 1, '5.jpg', 1, 'KyjC2pTepYQJtT1Og50Mhl6ZKKd2iUb0K5eYAI9tJ46l7Yh3FxK6DnXbFlfD', '2018-05-21 08:39:19', '2017-09-24 19:31:27'),
-(7, 'hoangchuong', '$2y$10$PnaSJxmZdL0x0wRtj4q0tODPWKtxI85VefEFNZWDQKEH6q8rxjLc6', 'chuong', 'chuonghoanghong@gmail.com', NULL, NULL, 1, NULL, 1, 'DSYV3dr0q7IjUiVKsa4tl4ApOSuDPybd17EupcaO', '2017-11-07 01:31:10', '2017-11-07 01:31:10');
+(7, 'hoangchuong', '$2y$10$PnaSJxmZdL0x0wRtj4q0tODPWKtxI85VefEFNZWDQKEH6q8rxjLc6', 'chuong', 'chuonghoanghong@gmail.com', NULL, NULL, 1, NULL, 1, 'DSYV3dr0q7IjUiVKsa4tl4ApOSuDPybd17EupcaO', '2017-11-07 01:31:10', '2017-11-07 01:31:10'),
+(8, 'chuonghh', '$2y$10$2qEshphZg14/rB6DTwINDe2FB2QAJhBb4vIH/fYALnVOcHJXvonZ6', 'chuonghh', 'abc@gmail.com', NULL, NULL, 1, NULL, 1, 'sQLT0FMKXr9MO1BhJ46wqrvgsUrq1yMqLeXwPwxC', '2019-06-25 07:17:28', '2019-06-25 07:17:28');
 
 -- --------------------------------------------------------
 
@@ -1633,7 +1640,7 @@ ALTER TABLE `banner_position`
 -- AUTO_INCREMENT cho bảng `bills`
 --
 ALTER TABLE `bills`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT cho bảng `chinhanh`
@@ -1645,7 +1652,7 @@ ALTER TABLE `chinhanh`
 -- AUTO_INCREMENT cho bảng `contacts`
 --
 ALTER TABLE `contacts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT cho bảng `cv`
@@ -1777,7 +1784,7 @@ ALTER TABLE `useronline`
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT cho bảng `video`
